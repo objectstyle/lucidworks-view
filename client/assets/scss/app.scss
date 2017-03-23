@@ -50,3 +50,24 @@
     &:before, &:after {left:auto;right:25px;}
   }
 }
+
+//customise
+.title-bar {
+  flex-wrap: wrap-reverse;
+  .portal-link {
+    margin-bottom: 10px;
+    a {
+      color: #0000EE;
+      padding-bottom: 10px;
+    }
+  }
+  .search-box input {
+    border-radius: 5px 0 0 5px;
+  }
+  .button {
+    border-radius: 0 5px 5px 0;
+    border: 1px solid #ccc;
+  }
+}
+
+
