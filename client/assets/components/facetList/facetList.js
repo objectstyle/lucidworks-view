@@ -81,7 +81,12 @@
 
             // Adding new facet entries
             var newFacets = [];
+            console.log('------------------' + facetType + '-----');
+            console.log('facetLocalParams');
+            console.log(vm.facetLocalParams);
             _.forEach(newFields, function(value){
+              console.log('value');
+              console.log(value);
               var facet = {
                 name: value,
                 type: facetType,

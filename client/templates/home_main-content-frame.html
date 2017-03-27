@@ -10,7 +10,19 @@
           <option>All categories</option>
         </select>
       </div>
-      <div class="filter-block">
+      <div ng-show="hc.showFacets" class="medium-grid-block">
+        <div
+          zf-panel
+          id="sidebar"
+          position="left"
+          zf-swipe-close="left"
+          class="medium-grid-block panel-fixed collapse medium-12 vertical">
+          <a zf-close="" class="close-button show-for-small-only">×</a>
+          <facet-list is-loading="hc.isLoading"></facet-list>
+        </div>
+      </div>
+
+      <!--<div class="filter-block">
         <h4>Template</h4>
         <div class="filter-checkbox-group">
           <input id="HowTo" name="template" type="checkbox"/>
@@ -33,7 +45,7 @@
           <label for="Legacy">LegacyImport</label>
         </div>
         <a>more</a>
-      </div>
+      </div>-->
       <div class="filter-block">
         <h4>Modified Date</h4>
         <span class="filter-item filter-item-active">Any time</span>
@@ -65,7 +77,7 @@
       </div>
       <div class="result-data">
         <div class="result-count">
-          Showing <span>1-10</span> of <span>63</span> Results
+          Showing <span>{{hc.getShowingRows()}}</span> of <span>{{hc.getTotalPages()}}</span> Results
         </div>
         <div class="result-sort">
           <span>Sort by</span>
@@ -82,5 +94,4 @@
       <paginate ng-show="hc.status ==='normal'"></paginate>
     </div>
   </div>
-
 </div>
