@@ -155,4 +155,18 @@ a {
   }
 }
 
+.main-tabs {
+  list-style-type: none;
+  li {
+    display: inline-block;
+    padding: 0 10px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    &.active {
+      border: 1px solid #ccc;
+      border-bottom: none;
+    }
+  }
+}
+
 

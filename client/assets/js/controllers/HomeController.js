@@ -5,13 +5,16 @@
     .controller('HomeController', HomeController);
 
 
-  function HomeController($filter, $timeout, ConfigService, QueryService, URLService, Orwell, AuthService, _, $log) {
+  function HomeController($filter, $timeout, ConfigService, QueryService, URLService, PaginateService, Orwell, AuthService, _, $log) {
 
     'ngInject';
     var hc = this; //eslint-disable-line
     var resultsObservable;
     var query;
     var sorting;
+
+    hc.setActiveTab = setActiveTab;
+    hc.getShowingRows = getShowingRows;
 
     hc.searchQuery = ConfigService.config.default_query.q;
 
@@ -32,6 +35,9 @@
       hc.sorting = {};
       hc.grouped = false;
       hc.isLoading = false;
+      hc.activeTab = 2;
+      hc.activePage = getActivePage();
+      hc.getTotalPages = PaginateService.getTotalResultRows;
 
       query = URLService.getQueryFromUrl();
       //Setting the query object... also populating the the view model
@@ -169,6 +175,20 @@
      */
     function logout(){
       AuthService.destroySession();
+    }
+
+    function setActiveTab(num) {
+      hc.activeTab = num;
+    }
+
+    function getActivePage() {
+      return PaginateService.getCurrentPage() + 1;
+    }
+
+    function getShowingRows() {
+      var rowsPerPage = PaginateService.getRowsPerPage();
+      return hc.activePage + '-' + (hc.activePage * rowsPerPage);
+
     }
   }
 })();
