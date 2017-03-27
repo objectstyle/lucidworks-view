@@ -14,7 +14,8 @@
         getRowsPerPage: getRowsPerPage,
         getCurrentPage: getCurrentPage,
         getTotalPages: getTotalPages,
-        getNormalizedCurrentPage: getNormalizedCurrentPage
+        getNormalizedCurrentPage: getNormalizedCurrentPage,
+        getTotalResultRows: getTotalResultRows
       };
 
     activate();
