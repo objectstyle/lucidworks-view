@@ -1,9 +1,15 @@
 <div mass-autocomplete class="search-box">
-  <input type="text" 
-  class="query-input" 
-  ng-model="ta.dirty.value" 
-  mass-autocomplete-item="ta.autocomplete_options" ng-keydown="ta.checkKeyPress($event)" />
+  <input type="text"
+      class="query-input"
+      ng-model="ta.dirty.value"
+      mass-autocomplete-item="ta.autocomplete_options"
+      ng-keydown="ta.checkKeyPress($event)"
+      ng-focus="ta.toggleSearchBar()"
+      ng-blur="ta.toggleSearchBar()"/>
   <div class="no-results-message" ng-show="ta.dirty.value && ta.noResults">{{ta.noResultsMessage}}</div>
 </div>
 
-  
+<div class="search-bar" ng-show="ta.showBar">
+  <span>Reset Search</span>
+  <span>Advanced Search</span>
+</div>

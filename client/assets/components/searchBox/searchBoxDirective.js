@@ -24,23 +24,25 @@
   function Controller($element, $log, $q, $sce, $timeout, ConfigService, SearchBoxDataService) {
     'ngInject';
     var ta = this;
-    
+
     ta.checkKeyPress = checkKeyPress;
+    ta.toggleSearchBar = toggleSearchBar;
     ta.typeaheadField = ConfigService.getTypeaheadField();
     ta.initialValue = _.isArray(ta.query)?ta.query[0]:ta.query;
     ta.noResults = undefined;
-    
+    ta.showBar = false;
+
     //need to get hold of the element to be able to manually close the suggestions div
     var massAutocompleteElem = $element.find('div')[0];
 
     //mass-autocomplete config
     ta.dirty = {};
-    
+
     ta.autocomplete_options = {
       suggest: doTypeaheadSearch,
-      on_error: showNoResults,      
+      on_error: showNoResults,
       on_select: selectedSomething,
-    };    
+    };
 
     activate();
 
@@ -56,7 +58,7 @@
     }
 
     function closeSuggester() {
-      var massAutoElemScope = angular.element(massAutocompleteElem).isolateScope();      
+      var massAutoElemScope = angular.element(massAutocompleteElem).isolateScope();
       $timeout(function() {
         if(massAutoElemScope.show_autocomplete) {
           massAutoElemScope.show_autocomplete = false;
@@ -125,5 +127,8 @@
       }
     }
 
+    function toggleSearchBar() {
+      ta.showBar = !ta.showBar;
+    }
   }
 })();

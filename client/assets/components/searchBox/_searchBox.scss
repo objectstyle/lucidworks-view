@@ -15,9 +15,9 @@ $search-box-typeahead-highlight-color:     $success-color;
 $search-box-empty-content:                 '';
 
 @include exports(search-box) {
-  
+
   .search-box {
-    > span {position:relative;display: block;} 
+    > span {position:relative;display: block;}
     .query-input {
       margin-bottom: 0px;
       color: $search-box-typeahead-text-color;
@@ -72,5 +72,11 @@ $search-box-empty-content:                 '';
         color: $search-box-typeahead-highlight-color;
       }
     }
+  }
+  .search-bar {
+    text-align: right;
+    background: #ddd;
+    padding: 5px;
+    border-radius: 5px
   }
 }
