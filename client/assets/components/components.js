@@ -8,7 +8,6 @@ angular.module('lucidworksView.components', [
   'lucidworksView.components.document_snippet',
   'lucidworksView.components.documentList',
   'lucidworksView.components.facetField',
-  'lucidworksView.components.facetFieldSelect',
   'lucidworksView.components.facetList',
   'lucidworksView.components.facetRange',
   'lucidworksView.components.field',

@@ -22,16 +22,20 @@
     };
   }
 
-  function Controller(ConfigService, QueryService, QueryDataService, Orwell, FoundationApi, $filter, $log) {
+  function Controller(ConfigService, QueryService, QueryDataService, Orwell, FoundationApi, $filter, $log, $compile) {
     'ngInject';
     var vm = this;
     vm.facetCounts = [];
     vm.toggleFacet = toggleFacet;
+    vm.toggleFacetSelect = toggleFacetSelect;
     vm.toggleMore = toggleMore;
     vm.getLimitAmount = getLimitAmount;
+    vm.setSelectedOption = setSelectedOption;
+    vm.updateFacetActive = updateFacetActive;
     vm.more = false;
     vm.clearAppliedFilters = clearAppliedFilters;
     var resultsObservable = Orwell.getObservable('queryResults');
+    vm.selectedOption = 'All Categories';
 
     activate();
 
@@ -45,6 +49,32 @@
       resultsObservable.addObserver(parseFacets);
       // initialize the facets.
       parseFacets(resultsObservable.getContent());
+
+      if (vm.facetLabel == 'select') {
+        setSelectedOption();
+      }
+    }
+
+    function updateFacetActive() {
+      vm.facetCounts.forEach(function(facet) {
+        if (facet.title == vm.selectedOption) {
+          facet.active = true;
+        } else {
+          facet.active = false;
+        }
+      });
+    }
+
+    function setSelectedOption(facetName) {
+      if (facetName) {
+        vm.selectedOption = facetName;
+      } else {
+        vm.facetCounts.forEach(function(facet) {
+          if (facet.active) {
+            vm.selectedOption = facet.title;
+          }
+        });
+      }
     }
 
     /**
@@ -169,6 +199,24 @@
     function updateFacetQuery(query){
       query.start = 0;
       QueryService.setQuery(query);
+    }
+
+    function toggleFacetSelect() {
+      var facetTitle = vm.selectedOption;
+      var query = QueryService.getQueryObject();
+      var key = vm.facetName;
+      if (query.hasOwnProperty('fq')) {
+        _.remove(query.fq, function(value){
+          return checkFacetExists(value, key);
+        });
+      }
+
+      if (facetTitle !== 'All Categories') {
+        query = addQueryFacet(query, key, facetTitle);
+      }
+      // Set the query and trigger the refresh.
+      updateFacetQuery(query);
+      setSelectedOption();
     }
 
     /**
