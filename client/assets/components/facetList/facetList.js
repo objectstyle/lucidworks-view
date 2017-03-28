@@ -86,7 +86,7 @@
                 name: value,
                 type: facetType,
                 autoOpen: true,
-                label: ConfigService.getFieldLabels()[value]||value,
+                label: getFieldsLabel(value)|| value, //ConfigService.getFieldLabels()[value], needed to edit FUSION_CONFIG to use
                 tag: LocalParamsService.getLocalParamTag(vm.facetLocalParams[retrieveFacetType(facetType)], value) || null
               };
               newFacets.push(facet);
@@ -112,6 +112,15 @@
     function retrieveFacetType(facetType){
       //example: @param: facet_fields, @return: field
       return facetType.split('_')[1].slice(0,-1);
+    }
+
+    function getFieldsLabel(name) {
+      var labels = {
+        'Categories': 'select',
+        'Template': 'checkbox',
+        'Modified date': 'singleChoice'
+      };
+      return labels[name];
     }
 
   }
