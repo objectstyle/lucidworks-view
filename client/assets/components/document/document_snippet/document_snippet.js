@@ -25,6 +25,8 @@
     'ngInject';
     var vm = this;
     vm.postSignal = postSignal;
+    vm.showDescription = showDescription;
+    vm.details = false;
     var templateFields = [];
     var specialFields = ['head', 'subhead', 'description', 'image', 'head_url'];
 
@@ -109,6 +111,11 @@
 
     function getTemplateDisplayFieldName(field){
       return DocumentService.getTemplateDisplayFieldName(vm.doc, field);
+    }
+
+    function showDescription() {;
+      console.log(11)
+      vm.details = !vm.details;
     }
   }
 })();

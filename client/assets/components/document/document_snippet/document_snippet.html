@@ -1,23 +1,42 @@
-<article class="grid-block document row">
+<article class="grid-block document row" ng-mouseover="vm.hover = true" ng-mouseleave="vm.hover = false">
   <div class="detail vertical grid-content" ng-class="::{'small-8':vm.doc.lw_image.value, 'medium-10': vm.doc.lw_image.value, 'small-12':!vm.doc.lw_image.value}">
     <!-- {{vm.doc}} -->
     <!-- show head field without a url. -->
-    <h3 class="head-field" ng-if="::(!vm.doc.lw_url.value)"><field value="::vm.doc.lw_head.value" hkey="{{::vm.doc.lw_head.key}}"></field></h3>
+      <div class="pencil-icon document-row">
+        <img src="https://www.iconexperience.com/_img/g_collection_png/standard/256x256/pencil.png">
+      </div>
+      <div class="document-row">
+        <a ng-click="vm.showDescription()"><h3 class="head-field" ng-if="::(!vm.doc.lw_url.value)"><field value="::vm.doc.lw_head.value" hkey="{{::vm.doc.lw_head.key}}"></field></h3></a>
 
-    <h4 class="subheader"><field value="::vm.doc.lw_subhead.value" hkey="{{::vm.doc.lw_subhead.key}}"></field></h4>
-    <p class="large-8 xlarge-7 xx-large-6">
-      <field value="::vm.doc.lw_description.value" highlight="::vm.highlight[doc.id]" maxlength="450" hkey="{{::vm.doc.lw_description.key}}"></field>
-    </p>
-    <p>{{vm.doc.Name}}</p>
-    <p>{{vm.doc.PhraseText}}</p>
+        <h4 class="subheader"><field value="::vm.doc.lw_subhead.value" hkey="{{::vm.doc.lw_subhead.key}}"></field></h4>
+        <p class="large-8 xlarge-7 xx-large-6">
+          <field value="::vm.doc.lw_description.value" highlight="::vm.highlight[doc.id]" maxlength="450" hkey="{{::vm.doc.lw_description.key}}"></field>
+        </p>
+        <p>{{vm.doc.Name}}</p>
+        <p>{{vm.doc.PhraseText}}</p>
+      </div>
 
-    <!-- Output of CONFIG BASED FIELD DISPLAY -->
-    <!--<p ng-repeat="(field, value) in vm.doc.fieldsToDisplay">
+      <div class="rate document-row right-col">
+        <img src="http://icons.iconarchive.com/icons/cheezen/web-2/128/star-icon.png">
+        <img src="http://icons.iconarchive.com/icons/cheezen/web-2/128/star-icon.png">
+        <img src="http://icons.iconarchive.com/icons/cheezen/web-2/128/star-icon.png">
+        <img src="http://icons.iconarchive.com/icons/cheezen/web-2/128/star-icon.png">
+        <img src="http://icons.iconarchive.com/icons/cheezen/web-2/128/star-icon.png">
+      </div>
 
-      <span><strong>{{::field}}:	&nbsp;  </strong></span>
+      <div class="right-col action-buttons" ng-show="vm.hover">
+        <a class="small-icon"><img src="https://cdn3.iconfinder.com/data/icons/other-icons/48/envelope-128.png"></a>
+        <a zf-open="description-modal" class="small-icon"><img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png"></a>
+      </div>
 
-      <field value="::value" highlight="::vm.highlight[doc.id]" maxlength="200" hkey="{{field}}"></field>
+    <div class="document-details" ng-show="vm.details">
+      <button class="right-col close-button" ng-click="vm.showDescription()">X</button>
+      <h4>Preview</h4>
 
-    </p>-->
+      <p>{{vm.doc.Name}}</p>
+      <p>{{vm.doc.PhraseText}}</p>
+
+    </div>
   </div>
 </article>
+
