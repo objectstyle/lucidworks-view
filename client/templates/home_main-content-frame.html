@@ -54,3 +54,52 @@
     </div>
   </div>
 </div>
+
+<!-- Advanced Search Modal -->
+
+<div zf-modal id="advanced-search-modal" class="advanced-search-modal grid-frame">
+  <a zf-close class="close-button">&times;</a>
+  <div class="advanced-search-modal-header">
+    <h3>Advanced Search</h3>
+  </div>
+  <div  class="advanced-search-modal-content">
+    <p>Find solutions that have...</p>
+    <div class="grid-block">
+      <div class="medium-4 grid-block">
+        <span>All of the words</span>
+      </div>
+      <div class="medium-8 grid-block">
+        <input type="text" ng-model="hc.advanced.allWords" />
+      </div>
+    </div>
+    <div class="grid-block">
+      <div class="medium-4 grid-block">
+        <span>Exact phrase</span>
+      </div>
+      <div class="medium-8 grid-block">
+        <input type="text" ng-model="hc.advanced.exactPhrase" />
+      </div>
+    </div>
+    <div class="grid-block">
+      <div class="medium-4 grid-block">
+        <span>Any of the words</span>
+      </div>
+      <div class="medium-8 grid-block">
+        <input type="text" ng-model="hc.advanced.anyWords" />
+      </div>
+    </div>
+    <p>Do not show solutions that have</p>
+    <div class="grid-block">
+      <div class="medium-4 grid-block">
+        <span>Unwanted words</span>
+      </div>
+      <div class="medium-8 grid-block">
+        <input type="text" ng-model="hc.advanced.noWords" />
+      </div>
+    </div>
+    <div class="grid-block">
+      <button zf-close ng-click="hc.formQuery(); hc.search()">Search</button>
+      <button zf-close>Cancel</button>
+    </div>
+  </div>
+</div>

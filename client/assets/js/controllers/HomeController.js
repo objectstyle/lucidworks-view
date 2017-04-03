@@ -15,6 +15,8 @@
 
     hc.setActiveTab = setActiveTab;
     hc.getShowingRows = getShowingRows;
+    hc.formQuery = formQuery;
+    hc.resetSearch = resetSearch;
 
     hc.searchQuery = ConfigService.config.default_query.q;
 
@@ -189,6 +191,53 @@
       var rowsPerPage = PaginateService.getRowsPerPage();
       return hc.activePage + '-' + (hc.activePage * rowsPerPage);
 
+    }
+
+    function formQuery() {
+      var advancedQuery = '';
+      var allWords = '';
+      var anyWords = '';
+      var noWords = '';
+      if (hc.advanced.allWords && hc.advanced.allWords.length> 0) {
+        var allWordsArr = hc.advanced.allWords.split(' ');
+        for (var i = 0; i < allWordsArr.length; i++) {
+          allWords += allWordsArr[i];
+          if (i !== allWordsArr.length - 1) {
+            allWords += ' AND ';
+          }
+        }
+      }
+      if (hc.advanced.anyWords && hc.advanced.anyWords.length> 0) {
+        var anyWordsArr = hc.advanced.anyWords.split(' ');
+        for (var j = 0; j < anyWordsArr.length; j++) {
+          if (j === 0) {
+            anyWords += '(';
+          }
+          anyWords += anyWordsArr[j];
+          if (j !== anyWordsArr.length - 1) {
+            anyWords += ' OR ';
+          } else {
+            anyWords += ')';
+          }
+        }
+      }
+      if (hc.advanced.exactPhrase && hc.advanced.exactPhrase.length> 0) {
+        var exactPhrase = '"' + hc.advanced.exactPhrase + '"';
+      }
+
+      if (hc.advanced.noWords && hc.advanced.noWords.length> 0) {
+        var noWordsArr = hc.advanced.noWords.split(' ');
+        for (var k = 0; k < noWordsArr.length; k++) {
+          noWords += ' not ' + noWordsArr[k];
+        }
+      }
+      advancedQuery += allWords + ' AND ' + anyWords + ' AND ' + exactPhrase + noWords;
+      hc.searchQuery = advancedQuery;
+      console.log(advancedQuery);
+    }
+
+    function resetSearch() {
+      hc.searchQuery = '*';
     }
   }
 })();

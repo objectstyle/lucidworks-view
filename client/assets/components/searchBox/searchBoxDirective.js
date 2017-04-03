@@ -30,6 +30,7 @@
     ta.typeaheadField = ConfigService.getTypeaheadField();
     ta.initialValue = _.isArray(ta.query)?ta.query[0]:ta.query;
     ta.noResults = undefined;
+    ta.advanced = {};
     ta.showBar = false;
 
     //need to get hold of the element to be able to manually close the suggestions div
@@ -128,7 +129,11 @@
     }
 
     function toggleSearchBar() {
-      ta.showBar = !ta.showBar;
+      $timeout(function() {
+        ta.showBar = !ta.showBar;
+      },100);
     }
+
+
   }
 })();

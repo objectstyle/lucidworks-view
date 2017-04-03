@@ -9,7 +9,7 @@
   <div class="no-results-message" ng-show="ta.dirty.value && ta.noResults">{{ta.noResultsMessage}}</div>
 </div>
 
-<div class="search-bar" ng-show="ta.showBar">
-  <span>Reset Search</span>
-  <span>Advanced Search</span>
+<div class="search-bar" ng-if="ta.showBar">
+  <a ng-click="hc.resetSearch; hc.search()">Reset Search</a>
+  <a zf-open="advanced-search-modal">Advanced Search</a>
 </div>
