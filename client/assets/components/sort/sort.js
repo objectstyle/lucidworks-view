@@ -37,9 +37,8 @@
     }
 
     function createSortList(){
-      var sortOptions = [{label:'default sort', type:'default', order:'', active: true}];
+      var sortOptions = [];
       _.forEach(ConfigService.config.sort_fields, function(value){
-        sortOptions.push({label: value, type: 'text', order: 'asc', active: false});
         sortOptions.push({label: value, type: 'text', order: 'desc', active: false});
       });
       vm.sortOptions = sortOptions;
@@ -56,10 +55,8 @@
       var query = QueryService.getQueryObject();
       switch(sort.type) {
       case 'text':
-        if(angular.isUndefined(query.sort)){
-          query.sort = sort.label+'%20'+sort.order;
-          QueryService.setQuery(query);
-        }
+        query.sort = sort.label+'%20'+sort.order;
+        QueryService.setQuery(query);
         break;
       default:
         delete query.sort;

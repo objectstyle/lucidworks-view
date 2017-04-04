@@ -91,7 +91,6 @@
               };
               newFacets.push(facet);
             });
-            console.log(newFacets);
 
             // Updating the list till the end.
             tempFacets = _.concat(tempFacets, newFacets);
