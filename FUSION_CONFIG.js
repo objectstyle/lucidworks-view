@@ -1,7 +1,7 @@
 appConfig = { //eslint-disable-line
-  // If you don't know what you want for some configuration items,
-  // leave them as-is and see what happens in UI.
-  // You may need to clear browser history/cache before your changes take affect.
+              // If you don't know what you want for some configuration items,
+              // leave them as-is and see what happens in UI.
+              // You may need to clear browser history/cache before your changes take affect.
 
   /**
    * Styles and colors
@@ -20,11 +20,8 @@ appConfig = { //eslint-disable-line
    *
    * To use https set the https server key and certificate. And set use_https to true.
    */
-  //host: 'http://fusiondev.eastus.cloudapp.azure.com',
-  //port: '8764',
-
-  host: 'http://localhost',
-  port: '80',
+  host: 'http://fusiondev.eastus.cloudapp.azure.com',
+  port: '8764',
 
   proxy_allow_self_signed_cert: false, // Only turn on if you have a self signed proxy in front of fusion.
 
@@ -54,12 +51,12 @@ appConfig = { //eslint-disable-line
    * to use anonymous access.
    */
   anonymous_access: {
-    username: 'search-user',
-  //  password: 'search-user-password-here'
+    username: 'admin',
+    password: 'eagle123'
   },
 
   // The name of your collection - defaults to Fusion 3.0 default collection
-  collection: 'default',
+  collection: 'ks_v1',
 
   // Please specify a pipeline or profile that you want to leverage with this UI.
   query_pipeline_id: 'default',
@@ -101,11 +98,11 @@ appConfig = { //eslint-disable-line
    *   your_project_directory/client/assets/components/document/document_default/document_default.html
    */
   //In search results, for each doc, display this field as the head field
-  head_field: 'id',
-  subhead_field: 'subtitle',
-  description_field: 'description',
+  head_field: 'title_s',
+  subhead_field: 'Creator',
+  description_field: '_suggest_',
   //In search results, for each doc, use this field to generate link value when a user clicks on head_field
-  head_url_field: 'url',
+  head_url_field: 'self_s',
   //In search results, display a image in each doc page (leave empty for no image).
   image_field: 'image',
 
@@ -137,12 +134,9 @@ appConfig = { //eslint-disable-line
   //
   // The HTML/Angular template is located in the following directory:
   //    your_project_directory/client/assets/components/document/document.html
-  fields_to_display:['title','id','name', '*'],
+  fields_to_display:['title_s','Creator','_suggest_'],
   field_display_labels: {
     'name': 'Document Name',
-    'Categories': 'select',
-    'Template': 'checkbox',
-    'Modified date': 'singleChoice'
     //'id': 'Identification Number'
     // you can add as many lines of labels as you want
   },
@@ -175,7 +169,7 @@ appConfig = { //eslint-disable-line
    * In order to sort on a multi-valued field you will have to fix the schema
    * for that field and recrawl the data
    */
-  sort_fields: ['Relevance', 'Last Modified Date', 'Solved Count', 'View Count'],
+  sort_fields: ["score", "LastModifiedDate", "Solved Count", "View Count"],
 
   /**
    * Signals
@@ -214,5 +208,5 @@ appConfig = { //eslint-disable-line
    *
    * If there is no query provided in the URL this query will be used. It is in object form.
    */
-  default_query: {q:'*'}
+  default_query: {q:'*', 'facet.field': ["Source", "Category1", "Category2"]}
 };

@@ -29,7 +29,7 @@
     vm.sendMessage = sendMessage;
     vm.details = false;
     var templateFields = [];
-    var specialFields = ['head', 'subhead', 'description', 'image', 'head_url'];
+    var specialFields = ['title_s','Creator','_suggest_', 'image', 'self_s'];
 
     activate();
 

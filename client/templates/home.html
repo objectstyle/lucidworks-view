@@ -38,13 +38,6 @@ controller: HomeController as hc
     </form>
   </nav>
 
-  <!-- Tabs -->
-  <ul class="main-tabs">
-    <li ng-class="{active: hc.activeTab == 1}" ng-click="hc.setActiveTab(1)">Browse by Category</li>
-    <li ng-class="{active: hc.activeTab == 2}" ng-click="hc.setActiveTab(2)">Knowledgebase</li>
-    <li ng-class="{active: hc.activeTab == 3}" ng-click="hc.setActiveTab(3)">Product Wiki</li>
-  </ul>
-
   <!-- Main Content Frame -->
   <div class="grid-block vertical" ng-include="'templates/home_main-content-frame.html'"></div>
 

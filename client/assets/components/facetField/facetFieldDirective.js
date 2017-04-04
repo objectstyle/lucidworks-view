@@ -131,18 +131,18 @@
      * @return {array}     An array of objects
      */
     function arrayToObjectArray(arr) {
-      return _.transform(arr, function (result, value) {
-        //if (index % 2 === 1) {
-        result[result.length] = {
-          title: value,
-          amount: value,
-          amountFormatted: $filter('humanizeNumberFormat')(value, 0),
-          hash: FoundationApi.generateUuid(),
-          active: isFacetActive(vm.facetName, value)
-        };
-        // } else {
-        //   result.push(value);
-        // }
+      return _.transform(arr, function (result, value, index) {
+        if (index % 2 === 1) {
+          result[result.length - 1] = {
+            title: result[result.length - 1],
+            amount: value,
+            amountFormatted: $filter('humanizeNumberFormat')(value, 0),
+            hash: FoundationApi.generateUuid(),
+            active: isFacetActive(vm.facetName, result[result.length - 1])
+          };
+        } else {
+          result.push(value);
+        }
       });
     }
 

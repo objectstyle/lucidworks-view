@@ -3,61 +3,73 @@
 <head>
 </head>
 <body>
-    <div>
-		<p>Inputs params </p>
-		<p>Label External Search <input name="search" id='searchText' type="text" /><button onclick='sendMessage("search")'>GO!</button></p>
-		<p>
-			Categories: <button onclick='sendMessage("Categories", "Category 1")'>Cat 1</button><button>Cat 2</button><button>Cat 3</button>
-		</p>
-    <p>
-      Modified date:
-      <input type="radio" name="modified" value="Any time" id="modified1" onchange="setModifiedDate(value)"/>
-      <label for="modified1">Any time</label>
-      <input type="radio" name="modified" value="Today" id="modified2" onchange="setModifiedDate(value)"/>
-      <label for="modified2">Today</label>
-      <input type="radio" name="modified" value="Past week" id="modified3" onchange="setModifiedDate(value)"/>
-      <label for="modified3">Past week</label>
-      <input type="radio" name="modified" value="Past month" id="modified4" onchange="setModifiedDate(value)"/>
-      <label for="modified4">Past month</label>
-      <input type="radio" name="modified" value="Past six month" id="modified5" onchange="setModifiedDate(value)"/>
-      <label for="modified5">Past six month</label>
-    </p>
-		<p>
-			<p>Event Log</p>
-			<textarea cols="80" rows="10" id='eventLog'></textarea>
-		</p>
-	</div>
+<table>
+  <tr>
+    <td width="50%">
+      <h3>Parent Page Params</h3>
+      <p><label for="searchText">External Search</label><input name="search" id='searchText' type="text"/>
+        <button onclick='sendMessage("search")'>GO!</button>
+      </p>
+      <p>
+        Categories:
+        <button onclick='sendMessage("Category1", "Eagle")'>Eagle</button>
+        <button onclick='sendMessage("Category1", "Product")'>Product</button>
+        <button onclick='sendMessage("Category1", "Internal IT")'>Internal IT</button>
+      </p>
+      <p>
+        Modified date:
+        <input type="radio" name="modified" value="Automation" id="modified1" onchange="setModifiedDate(value)"/>
+        <label for="modified1">Automation</label>
 
-	<div>
-		<iframe src="http://127.0.0.1:3000" name="iframe" height="600" width="800"></iframe>
-	</div>
+        <input type="radio" name="modified" value="Business Continuity" id="modified2"
+               onchange="setModifiedDate(value)"/>
+        <label for="modified2">Business Continuity</label>
+<!--
+        <input type="radio" name="modified" value="Past week" id="modified3" onchange="setModifiedDate(value)"/>
+        <label for="modified3">Past week</label>
+
+        <input type="radio" name="modified" value="Past month" id="modified4" onchange="setModifiedDate(value)"/>
+        <label for="modified4">Past month</label>
+
+        <input type="radio" name="modified" value="Past six month" id="modified5" onchange="setModifiedDate(value)"/>
+        <label for="modified5">Past six month</label>-->
+      </p>
+    </td>
+    <td width="50%" align="right">
+      <textarea cols="30" rows="10" id='eventLog'>Iframe Event Log</textarea>
+    </td>
+  </tr>
+</table>
+
+
+<iframe src="http://127.0.0.1:3000" name="iframe" height="600" width="90%" style="border: 1px solid red;"></iframe>
 </body>
 <script>
-	window.addEventListener("message", receiveMessage, false);
+  window.addEventListener("message", receiveMessage, false);
 
-	function receiveMessage(event){
-		console.log(event.source);
-		//var source = event.source.frameElement; //this is the iframe that sent the message
-		var message = event.data; //this is the message
-		var newline = String.fromCharCode(13, 10);
-		document.getElementById('eventLog').value += newline + message;
-	}
+  function receiveMessage(event) {
+    console.log(event.source);
+    //var source = event.source.frameElement; //this is the iframe that sent the message
+    var message = event.data; //this is the message
+    var newline = String.fromCharCode(13, 10);
+    document.getElementById('eventLog').value += newline + message;
+  }
 
-	function sendMessage(type, value) {
-		if (type == 'search') {
-			value = document.getElementById('searchText').value;
-		}
-		var message = {
-			type: type,
-			value: value
-		};
-		console.log('index');
+  function sendMessage(type, value) {
+    if (type == 'search') {
+      value = document.getElementById('searchText').value;
+    }
+    var message = {
+      type: type,
+      value: value
+    };
+    console.log('index');
     console.log(message);
     window.iframe.postMessage(message, 'http://127.0.0.1:3000'); //the '*' has to do with cross-domain messaging. leave it like it is for same-domain messaging.
   }
 
   function setModifiedDate(value) {
-    sendMessage('Modified date', value)
+    sendMessage('Category2', value)
   }
 </script>
 </html>

@@ -115,9 +115,9 @@
 
     function getFieldsLabel(name) {
       var labels = {
-        'Categories': 'select',
-        'Template': 'checkbox',
-        'Modified date': 'singleChoice'
+        'Category1': 'select',
+        'Source': 'checkbox',
+        'Category2': 'singleChoice'
       };
       return labels[name];
     }

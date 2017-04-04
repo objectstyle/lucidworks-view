@@ -46,12 +46,14 @@
         <field value="::vm.doc.lw_description.value" highlight="::vm.highlight[doc.id]" maxlength="450" hkey="{{::vm.doc.lw_description.key}}"></field>
       </p>
       <!-- Output of CONFIG BASED FIELD DISPLAY -->
-      <p ng-repeat="(field, value) in vm.doc.fieldsToDisplay">
+<!--
+  TODO use this fields
+    <p ng-repeat="(field, value) in vm.doc.fieldsToDisplay">
 
         <span><strong>{{::field}}:	&nbsp;  </strong></span>
 
         <field value="::value" highlight="::vm.highlight[doc.id]" maxlength="200" hkey="{{field}}"></field>
 
-      </p>
+      </p>-->
   </div>
 </article>
