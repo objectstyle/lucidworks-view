@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+    <div>
+		<p>Inputs params </p>
+		<p>Label External Search <input name="search" type="text" /><button on-click='frameSearch()'>GO!</button></p>
+		<p>
+			Categories: <button>Cat 1</button><button>Cat 2</button><button>Cat 3</button>
+		</p>
+		<p>
+			<p>Event Log</p>
+			<textarea cols="80" rows="10" id='eventLog'></textarea>
+		</p>
+	</div>
+	
+	<div>
+		<iframe src="http://127.0.0.1:3000" name="iframe_a" height="600" width="800"></iframe>
+	</div>
+</body>
+<script>
+	window.addEventListener("message", receiveMessage, false);  
+
+	function receiveMessage(event){ 
+		console.log(event.source);
+		//var source = event.source.frameElement; //this is the iframe that sent the message
+		var message = event.data; //this is the message
+		var newline = String.fromCharCode(13, 10);
+		document.getElementById('eventLog').value += newline + message;
+	}
+</script>
+</html>

@@ -113,9 +113,12 @@
       return DocumentService.getTemplateDisplayFieldName(vm.doc, field);
     }
 
-    function showDescription() {;
-      console.log(11)
+    function showDescription() {
+      var message ='Preview';
       vm.details = !vm.details;
+      if (vm.details) {
+        window.parent.postMessage(message, 'http://localhost:90/'); //the '*' has to do with cross-domain messaging. leave it like it is for same-domain messaging.
+      }
     }
   }
 })();
