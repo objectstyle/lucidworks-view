@@ -93,6 +93,9 @@ a {
   a:link {
     color: #0a127b;
   }
+  label, input[type="checkbox"] + label {
+    display: inline;
+  }
   .filter-block {
     margin-bottom: 15px;
   }
@@ -107,7 +110,6 @@ a {
   select {
     border-radius: 5px;
     height: 35px;
-    margin-left: 0.5em;
   }
   .filter-checkbox-group {
     margin: 0.5em;
@@ -116,10 +118,8 @@ a {
     display: flex;
     margin-left: 0.5em;
     input {
-      width: auto;
       border-radius: 5px 0 0 5px;
       height: 35px;
-      margin: 0;
     }
     button {
       border-radius: 0 5px 5px 0;
@@ -129,19 +129,6 @@ a {
     }
   }
 }
-.card {
-  box-shadow: none;
-  .card-result-tip {
-    background: #fff4df;
-    border: 1px solid #ffedc9;
-    color: #b68c39;
-  }
-
-  .card-close-button {
-    float: right;
-  }
-}
-
 .result-data {
   display: flex;
   justify-content: space-between;
@@ -220,5 +207,22 @@ a {
       padding: 10px 20px;
     }
   }
+}
+
+.main-content {
+  .card {
+    box-shadow: none;
+    .card-result-tip {
+      background: #fff4df;
+      border: 1px solid #ffedc9;
+      color: #b68c39;
+    }
+
+    .card-close-button {
+      float: right;
+      color: #b68c39;
+    }
+  }
+
 }
 

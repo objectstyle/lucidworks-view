@@ -21,7 +21,7 @@
     };
   }
 
-  function Controller($element, $log, $q, $sce, $timeout, ConfigService, SearchBoxDataService) {
+  function Controller($element, $scope, $log, $q, $sce, $timeout, ConfigService, SearchBoxDataService) {
     'ngInject';
     var ta = this;
 
@@ -135,5 +135,9 @@
     }
 
 
+    $scope.$on('searchChangeMessage', function (event, message) {
+      ta.dirty.value = message;
+
+    });
   }
 })();

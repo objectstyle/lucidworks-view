@@ -22,7 +22,7 @@
     };
   }
 
-  function Controller(ConfigService, QueryService, QueryDataService, Orwell, FoundationApi, $filter, $log, $compile) {
+  function Controller($scope, ConfigService, QueryService, QueryDataService, Orwell, FoundationApi, $filter, $log) {
     'ngInject';
     var vm = this;
     vm.facetCounts = [];
@@ -131,15 +131,15 @@
      * @return {array}     An array of objects
      */
     function arrayToObjectArray(arr) {
-      return _.transform(arr, function (result, value, index) {
+      return _.transform(arr, function (result, value) {
         //if (index % 2 === 1) {
-          result[result.length] = {
-            title: value,
-            amount: value,
-            amountFormatted: $filter('humanizeNumberFormat')(value, 0),
-            hash: FoundationApi.generateUuid(),
-            active: isFacetActive(vm.facetName, value)
-          };
+        result[result.length] = {
+          title: value,
+          amount: value,
+          amountFormatted: $filter('humanizeNumberFormat')(value, 0),
+          hash: FoundationApi.generateUuid(),
+          active: isFacetActive(vm.facetName, value)
+        };
         // } else {
         //   result.push(value);
         // }
@@ -310,5 +310,14 @@
         }
       }
     }
+
+    $scope.$on('facetChangeMessage', function (event, message) {
+      if (message.type == vm.facetName) {
+        vm.selectedOption = message.value;
+        updateFacetActive();
+        toggleFacetSelect();
+
+      }
+    });
   }
 })();

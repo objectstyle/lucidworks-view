@@ -5,7 +5,7 @@
     .controller('HomeController', HomeController);
 
 
-  function HomeController($filter, $timeout, ConfigService, QueryService, URLService, PaginateService, Orwell, AuthService, _, $log) {
+  function HomeController($filter, $timeout, $rootScope, ConfigService, QueryService, URLService, PaginateService, Orwell, AuthService, _, $log) {
 
     'ngInject';
     var hc = this; //eslint-disable-line
@@ -40,6 +40,7 @@
       hc.activeTab = 2;
       hc.activePage = getActivePage();
       hc.getTotalPages = PaginateService.getTotalResultRows;
+      hc.searchAssistant = true;
 
       query = URLService.getQueryFromUrl();
       //Setting the query object... also populating the the view model
@@ -233,20 +234,23 @@
       }
       advancedQuery += allWords + ' AND ' + anyWords + ' AND ' + exactPhrase + noWords;
       hc.searchQuery = advancedQuery;
-      console.log(advancedQuery);
     }
 
     function resetSearch() {
       hc.searchQuery = '*';
     }
 
-    window.addEventListener("message", receiveMessage, false);
+    window.addEventListener('message', receiveMessage, false);
 
     function receiveMessage(event){
-      var message = event.data; //this is the message
-      console.log(message);
-      hc.searchQuery = message;
-      doSearch();
+      var message = event.data;
+      if (message.type == 'search') {
+        hc.searchQuery = message.value;
+        $rootScope.$broadcast('searchChangeMessage', message.value);
+        doSearch();
+      } else {
+        $rootScope.$broadcast('facetChangeMessage', message);
+      }
     }
   }
 })();

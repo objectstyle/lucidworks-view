@@ -122,7 +122,7 @@
     }
 
     function sendMessage(message) {
-      window.parent.postMessage(message, 'http://localhost:90/'); //the '*' has to do with cross-domain messaging. leave it like it is for same-domain messaging.
+      window.parent.postMessage(message, 'http://localhost:63342/lucidworks-view/demo/index.html'); //the '*' has to do with cross-domain messaging. leave it like it is for same-domain messaging.
     }
   }
 })();
