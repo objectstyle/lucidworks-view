@@ -239,5 +239,14 @@
     function resetSearch() {
       hc.searchQuery = '*';
     }
+
+    window.addEventListener("message", receiveMessage, false);
+
+    function receiveMessage(event){
+      var message = event.data; //this is the message
+      console.log(message);
+      hc.searchQuery = message;
+      doSearch();
+    }
   }
 })();

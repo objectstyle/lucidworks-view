@@ -6,7 +6,7 @@
         <img src="https://www.iconexperience.com/_img/g_collection_png/standard/256x256/pencil.png">
       </div>
       <div class="document-row">
-        <a ng-click="vm.showDescription()"><h3 class="head-field" ng-if="::(!vm.doc.lw_url.value)"><field value="::vm.doc.lw_head.value" hkey="{{::vm.doc.lw_head.key}}"></field></h3></a>
+        <a ng-click="vm.showDescription(vm.doc.Name)"><h3 class="head-field" ng-if="::(!vm.doc.lw_url.value)"><field value="::vm.doc.lw_head.value" hkey="{{::vm.doc.lw_head.key}}"></field></h3></a>
 
         <h4 class="subheader"><field value="::vm.doc.lw_subhead.value" hkey="{{::vm.doc.lw_subhead.key}}"></field></h4>
         <p class="large-8 xlarge-7 xx-large-6">
@@ -26,7 +26,7 @@
 
       <div class="right-col action-buttons" ng-show="vm.hover">
         <a class="small-icon"><img src="https://cdn3.iconfinder.com/data/icons/other-icons/48/envelope-128.png"></a>
-        <a zf-open="description-modal" class="small-icon"><img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png"></a>
+        <a zf-open="description-modal" ng-click="vm.sendMessage(vm.doc.Name + ' was opened')" class="small-icon"><img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png"></a>
       </div>
 
     <div class="document-details" ng-show="vm.details">
