@@ -137,8 +137,12 @@ appConfig = { //eslint-disable-line
   fields_to_display:['title','id','name', '*'],
   field_display_labels: {
     'name': 'Document Name',
-    //'id': 'Identification Number'
-    // you can add as many lines of labels as you want
+    'Category1': 'Categories',
+    'Category2': 'Template'
+  },
+  field_view_type: {
+    'Category1': 'select',
+    'Category2': 'checkbox'
   },
 
   /**
@@ -169,7 +173,11 @@ appConfig = { //eslint-disable-line
    * In order to sort on a multi-valued field you will have to fix the schema
    * for that field and recrawl the data
    */
-  //sort_fields: ['title'],
+  sort_fields: ['score', 'LastModifiedDate'],
+  sort_fields_labels: {
+    score: 'Relevance',
+    LastModifiedDate: 'Last Modified Date',
+  },
 
   /**
    * Signals
@@ -208,5 +216,5 @@ appConfig = { //eslint-disable-line
    *
    * If there is no query provided in the URL this query will be used. It is in object form.
    */
-  default_query: {q:'*'}
+  default_query: {q:'*', 'facet.field': ['Category1', 'Category2']}
 };
