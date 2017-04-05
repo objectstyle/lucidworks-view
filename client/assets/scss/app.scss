@@ -239,5 +239,55 @@ a {
   button {
     margin: 10px;
   }
-
+}
+.advanced-search-modal .modal {
+  border-radius: 5px;
+  padding: 0;
+  .advanced-search-modal-header {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 15px 5px 20px;
+    h3 {
+      font-size: 1.5rem;
+      line-height: 1.2rem;
+      font-weight: bold;
+      color: #0a127b;
+    }
+  }
+  .advanced-search-modal-content {
+    padding: 0px 15px 15px 20px;
+    p {
+      padding-top: 1.25rem;
+    }
+    .input-group {
+      margin: 10px;
+      .input-label span {
+        text-align: right;
+        width: 100%;
+        padding: 20px 15px 0 0;
+      }
+      input {
+        margin: 2px 0;
+        border-radius: 5px;
+      }
+    }
+  }
+  .advanced-search-modal-footer {
+    border-top: 1px solid #ddd;
+    background: #f0f0f0;
+    padding: 15px;
+    justify-content: flex-end;
+  }
+  button {
+    border-radius: 5px;
+    padding: 7px 15px;
+    border: 1px solid #bbb;
+    margin: 0 5px;
+  }
+  .button-action {
+    background: #2b2ba8;
+    color: #fff;
+  }
+  .button-cancel {
+    background: #f8f8f8;
+  }
 }
