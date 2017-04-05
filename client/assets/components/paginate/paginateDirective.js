@@ -30,7 +30,9 @@
     vm.getLastPage = getLastPage;
     vm.gotoNextPage = gotoNextPage;
     vm.gotoPreviousPage = gotoPreviousPage;
+    vm.gotoPage = gotoPage;
     vm.showState = 'next';
+    vm.paginationPagesShow = 7;
 
     activate();
 
@@ -45,6 +47,7 @@
           vm.totalPages = PaginateService.getTotalPages();
           vm.totalPagesFormatted = $filter('humanizeNumberFormat')(vm.totalPages, 0);
           vm.showState =  pickPaginatorType();
+          vm.paginationPages = getPaginationPages();
         } else {
           vm.page = 0;
           vm.totalPages = 0;
@@ -84,6 +87,7 @@
      */
     function gotoNextPage() {
       gotoPage(PaginateService.getCurrentPage() + 1);
+      vm.paginationPages = getPaginationPages();
     }
 
     /**
@@ -91,6 +95,7 @@
      */
     function gotoPreviousPage() {
       gotoPage(PaginateService.getCurrentPage() - 1);
+      vm.paginationPages = getPaginationPages();
     }
 
     /**
@@ -105,6 +110,17 @@
       QueryService.setQuery({
         start: PaginateService.pageToStartRow(page)
       });
+      vm.paginationPages = getPaginationPages();
+    }
+
+    function getPaginationPages() {
+      var paginationPages = [];
+      for (var i = 1; i <= vm.paginationPagesShow; i++) {
+        if (vm.page + i <= vm.totalPages) {
+          paginationPages.push({nmb: vm.page + i});
+        }
+      }
+      return paginationPages;
     }
 
   }

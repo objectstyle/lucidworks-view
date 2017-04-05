@@ -1,29 +1,17 @@
 <div ng-switch="vm.showState">
-  <ul class="menu-bar" ng-switch-when="next">
-    <li>
-      <a ng-click="vm.gotoNextPage()">
-        Next &gt;
-      </a>
-    </li>
-  </ul>
-  <ul class="menu-bar" ng-switch-when="previous">
-    <li>
-      <a ng-click="vm.gotoPreviousPage()">
-        &lt; Previous
-      </a>
-    </li>
-  </ul>
-  <ul  class="menu-bar" ng-switch-when="both">
-    <li>
+  <ul  class="menu-bar pagination">
+    <li ng-show="vm.showState == 'previous' || vm.showState == 'both'" ng-class="{first: vm.showState == 'previous' || vm.showState == 'both'}">
       <a ng-click="vm.gotoPreviousPage()">&lt;</a>
     </li>
-    <li class="text-center">
-      <a>
+    <li ng-repeat="page in vm.paginationPages track by $index" class="text-center"
+        ng-class="{active: page.nmb == vm.page + 1, first: vm.showState != 'previous' && vm.showState != 'both' && $index == 0}">
+      <a ng-click="vm.gotoPage(page.nmb - 1)"><!--
         <span class="show-for-small-only">Page {{vm.getNormalizedPageFormatted()}}</span>
-        <span class="show-for-medium">Page {{vm.getNormalizedPageFormatted()}} of {{vm.totalPagesFormatted}}</span>
+        <span class="show-for-medium">Page {{vm.getNormalizedPageFormatted()}} of {{vm.totalPagesFormatted}}</span>-->
+        <span class="show-for-medium">{{page.nmb}}</span>
       </a>
     </li>
-    <li>
+    <li ng-if="vm.showState == 'next' || vm.showState == 'both'">
         <a ng-click="vm.gotoNextPage()">&gt;</a>
     </li>
   </ul>

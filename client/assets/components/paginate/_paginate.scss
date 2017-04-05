@@ -1,0 +1,24 @@
+.pagination.menu-bar {
+  justify-content: center;
+  li {
+    max-width: 2.5em;
+    height: 2.5em;
+    border: 1px solid #ddd;
+    a {
+      padding: 13px 0;
+      color: #0a127b;
+    }
+  }
+  li.first {
+    border-radius: 5px 0 0 5px;
+  }
+  li:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+  li.active {
+    background: #dfdfdf;
+    a {
+      color: #555;
+    }
+  }
+}
