@@ -134,11 +134,17 @@ appConfig = { //eslint-disable-line
   //
   // The HTML/Angular template is located in the following directory:
   //    your_project_directory/client/assets/components/document/document.html
-  fields_to_display:['title_s','Creator','_suggest_'],
+  fields_to_display:['title_s','Creator','_suggest_', 'url_s'],
   field_display_labels: {
     'name': 'Document Name',
-    //'id': 'Identification Number'
-    // you can add as many lines of labels as you want
+    'Category1': 'Categories',
+    'Source': 'Template',
+    'Category2': 'Modified Date'
+  },
+  field_view_type: {
+    'Category1': 'select',
+    'Source': 'checkbox',
+    'Category2': 'singleChoice'
   },
 
   /**
@@ -169,7 +175,11 @@ appConfig = { //eslint-disable-line
    * In order to sort on a multi-valued field you will have to fix the schema
    * for that field and recrawl the data
    */
-  sort_fields: ["score", "LastModifiedDate", "Solved Count", "View Count"],
+  sort_fields: ['score', 'LastModifiedDate'],
+  sort_fields_labels: {
+    score: 'Score',
+    LastModifiedDate: 'Last Modified Date',
+  },
 
   /**
    * Signals

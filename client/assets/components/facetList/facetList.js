@@ -87,7 +87,8 @@
                 type: facetType,
                 autoOpen: true,
                 label: getFieldsLabel(value)|| value, //ConfigService.getFieldLabels()[value], needed to edit FUSION_CONFIG to use
-                tag: LocalParamsService.getLocalParamTag(vm.facetLocalParams[retrieveFacetType(facetType)], value) || null
+                tag: LocalParamsService.getLocalParamTag(vm.facetLocalParams[retrieveFacetType(facetType)], value) || null,
+                viewType: getFieldsViewType(value)
               };
               newFacets.push(facet);
             });
@@ -114,12 +115,11 @@
     }
 
     function getFieldsLabel(name) {
-      var labels = {
-        'Category1': 'select',
-        'Source': 'checkbox',
-        'Category2': 'singleChoice'
-      };
-      return labels[name];
+      return ConfigService.config.field_display_labels[name];
+    }
+
+    function getFieldsViewType(value) {
+      return ConfigService.config.field_view_type[value];
     }
 
   }

@@ -15,7 +15,7 @@
       controllerAs: 'vm',
       bindToController: {
         facetName: '@facetName',
-        facetLabel: '@facetLabel',
+        facetViewType: '@facetViewType',
         facetAutoOpen: '@facetAutoOpen',
         facetTag: '@facetTag'
       }
@@ -50,7 +50,7 @@
       // initialize the facets.
       parseFacets(resultsObservable.getContent());
 
-      if (vm.facetLabel == 'select') {
+      if (vm.facetViewType == 'select') {
         setSelectedOption();
       }
     }

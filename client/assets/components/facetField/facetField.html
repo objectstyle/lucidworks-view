@@ -1,4 +1,4 @@
-<div ng-switch="vm.facetLabel">
+<div ng-switch="vm.facetViewType">
   <select ng-switch-when="select" ng-model="vm.selectedOption" ng-change="vm.updateFacetActive(); vm.toggleFacetSelect();">
           <!--ng-options="facet.title for facet in vm.facetCounts"-->
     <option ng-class="{'facet-active': vm.selectedOption == 'All Categories'}" id="{{$index}}">

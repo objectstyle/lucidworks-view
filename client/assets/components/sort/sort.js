@@ -39,7 +39,8 @@
     function createSortList(){
       var sortOptions = [];
       _.forEach(ConfigService.config.sort_fields, function(value){
-        sortOptions.push({label: value, type: 'text', order: 'desc', active: false});
+        var label = ConfigService.config.sort_fields_labels[value];
+        sortOptions.push({label: label, value: value, type: 'text', order: 'desc', active: false});
       });
       vm.sortOptions = sortOptions;
       vm.selectedSort = vm.sortOptions[0];
@@ -54,13 +55,13 @@
     function switchSort(sort){
       var query = QueryService.getQueryObject();
       switch(sort.type) {
-      case 'text':
-        query.sort = sort.label+'%20'+sort.order;
-        QueryService.setQuery(query);
-        break;
-      default:
-        delete query.sort;
-        QueryService.setQuery(query);
+        case 'text':
+          query.sort = sort.value+'%20'+sort.order;
+          QueryService.setQuery(query);
+          break;
+        default:
+          delete query.sort;
+          QueryService.setQuery(query);
       }
     }
   }

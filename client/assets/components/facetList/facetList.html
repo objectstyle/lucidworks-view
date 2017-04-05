@@ -1,6 +1,6 @@
 <div class="facet-list">
     <div ng-repeat="facet in vm.facets">
-      <h4>{{facet.name}}</h4>
-      <facet-field facet-name="{{::facet.name}}" facet-label="{{::facet.label}}" facet-auto-open="{{::facet.autoOpen}}" facet-tag="{{::facet.tag}}"></facet-field>
+      <h4>{{facet.label}}</h4>
+      <facet-field facet-name="{{::facet.name}}" facet-label="{{::facet.label}}" facet-view-type="{{::facet.viewType}}" facet-auto-open="{{::facet.autoOpen}}" facet-tag="{{::facet.tag}}"></facet-field>
     </div>
 </div>
