@@ -138,13 +138,11 @@ appConfig = { //eslint-disable-line
   field_display_labels: {
     'name': 'Document Name',
     'Category1': 'Categories',
-    'Source': 'Template',
-    'Category2': 'Modified Date'
+    'Category2': 'Template'
   },
   field_view_type: {
     'Category1': 'select',
-    'Source': 'checkbox',
-    'Category2': 'singleChoice'
+    'Category2': 'checkbox'
   },
 
   /**
@@ -177,7 +175,7 @@ appConfig = { //eslint-disable-line
    */
   sort_fields: ['score', 'LastModifiedDate'],
   sort_fields_labels: {
-    score: 'Score',
+    score: 'Relevance',
     LastModifiedDate: 'Last Modified Date',
   },
 
@@ -218,5 +216,5 @@ appConfig = { //eslint-disable-line
    *
    * If there is no query provided in the URL this query will be used. It is in object form.
    */
-  default_query: {q:'*', 'facet.field': ["Source", "Category1", "Category2"]}
+  default_query: {q:'*', 'facet.field': ["Category1", "Category2"]}
 };
