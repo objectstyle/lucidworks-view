@@ -14,7 +14,7 @@
     var sorting;
 
     hc.setActiveTab = setActiveTab;
-    hc.getShowingRows = getShowingRows;
+    hc.setShowingRows = setShowingRows;
     hc.formQuery = formQuery;
     hc.resetSearch = resetSearch;
 
@@ -38,7 +38,6 @@
       hc.grouped = false;
       hc.isLoading = false;
       hc.activeTab = 2;
-      hc.activePage = getActivePage();
       hc.getTotalPages = PaginateService.getTotalResultRows;
       hc.searchAssistant = true;
 
@@ -58,6 +57,8 @@
         sorting.switchSort = switchSort;
         createSortList();
         endLoading();
+        hc.activePage = getActivePage();
+        setShowingRows();
       });
 
       // Force set the query object to change one digest cycle later
@@ -188,10 +189,14 @@
       return PaginateService.getCurrentPage() + 1;
     }
 
-    function getShowingRows() {
-      var rowsPerPage = PaginateService.getRowsPerPage();
-      return hc.activePage + '-' + (hc.activePage * rowsPerPage);
-
+    function setShowingRows() {
+      var start;
+      if (hc.activePage == 1) {
+        start = hc.activePage;
+      } else {
+        start = (hc.activePage - 1) * PaginateService.getRowsPerPage() + 1;
+      }
+      hc.showingRows =  start + '-' + (hc.activePage * PaginateService.getRowsPerPage());
     }
 
     function formQuery() {
