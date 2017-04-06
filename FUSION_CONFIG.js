@@ -134,16 +134,30 @@ appConfig = { //eslint-disable-line
   //
   // The HTML/Angular template is located in the following directory:
   //    your_project_directory/client/assets/components/document/document.html
-  fields_to_display:['title_s','Creator','_suggest_', 'url_s'],
+  fields_to_display:['title_s','Creator','_suggest_'],
   field_display_labels: {
     'name': 'Document Name',
+
     'Category1': 'Categories',
-    'Category2': 'Template'
+    'Category2': 'Template',
+
+    "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "Today",
+    "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "Past week",
+    "{!tag=q1}fetchedDate_dt:[NOW-1MONTH TO NOW]": "Past month",
+    "{!tag=q1}fetchedDate_dt:[NOW-3MONTHS TO NOW]": "Past 6 month"
+    //'id': 'Identification Number'
+    // you can add as many lines of labels as you want
   },
   field_view_type: {
-    'Category1': 'select',
-    'Category2': 'checkbox'
+    'Category1': 'checkbox',
+    'Category2': 'checkbox',
+
+    "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "singleChoice",
+    "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "singleChoice",
+    "{!tag=q1}fetchedDate_dt:[NOW-1MONTH TO NOW]": "singleChoice",
+    "{!tag=q1}fetchedDate_dt:[NOW-3MONTHS TO NOW]": "singleChoice"
   },
+
 
   /**
    * Number of documents shown per page, if not defined will default to 10.
@@ -173,10 +187,10 @@ appConfig = { //eslint-disable-line
    * In order to sort on a multi-valued field you will have to fix the schema
    * for that field and recrawl the data
    */
-  sort_fields: ['score', 'LastModifiedDate'],
+  sort_fields: ["score", "LastModifiedDate", "Solved Count", "View Count"],
   sort_fields_labels: {
     score: 'Relevance',
-    LastModifiedDate: 'Last Modified Date',
+    LastModifiedDate: 'Last Modified Date'
   },
 
   /**
@@ -216,5 +230,12 @@ appConfig = { //eslint-disable-line
    *
    * If there is no query provided in the URL this query will be used. It is in object form.
    */
-  default_query: {q:'*', 'facet.field': ["Category1", "Category2"]}
+  //default_query: {q:'*', 'facet.field': ["Category1", "Category2"]}
+
+   default_query: {q:'*', 'facet.field': ["Category1", "Category2"]/*, 'facet.query': [
+     "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]",
+     "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]",
+     "{!tag=q1}fetchedDate_dt:[NOW-1MONTH TO NOW]",
+     "{!tag=q1}fetchedDate_dt:[NOW-3MONTHS TO NOW]"
+   ]*/}
 };

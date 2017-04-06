@@ -110,6 +110,10 @@
      * @return {string}           facet type split from the initial string
      */
     function retrieveFacetType(facetType){
+      if (facetType === "facet_queries") {
+        return "query";
+      }
+
       //example: @param: facet_fields, @return: field
       return facetType.split('_')[1].slice(0,-1);
     }

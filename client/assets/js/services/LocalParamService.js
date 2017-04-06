@@ -54,11 +54,11 @@
 
     var typeKeys = {
       'facet.field': 'field',
-      'facet.range': 'range'
+      'facet.range': 'range',
+      'facet.query': 'query'
       //TODO: future
       // 'facet.pivot': 'pivot',
       //'facet.interval': 'interval',
-      // 'facet.query': 'query'
     };
 
     //syntax for facet filter with local param. Eg: {!tag=tagName}key:(val1 OR val2)
