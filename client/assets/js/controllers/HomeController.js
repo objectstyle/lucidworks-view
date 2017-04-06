@@ -317,10 +317,23 @@
       console.log("addFilter", f);
       var query = QueryService.getQueryObject();
 
+      if (f == 'custom') {
+        var start = hc.dateRange.from;
+        var end = hc.dateRange.to;
+        f = 'fetchedDate_dt:[' + start + ' TO ' + end + ']';
+      }
+
       hc.filter.changeModifiedDateFilter(query, f);
 
       query.start = 0;
       QueryService.setQuery(query);
-    }
+    };
+
+    hc.formatDate = function (date) {
+      var year = date.getFullYear();
+      var month = date.getMonth() + 1;
+      var day = date.getDate();
+      return date && year + '-' + month + '-' + day;
+    };
   }
 })();
