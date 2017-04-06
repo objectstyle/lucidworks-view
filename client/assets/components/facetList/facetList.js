@@ -30,7 +30,6 @@
     vm.facetNames = {};
     vm.facetLocalParams = {};
     vm.defaultRangeFacetFormatter = defaultRangeFacetFormatter;
-    vm.setActiveDateRange = setActiveDateRange;
     activate();
 
     /**
@@ -52,30 +51,6 @@
         result = toFormat;
       }
       return result;
-    }
-
-    vm.dateRanges = [
-      {
-        name: 'Today',
-        filter: 'filter',
-      },
-      {
-        name: 'Past week',
-        filter: 'filter',
-      },
-      {
-        name: 'Past month',
-        filter: 'filter',
-      },
-      {
-        name: 'Past 6 month',
-        filter: 'filter',
-      },
-    ];
-
-
-    function setActiveDateRange (id) {
-      vm.activeRange = id;
     }
 
     function activate() {

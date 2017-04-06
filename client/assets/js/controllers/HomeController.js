@@ -4,7 +4,6 @@
     .module('lucidworksView.controllers.home', ['lucidworksView.services', 'angular-humanize'])
     .controller('HomeController', HomeController);
 
-
   function HomeController($window, $filter, $timeout, $rootScope, ConfigService, QueryService, URLService, PaginateService, Orwell, AuthService, _, $log) {
 
     'ngInject';
@@ -13,14 +12,51 @@
     var query;
     var sorting;
 
+    hc.filter = {
+      modifiedDate : null,
+
+      changeModifiedDateFilter: function (query, filter) {
+        if (!query.fq) {
+          query.fq = [];
+        }
+
+        if (!filter) {
+          return; // TODO log error
+        }
+
+        if (this.modifiedDate === null) {
+          query.fq.push(filter);
+
+        } else {
+          var filterIndex = query.fq.indexOf(filter);
+          if (filterIndex == -1) {
+            query.fq.splice(filterIndex, 1);
+          }
+
+          if (this.modifiedDate === filter) {
+            query.fq.push(filter);
+          }
+        }
+
+        if (query.fq.length == 0) {
+          delete query.fq;
+        }
+      }
+    };
+
     hc.setActiveTab = setActiveTab;
     hc.setShowingRows = setShowingRows;
     hc.formQuery = formQuery;
     hc.resetSearch = resetSearch;
     hc.setActive = setActive;
     hc.setDate = setDate;
-    hc.setActiveDateRange = setActiveDateRange;
 
+    hc.dateRanges = [
+      { name: 'Today', filter: 'fetchedDate_dt:[NOW-1DAY TO NOW]'},
+      { name: 'Past week', filter: 'fetchedDate_dt:[NOW-7DAYS TO NOW]'},
+      { name: 'Past month', filter: 'fetchedDate_dt:[NOW-1MONTH TO NOW]'},
+      { name: 'Past 6 month', filter: 'fetchedDate_dt:[NOW-3MONTHS TO NOW]'}
+    ];
 
     hc.dateRange = {
       from: undefined,
@@ -28,25 +64,6 @@
     };
 
     hc.searchQuery = ConfigService.config.default_query.q;
-    hc.dateRanges = [
-      {
-        name: 'Today',
-        filter: 'filter',
-      },
-      {
-        name: 'Past week',
-        filter: 'filter',
-      },
-      {
-        name: 'Past month',
-        filter: 'filter',
-      },
-      {
-        name: 'Past 6 month',
-        filter: 'filter',
-      },
-    ];
-
     activate();
 
     ////////////////
@@ -294,6 +311,16 @@
     }
     function setDate() {
       hc.dateRange[hc.activeDateInput] = hc.date;
+    }
+
+    hc.addFilter = function (f) {
+      console.log("addFilter", f);
+      var query = QueryService.getQueryObject();
+
+      hc.filter.changeModifiedDateFilter(query, f);
+
+      query.start = 0;
+      QueryService.setQuery(query);
     }
   }
 })();

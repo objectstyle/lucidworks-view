@@ -187,7 +187,7 @@ appConfig = { //eslint-disable-line
    * In order to sort on a multi-valued field you will have to fix the schema
    * for that field and recrawl the data
    */
-  sort_fields: ["score", "LastModifiedDate", "Solved Count", "View Count"],
+  sort_fields: ["score", "LastModifiedDate"],
   sort_fields_labels: {
     score: 'Relevance',
     LastModifiedDate: 'Last Modified Date'
@@ -216,7 +216,7 @@ appConfig = { //eslint-disable-line
   typeahead_use_query_profile: false,
   typeahead_query_pipeline_id: 'default',
   typeahead_query_profile_id: 'default',
-  typeahead_fields: ['id'],
+  typeahead_fields: ['title_s'],
   // The request handler defines how typeahead gets its results.
   // It is recommended to use suggest as it is more performant.
   // It will require some additional configuration.
