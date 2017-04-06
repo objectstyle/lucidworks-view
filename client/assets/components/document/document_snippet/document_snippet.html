@@ -6,7 +6,7 @@
         <img src="https://www.iconexperience.com/_img/g_collection_png/standard/256x256/pencil.png">
       </div>
       <div class="document-row">
-        <a href="{{doc.url_s}}" target="_blank"><h3 class="head-field" ng-if="::(vm.doc.lw_head)"><field value="::vm.doc.lw_head.value" hkey="{{::vm.doc.lw_head.key}}"></field></h3></a>
+        <a href="{{doc.url_s}}" ng-click="vm.sendMessage('documentOpen', vm.doc.lw_head.value)" target="_blank"><h3 class="head-field" ng-if="::(vm.doc.lw_head)"><field value="::vm.doc.lw_head.value" hkey="{{::vm.doc.lw_head.key}}"></field></h3></a>
         <h4 class="subheader"><field value="::vm.doc.lw_subhead.value" hkey="{{::vm.doc.lw_subhead.key}}"></field></h4>
         <!--<p class="large-8 xlarge-7 xx-large-6">-->
           <!--<field value="::vm.doc.lw_description.value" highlight="::vm.highlight[doc.id]" maxlength="450" hkey="{{::vm.doc.lw_description.key}}"></field>-->

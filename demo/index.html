@@ -49,10 +49,14 @@
 
   function receiveMessage(event) {
     console.log(event.source);
-    //var source = event.source.frameElement; //this is the iframe that sent the message
-    var message = event.data; //this is the message
+    var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+    if (origin !== "http://127.0.0.1:3000")
+      return;
+
+    var messageType = event.data.type;
+    var messageDoc = event.data.document;
     var newline = String.fromCharCode(13, 10);
-    document.getElementById('eventLog').value += newline + message;
+    document.getElementById('eventLog').value += newline + messageType + ': ' + messageDoc;
   }
 
   function sendMessage(type, value) {

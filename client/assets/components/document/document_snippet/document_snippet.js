@@ -21,11 +21,10 @@
     };
   }
 
-  function Controller($log, $scope, DocsHelper, ConfigService, SignalsService, PaginateService, DocumentService) {
+  function Controller($window, $log, $scope, DocsHelper, ConfigService, SignalsService, PaginateService, DocumentService) {
     'ngInject';
     var vm = this;
     vm.postSignal = postSignal;
-    vm.showDescription = showDescription;
     vm.sendMessage = sendMessage;
     vm.details = false;
     var templateFields = [];
@@ -114,15 +113,12 @@
       return DocumentService.getTemplateDisplayFieldName(vm.doc, field);
     }
 
-    function showDescription(name) {
-      vm.details = !vm.details;
-      if (vm.details) {
-        sendMessage(name + ' was shown');
-      }
-    }
-
-    function sendMessage(message) {
-      window.parent.postMessage(message, 'http://localhost:63342/lucidworks-view/demo/index.html'); //the '*' has to do with cross-domain messaging. leave it like it is for same-domain messaging.
+    function sendMessage(type, name) {
+      var message = {
+        type: type,
+        document: name,
+      };
+      $window.parent.postMessage(message, 'http://localhost:63342/lucidworks-view/demo/index.html');
     }
   }
 })();
