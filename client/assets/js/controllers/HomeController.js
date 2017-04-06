@@ -17,8 +17,27 @@
     hc.setShowingRows = setShowingRows;
     hc.formQuery = formQuery;
     hc.resetSearch = resetSearch;
+   // hc.setDateFilter = setDateFilter;
 
     hc.searchQuery = ConfigService.config.default_query.q;
+    hc.dateRanges = [
+      {
+        name: 'Today',
+        filter: 'filter',
+      },
+      {
+        name: 'Past week',
+        filter: 'filter',
+      },
+      {
+        name: 'Past month',
+        filter: 'filter',
+      },
+      {
+        name: 'Past 6 month',
+        filter: 'filter',
+      },
+    ];
 
     activate();
 
@@ -256,6 +275,10 @@
       } else {
         $rootScope.$broadcast('facetChangeMessage', message);
       }
+    }
+
+    function setDateFilter() {
+      console.log(hc.activeRange);
     }
   }
 })();

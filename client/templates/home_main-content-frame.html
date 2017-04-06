@@ -14,6 +14,16 @@
           <facet-list is-loading="hc.isLoading"></facet-list>
         </div>
       </div>
+      <div>
+        <h4>Modified Date</h4>
+        <div class="singleChoice" ng-repeat="range in hc.dateRanges track by $index" ng-class="{'facet-active': hc.activeRange == $index }" >
+          <input type="radio" id="{{'range' + $index}}" value="{{$index}}" ng-model="hc.activeRange" ng-click="hc.setDateFilter()" name="dateRanges">
+          <label for="{{'range' + $index}}">{{range.name}}</label>
+        </div>
+        <div class="singleChoice" >
+          <label zf-open="custom-range-modal" id="customRange"  name="dateRanges" >Custom range...</label>
+        </div>
+      </div>
     </form>
   </div>
 
@@ -88,6 +98,32 @@
   </div>
   <div class="grid-block advanced-search-modal-footer">
     <button zf-close class="button-action" ng-click="hc.formQuery(); hc.search()">Search</button>
+    <button class="button-cancel" zf-close>Cancel</button>
+  </div>
+</div>
+
+<!----- Custom range popup --->
+
+<div zf-modal id="custom-range-modal" class="advanced-search-modal grid-frame">
+  <a zf-close class="close-button">&times;</a>
+  <div class="advanced-search-modal-header">
+    <h3>Set Date Range</h3>
+  </div>
+  <div  class="advanced-search-modal-content">
+    <div class="cols">
+      <label for="from-input">From</label>
+      <input id="from-input" class="datepicker-input" type="text" ng-model="startDate">
+      <label for="to-input">To</label>
+      <input id="to-input" class="datepicker-input" type="text" ng-model="endDate">
+    </div>
+    <div class="cols">
+      <date-picker ng-model="date">
+      </date-picker>
+    </div>
+
+  </div>
+  <div class="grid-block advanced-search-modal-footer">
+    <button zf-close class="button-action" ng-click="hc.formQuery(); hc.search()">Go</button>
     <button class="button-cancel" zf-close>Cancel</button>
   </div>
 </div>

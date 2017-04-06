@@ -10,13 +10,3 @@
 
 }
 */
-facet-field .singleChoice {
-  input {
-    display: none;
-  }
-  &.facet-active {
-    label{
-      color: #000;
-    }
-  }
-}

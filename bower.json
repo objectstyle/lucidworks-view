@@ -29,7 +29,9 @@
     "angular-rison": "~0.0.13",
     "angularjs-humanize": "master",
     "angular-mass-autocomplete": "^0.5.0",
-    "angular-ui-router": "~0.4.2"
+    "angular-ui-router": "~0.4.2",
+    "angularjs-datepicker": "^2.1.17",
+    "angular-date-picker": "^1.3.5"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.10"

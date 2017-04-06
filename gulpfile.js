@@ -35,6 +35,7 @@ global.paths = {
   sass: [
     'client/assets/scss',
     'bower_components/foundation-apps/scss',
+    'bower_components/foundation-datepicker/scss',
     'client/assets/components/**/*.scss'
   ],
   // These files include Foundation for Apps and its dependencies
@@ -55,7 +56,8 @@ global.paths = {
     '!bower_components/foundation-apps/js/angular/app.js',
     'bower_components/ng-orwell/Orwell.js',
     'bower_components/humanize/humanize.js',
-    'bower_components/angularjs-humanize/src/angular-humanize.js'
+    'bower_components/angularjs-humanize/src/angular-humanize.js',
+    'bower_components/angular-date-picker/angular-date-picker.js',
   ],
   // These files are for your app's JavaScript
   appJS: [
