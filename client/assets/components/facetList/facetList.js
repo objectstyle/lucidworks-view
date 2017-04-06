@@ -30,6 +30,7 @@
     vm.facetNames = {};
     vm.facetLocalParams = {};
     vm.defaultRangeFacetFormatter = defaultRangeFacetFormatter;
+    vm.setActiveDateRange = setActiveDateRange;
     activate();
 
     /**
@@ -51,6 +52,30 @@
         result = toFormat;
       }
       return result;
+    }
+
+    vm.dateRanges = [
+      {
+        name: 'Today',
+        filter: 'filter',
+      },
+      {
+        name: 'Past week',
+        filter: 'filter',
+      },
+      {
+        name: 'Past month',
+        filter: 'filter',
+      },
+      {
+        name: 'Past 6 month',
+        filter: 'filter',
+      },
+    ];
+
+
+    function setActiveDateRange (id) {
+      vm.activeRange = id;
     }
 
     function activate() {
@@ -110,8 +135,8 @@
      * @return {string}           facet type split from the initial string
      */
     function retrieveFacetType(facetType){
-      if (facetType === "facet_queries") {
-        return "query";
+      if (facetType === 'facet_queries') {
+        return 'query';
       }
 
       //example: @param: facet_fields, @return: field

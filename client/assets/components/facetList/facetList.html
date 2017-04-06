@@ -3,4 +3,14 @@
       <h4>{{facet.label}}</h4>
       <facet-field facet-name="{{::facet.name}}" facet-label="{{::facet.label}}" facet-view-type="{{::facet.viewType}}" facet-auto-open="{{::facet.autoOpen}}" facet-tag="{{::facet.tag}}"></facet-field>
     </div>
+    <div>
+      <h4>Modified Date</h4>
+      <div class="singleChoice" ng-repeat="range in vm.dateRanges track by $index" ng-class="{'facet-active': vm.activeRange == $index }" >
+        <input type="radio" id="{{'range' + $index}}" value="{{$index}}" ng-model="hc.activeRange" ng-click="vm.setActiveDateRange($index)" name="dateRanges">
+        <label for="{{'range' + $index}}">{{range.name}}</label>
+      </div>
+      <div class="singleChoice" ng-class="{'facet-active': vm.activeRange == 4 }">
+        <label zf-open="custom-range-modal" id="customRange"  name="dateRanges" ng-click="vm.setActiveDateRange(4)" >Custom range...</label>
+      </div>
+    </div>
 </div>

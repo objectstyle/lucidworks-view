@@ -14,16 +14,16 @@
           <facet-list is-loading="hc.isLoading"></facet-list>
         </div>
       </div>
-      <div>
+      <!--<div>
         <h4>Modified Date</h4>
         <div class="singleChoice" ng-repeat="range in hc.dateRanges track by $index" ng-class="{'facet-active': hc.activeRange == $index }" >
-          <input type="radio" id="{{'range' + $index}}" value="{{$index}}" ng-model="hc.activeRange" ng-click="hc.setDateFilter()" name="dateRanges">
+          <input type="radio" id="{{'range' + $index}}" value="{{$index}}" ng-model="hc.activeRange" ng-click="hc.setActiveDateRange($index)" name="dateRanges">
           <label for="{{'range' + $index}}">{{range.name}}</label>
         </div>
         <div class="singleChoice" >
           <label zf-open="custom-range-modal" id="customRange"  name="dateRanges" >Custom range...</label>
         </div>
-      </div>
+      </div>-->
     </form>
   </div>
 

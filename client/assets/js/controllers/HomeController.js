@@ -19,6 +19,13 @@
     hc.resetSearch = resetSearch;
     hc.setActive = setActive;
     hc.setDate = setDate;
+    hc.setActiveDateRange = setActiveDateRange;
+
+
+    hc.dateRange = {
+      from: undefined,
+      to: undefined,
+    };
 
     hc.searchQuery = ConfigService.config.default_query.q;
     hc.dateRanges = [
@@ -278,15 +285,13 @@
       }
     }
 
+    function setActiveDateRange (id) {
+      hc.activeRange = id;
+    }
+
     function setActive(type) {
       hc.activeDateInput = type;
     }
-
-    hc.dateRange = {
-      from: undefined,
-      to: undefined,
-    };
-
     function setDate() {
       hc.dateRange[hc.activeDateInput] = hc.date;
     }
