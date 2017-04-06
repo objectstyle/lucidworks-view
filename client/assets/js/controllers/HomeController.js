@@ -5,7 +5,7 @@
     .controller('HomeController', HomeController);
 
 
-  function HomeController($filter, $timeout, $rootScope, ConfigService, QueryService, URLService, PaginateService, Orwell, AuthService, _, $log) {
+  function HomeController($window, $filter, $timeout, $rootScope, ConfigService, QueryService, URLService, PaginateService, Orwell, AuthService, _, $log) {
 
     'ngInject';
     var hc = this; //eslint-disable-line
@@ -17,7 +17,8 @@
     hc.setShowingRows = setShowingRows;
     hc.formQuery = formQuery;
     hc.resetSearch = resetSearch;
-   // hc.setDateFilter = setDateFilter;
+    hc.setActive = setActive;
+    hc.setDate = setDate;
 
     hc.searchQuery = ConfigService.config.default_query.q;
     hc.dateRanges = [
@@ -183,13 +184,13 @@
       sorting.selectedSort = sort;
       var query = QueryService.getQueryObject();
       switch(sort.type) {
-      case 'text':
-        query.sort = sort.label+' '+sort.order;
-        QueryService.setQuery(query);
-        break;
-      default:
-        delete query.sort;
-        QueryService.setQuery(query);
+        case 'text':
+          query.sort = sort.label+' '+sort.order;
+          QueryService.setQuery(query);
+          break;
+        default:
+          delete query.sort;
+          QueryService.setQuery(query);
       }
     }
 
@@ -264,7 +265,7 @@
       hc.searchQuery = '*';
     }
 
-    window.addEventListener('message', receiveMessage, false);
+    $window.addEventListener('message', receiveMessage, false);
 
     function receiveMessage(event){
       var message = event.data;
@@ -277,8 +278,17 @@
       }
     }
 
-    function setDateFilter() {
-      console.log(hc.activeRange);
+    function setActive(type) {
+      hc.activeDateInput = type;
+    }
+
+    hc.dateRange = {
+      from: undefined,
+      to: undefined,
+    };
+
+    function setDate() {
+      hc.dateRange[hc.activeDateInput] = hc.date;
     }
   }
 })();

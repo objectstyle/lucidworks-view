@@ -388,7 +388,13 @@ a {
   width: 80%!important;
   display: inline-block;
 }
+.datepicker-input:focus,
+.datepicker-input.active-input {
+  border-color: #e7cf00!important;
+}
+
 .cols {
+  padding-top: 20px;
   width: 50%;
   float: left;
 }

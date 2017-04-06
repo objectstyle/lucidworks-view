@@ -112,12 +112,12 @@
   <div  class="advanced-search-modal-content">
     <div class="cols">
       <label for="from-input">From</label>
-      <input id="from-input" class="datepicker-input" type="text" ng-model="startDate">
+      <input id="from-input" class="datepicker-input" type="text" ng-model="hc.dateRange.from" ng-focus="hc.setActive('from')" ng-class="{'active-input': hc.activeDateInput == 'from'}">
       <label for="to-input">To</label>
-      <input id="to-input" class="datepicker-input" type="text" ng-model="endDate">
+      <input id="to-input" class="datepicker-input" type="text" ng-model="hc.dateRange.to"  ng-focus="hc.setActive('to')" ng-class="{'active-input': hc.activeDateInput == 'to'}">
     </div>
     <div class="cols">
-      <date-picker ng-model="date">
+      <date-picker ng-model="hc.date" ng-click="hc.setDate()">
       </date-picker>
     </div>
 
