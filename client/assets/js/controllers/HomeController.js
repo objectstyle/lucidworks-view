@@ -314,12 +314,17 @@
     }
 
     hc.addFilter = function (f) {
-      console.log("addFilter", f);
+      $log('addFilter', f);
       var query = QueryService.getQueryObject();
-
       if (f == 'custom') {
-        var start = hc.dateRange.from;
-        var end = hc.dateRange.to;
+        var start = '*';
+        var end = '*';
+        if (hc.dateRange.from) {
+          start = hc.dateRange.from + 'T00:00:00Z';
+        }
+        if (hc.dateRange.to) {
+          end = hc.dateRange.to + 'T23:59:59Z';
+        }
         f = 'fetchedDate_dt:[' + start + ' TO ' + end + ']';
       }
 
