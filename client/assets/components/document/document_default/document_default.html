@@ -41,10 +41,19 @@
       <!-- show head field without a url. -->
       <h3 class="head-field" ng-if="::(!vm.doc.lw_url.value)"><field value="::vm.doc.lw_head.value" hkey="{{::vm.doc.lw_head.key}}"></field></h3>
 
-      <h4 class="subheader"><field value="::vm.doc.lw_subhead.value" hkey="{{::vm.doc.lw_subhead.key}}"></field></h4>
+      <h4 class="subheader"><field value="::vm.doc.lw_subhead.value" highlight="::vm.highlight[doc.lw_subhead.id]" hkey="{{::vm.doc.lw_subhead.key}}"></field></h4>
       <p class="large-8 xlarge-7 xx-large-6">
         <field value="::vm.doc.lw_description.value" highlight="::vm.highlight[doc.id]" maxlength="450" hkey="{{::vm.doc.lw_description.key}}"></field>
       </p>
+
+    <field value="::vm.doc._templateDisplayFields.body"
+           highlight="::vm.highlight[doc._templateDisplayFields.id]"
+           hkey="{{::vm.getTemplateDisplayFieldName('body')}}"></field>
+
+
+    <pre>
+      {{::vm.highlight}}
+    </pre>
       <!-- Output of CONFIG BASED FIELD DISPLAY -->
 <!--
   TODO use this fields

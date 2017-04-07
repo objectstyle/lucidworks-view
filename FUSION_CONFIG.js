@@ -59,7 +59,7 @@ appConfig = { //eslint-disable-line
   collection: 'ks_v1',
 
   // Please specify a pipeline or profile that you want to leverage with this UI.
-  query_pipeline_id: 'default',
+  query_pipeline_id: 'ks_v1-default',
   query_profile_id: 'default',
   use_query_profile: false, // Force use of query-profile
 
@@ -99,10 +99,10 @@ appConfig = { //eslint-disable-line
    */
   //In search results, for each doc, display this field as the head field
   head_field: 'title_s',
-  subhead_field: 'Creator',
-  description_field: '_suggest_',
+  subhead_field: 'title_t',
+  description_field: 'body_abstract',
   //In search results, for each doc, use this field to generate link value when a user clicks on head_field
-  head_url_field: 'self_s',
+  head_url_field: 'url_s',
   //In search results, display a image in each doc page (leave empty for no image).
   image_field: 'image',
 
@@ -134,7 +134,7 @@ appConfig = { //eslint-disable-line
   //
   // The HTML/Angular template is located in the following directory:
   //    your_project_directory/client/assets/components/document/document.html
-  fields_to_display:['title_s','Creator','_suggest_'],
+  fields_to_display:["title_s", "title_t", "body_abstract"],
   field_display_labels: {
     'name': 'Document Name',
 
@@ -217,6 +217,8 @@ appConfig = { //eslint-disable-line
   typeahead_query_pipeline_id: 'default',
   typeahead_query_profile_id: 'default',
   typeahead_fields: ['title_s'],
+
+
   // The request handler defines how typeahead gets its results.
   // It is recommended to use suggest as it is more performant.
   // It will require some additional configuration.
@@ -230,12 +232,5 @@ appConfig = { //eslint-disable-line
    *
    * If there is no query provided in the URL this query will be used. It is in object form.
    */
-  //default_query: {q:'*', 'facet.field': ["Category1", "Category2"]}
-
-   default_query: {q:'*', 'facet.field': ["Category1", "Category2"]/*, 'facet.query': [
-     "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]",
-     "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]",
-     "{!tag=q1}fetchedDate_dt:[NOW-1MONTH TO NOW]",
-     "{!tag=q1}fetchedDate_dt:[NOW-3MONTHS TO NOW]"
-   ]*/}
+   default_query: {q:'*'}
 };
