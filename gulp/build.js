@@ -7,6 +7,8 @@ var gulp            = require('gulp');
 var router          = require('front-router');
 var sequence        = require('run-sequence');
 
+var buildFolder = './build';
+
 // Builds your entire app once, without starting a server
 gulp.task('build', function(cb) {
   sequence('clean', 'copy:config', 'writeDevConfig', ['copy', 'copy:foundation', 'sass', 'uglify'], 'copy:templates', cb);
@@ -15,9 +17,9 @@ gulp.task('build', function(cb) {
 // Copies everything in the client folder except templates, Sass, and JS
 gulp.task('copy', function() {
   return gulp.src(global.paths.assets, {
-    base: './client/'
-  })
-    .pipe(gulp.dest('./build'));
+      base: './client/'
+    })
+    .pipe(gulp.dest(buildFolder));
 });
 
 // Copies your app's page templates and generates URLs for them
@@ -27,7 +29,7 @@ gulp.task('copy:templates', function() {
       path: 'build/assets/js/routes.js',
       root: 'client'
     }))
-    .pipe(gulp.dest('./build/templates'));
+    .pipe(gulp.dest(buildFolder + '/templates'));
 });
 
 // Compiles the Foundation for Apps directive partials into a single JavaScript file
@@ -40,11 +42,11 @@ gulp.task('copy:foundation', function(cb) {
     }))
     .pipe($.uglify())
     .pipe($.concat('templates.js'))
-    .pipe(gulp.dest('./build/assets/js'));
+    .pipe(gulp.dest(buildFolder + '/assets/js'));
 
   // Iconic SVG icons
   gulp.src('./bower_components/foundation-apps/iconic/**/*')
-    .pipe(gulp.dest('./build/assets/img/iconic/'));
+    .pipe(gulp.dest(buildFolder + '/assets/img/iconic/'));
 
   cb();
 });
@@ -61,7 +63,7 @@ gulp.task('uglify:foundation', function() {
   return gulp.src(global.paths.foundationJS)
     .pipe(uglify)
     .pipe($.concat('foundation.js'))
-    .pipe(gulp.dest('./build/assets/js/'));
+    .pipe(gulp.dest(buildFolder + '/assets/js/'));
 });
 
 gulp.task('uglify:app', function() {
@@ -80,5 +82,5 @@ gulp.task('uglify:app', function() {
     .pipe($.directiveReplace({root: 'client'}))
     .pipe($.concat('app.js'))
     .pipe(sourcemapsWrite)
-    .pipe(gulp.dest('./build/assets/js/'));
+    .pipe(gulp.dest(buildFolder + '/assets/js/'));
 });
