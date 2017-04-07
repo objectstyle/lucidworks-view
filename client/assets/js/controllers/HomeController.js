@@ -65,7 +65,7 @@
     hc.dateRange = {
       from: undefined,
       to: undefined,
-      filter: null,
+      filter: '[* TO *]',
     };
 
     hc.searchQuery = ConfigService.config.default_query.q;
@@ -266,7 +266,7 @@
       var allWords = '';
       var anyWords = '';
       var noWords = '';
-      if (hc.advanced.allWords && hc.advanced.allWords.length> 0) {
+      if (hc.advanced.allWords && hc.advanced.allWords.length > 0) {
         var allWordsArr = hc.advanced.allWords.split(' ');
         for (var i = 0; i < allWordsArr.length; i++) {
           allWords += allWordsArr[i];
@@ -274,39 +274,52 @@
             allWords += ' AND ';
           }
         }
+        advancedQuery += allWords;
       }
-      if (hc.advanced.anyWords && hc.advanced.anyWords.length> 0) {
+      if (hc.advanced.anyWords && hc.advanced.anyWords.length > 0) {
         var anyWordsArr = hc.advanced.anyWords.split(' ');
-        for (var j = 0; j < anyWordsArr.length; j++) {
-          if (j === 0) {
-            anyWords += '(';
-          }
-          anyWords += anyWordsArr[j];
-          if (j !== anyWordsArr.length - 1) {
-            anyWords += ' OR ';
-          } else {
-            anyWords += ')';
-          }
+        if (anyWordsArr.length > 1) {
+          anyWords = '(' + hc.advanced.anyWords + ')';
+        } else {
+          anyWords = hc.advanced.anyWords;
         }
+        if (advancedQuery.length > 0) {
+          advancedQuery += ' AND ';
+        }
+        advancedQuery += anyWords;
       }
-      if (hc.advanced.exactPhrase && hc.advanced.exactPhrase.length> 0) {
+      if (hc.advanced.exactPhrase && hc.advanced.exactPhrase.length > 0) {
         var exactPhrase = '"' + hc.advanced.exactPhrase + '"';
+        if (hc.advanced.exactPhrase.length > 0) {
+          if (advancedQuery.length > 0) {
+            advancedQuery += ' AND ';
+          }
+          advancedQuery += exactPhrase;
+        }
       }
 
-      if (hc.advanced.noWords && hc.advanced.noWords.length> 0) {
+      if (hc.advanced.noWords && hc.advanced.noWords.length > 0) {
         var noWordsArr = hc.advanced.noWords.split(' ');
         for (var k = 0; k < noWordsArr.length; k++) {
-          noWords += ' not ' + noWordsArr[k];
+          noWords += '-' + noWordsArr[k];
+          if (i !== noWordsArr.length - 1) {
+            noWords += ' ';
+          }
         }
+        advancedQuery += noWords;
       }
-      advancedQuery += allWords + ' AND ' + anyWords + ' AND ' + exactPhrase + noWords;
-      hc.searchQuery = advancedQuery;
+      var query = QueryService.getQueryObject();
+      hc.filter.changeModifiedDateFilter(query, advancedQuery, 'advancedSearch');
+
+      query.start = 0;
+      QueryService.setQuery(query);
     }
 
     function resetSearch() {
       hc.searchQuery = '*';
       hc.filter.modifiedDate = null;
       hc.filter.advancedSearch = null;
+      doSearch();
     }
 
     $window.addEventListener('message', receiveMessage, false);
@@ -330,6 +343,7 @@
     }
 
     hc.addFilter = function (f) {
+      hc.dateRange.filter = '[* TO *]';
       $log.debug('addFilter', f);
       var query = QueryService.getQueryObject();
       if (f == 'custom') {
