@@ -122,20 +122,34 @@
         _.each(data.highlighting, function(value, key){
           var vals = {};
           if (value) {
-            _.each(Object.keys(value), function (key) {
-              var val = value[key];
-              _.each(val, function(high){
-                vals[key] = $sce.trustAsHtml(high);
+            _.each(Object.keys(value), function (k) {
+              var val = value[k];
+              _.each(val, function(high) {
+                console.log(key + " -> " + k + " -> " + high);
+                vals[k] = $sce.trustAsHtml(high);
+
+                console.log(vals[k]);
               });
             });
             vm.highlighting[key] = vals;
           }
         });
-      }
-      else{
+      } else{
         vm.highlighting = {};
       }
       return vm.highlighting;
+
+      /*
+       if (data.hasOwnProperty('highlighting')){
+       vm.highlighting = _.mapValues(data.highlighting, function (docFields) {
+       return _.mapValues(docFields, function (docFieldVal) {
+       return $sce.trustAsHtml(docFieldVal);
+       })
+       });
+       } else{
+       vm.highlighting = {};
+       }
+      * */
     }
 
     /**

@@ -59,7 +59,7 @@ appConfig = { //eslint-disable-line
   collection: 'ks_v1',
 
   // Please specify a pipeline or profile that you want to leverage with this UI.
-  query_pipeline_id: 'default',
+  query_pipeline_id: 'ks_v1-default',
   query_profile_id: 'default',
   use_query_profile: false, // Force use of query-profile
 
@@ -99,10 +99,10 @@ appConfig = { //eslint-disable-line
    */
   //In search results, for each doc, display this field as the head field
   head_field: 'title_s',
-  subhead_field: 'Creator',
-  description_field: '_suggest_',
+  subhead_field: 'title_t',
+  description_field: 'body_abstract',
   //In search results, for each doc, use this field to generate link value when a user clicks on head_field
-  head_url_field: 'self_s',
+  head_url_field: 'url_s',
   //In search results, display a image in each doc page (leave empty for no image).
   image_field: 'image',
 
@@ -134,16 +134,30 @@ appConfig = { //eslint-disable-line
   //
   // The HTML/Angular template is located in the following directory:
   //    your_project_directory/client/assets/components/document/document.html
-  fields_to_display:['title','id','name', '*'],
+  fields_to_display:["title_s", "title_t", "body_abstract"],
   field_display_labels: {
     'name': 'Document Name',
+
     'Category1': 'Categories',
-    'Category2': 'Template'
+    'Category2': 'Template',
+
+    "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "Today",
+    "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "Past week",
+    "{!tag=q1}fetchedDate_dt:[NOW-1MONTH TO NOW]": "Past month",
+    "{!tag=q1}fetchedDate_dt:[NOW-3MONTHS TO NOW]": "Past 6 month"
+    //'id': 'Identification Number'
+    // you can add as many lines of labels as you want
   },
   field_view_type: {
-    'Category1': 'select',
-    'Category2': 'checkbox'
+    'Category1': 'checkbox',
+    'Category2': 'checkbox',
+
+    "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "singleChoice",
+    "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "singleChoice",
+    "{!tag=q1}fetchedDate_dt:[NOW-1MONTH TO NOW]": "singleChoice",
+    "{!tag=q1}fetchedDate_dt:[NOW-3MONTHS TO NOW]": "singleChoice"
   },
+
 
   /**
    * Number of documents shown per page, if not defined will default to 10.
@@ -173,10 +187,10 @@ appConfig = { //eslint-disable-line
    * In order to sort on a multi-valued field you will have to fix the schema
    * for that field and recrawl the data
    */
-  sort_fields: ['score', 'LastModifiedDate'],
+  sort_fields: ["score", "LastModifiedDate"],
   sort_fields_labels: {
     score: 'Relevance',
-    LastModifiedDate: 'Last Modified Date',
+    LastModifiedDate: 'Last Modified Date'
   },
 
   /**
@@ -202,7 +216,9 @@ appConfig = { //eslint-disable-line
   typeahead_use_query_profile: false,
   typeahead_query_pipeline_id: 'default',
   typeahead_query_profile_id: 'default',
-  typeahead_fields: ['id'],
+  typeahead_fields: ['title_s'],
+
+
   // The request handler defines how typeahead gets its results.
   // It is recommended to use suggest as it is more performant.
   // It will require some additional configuration.
@@ -216,5 +232,5 @@ appConfig = { //eslint-disable-line
    *
    * If there is no query provided in the URL this query will be used. It is in object form.
    */
-  default_query: {q:'*', 'facet.field': ['Category1', 'Category2']}
+  default_query: {q:'*'}
 };

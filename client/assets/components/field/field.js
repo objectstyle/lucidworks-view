@@ -66,7 +66,7 @@
       // old string.
 
       // If field is multivalued, join the items before trimming
-      result = _.isArray(result)?_.join(result, ' '):result;
+      result = _.isArray(result)? _.join(result, ' '):result;
 
       if (hasHighlight === false && result && result.length > maxlength) {
         // Mark this as being trimmed, but don't actually physically trim it
