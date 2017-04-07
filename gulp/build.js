@@ -7,7 +7,8 @@ var gulp            = require('gulp');
 var router          = require('front-router');
 var sequence        = require('run-sequence');
 
-var buildFolder = './build';
+var packageJson     = require('../package.json');
+var buildFolder = packageJson.buildFolder;
 
 // Builds your entire app once, without starting a server
 gulp.task('build', function(cb) {

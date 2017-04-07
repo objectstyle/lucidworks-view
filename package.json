@@ -75,5 +75,6 @@
     "sass-lint": "^1.5.1",
     "yargs": "^6.6.0"
   },
-  "engine": "node >=5.2.0"
+  "engine": "node >=5.2.0",
+  "buildFolder":"./target"
 }

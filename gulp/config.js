@@ -4,16 +4,20 @@ var $               = require('gulp-load-plugins')();
 var gulp            = require('gulp');
 var fs              = require('fs');
 
+var packageJson     = require('../package.json');
+var buildFolder = packageJson.buildFolder;
+
+
 // Copies your app's config
 gulp.task('copy:config', function() {
   if(fs.existsSync(global.paths.configJS[0])){ //If the file exists use that, or copy from the sample
-    return gulp.src(global.paths.configJS).pipe(gulp.dest('./build/assets/js/'));
+    return gulp.src(global.paths.configJS).pipe(gulp.dest(buildFolder + '/assets/js/'));
   }
   else {
     return gulp.src(global.paths.configJSSample)
       .pipe($.rename('FUSION_CONFIG.js'))
       .pipe(gulp.dest('./'))
-      .pipe(gulp.dest('./build/assets/js/'));
+      .pipe(gulp.dest(buildFolder + '/assets/js/'));
   }
 });
 

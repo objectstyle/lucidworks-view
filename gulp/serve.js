@@ -6,6 +6,10 @@ var browserSync     = require('browser-sync').create();
 var historyFallback = require('connect-history-api-fallback');
 var proxyMiddleware = require('http-proxy-middleware');
 
+var packageJson     = require('../package.json');
+var buildFolder = packageJson.buildFolder;
+
+
 // Static Server + watching build and live reload accross all the browsers
 gulp.task('browsersync', ['build'], function() {
   var fusionConfig    = require('../tmp/fusion_config');
@@ -28,7 +32,7 @@ gulp.task('browsersync', ['build'], function() {
   ];
 
   var browserSyncConfig = {
-    baseDir: './build/',
+    baseDir: buildFolder + '/',
     middleware: middleware
   };
 

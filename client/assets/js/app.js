@@ -29,30 +29,35 @@
   /**
    * Main app config
    *
+   * @param  {Provider} $logProvider          Provider for log
    * @param  {Provider} $urlRouterProvider    Provider for url
    * @param  {Provider} $httpProvider         Provider for http
    * @param  {Provider} $locationProvider     Provider for location
    * @param  {Provider} ApiBaseProvider       Provider for ApiBase
    * @param  {Provider} ConfigServiceProvider Provider for ConfigService
    */
-  function config($urlRouterProvider, $httpProvider, $locationProvider, ApiBaseProvider,
+  function config($logProvider, $urlRouterProvider, $httpProvider, $locationProvider, ApiBaseProvider,
     ConfigServiceProvider, $windowProvider) {
     'ngInject';
     $urlRouterProvider.otherwise('/search');
     $httpProvider.interceptors.push('AuthInterceptor');
     $httpProvider.defaults['withCredentials'] = true; //eslint-disable-line
 
+    $logProvider.debugEnabled(true);
+
+/*
     $locationProvider.html5Mode({
       enabled: true,
       requireBase: false
     });
-
     $locationProvider.hashPrefix('!');
-    // If using a proxy use the same url.
+*/
+
     if (ConfigServiceProvider.config.use_proxy) {
       var $window = $windowProvider.$get();
-      ApiBaseProvider.setEndpoint($window.location.protocol + '//' + $window.location.host +
-        '/');
+      ApiBaseProvider.setEndpoint($window.location.protocol + '//' + $window.location.host + '/');
+      $httpProvider.defaults['withCredentials'] = true;
+
     } else {
       ApiBaseProvider.setEndpoint(ConfigServiceProvider.getFusionUrl());
     }
