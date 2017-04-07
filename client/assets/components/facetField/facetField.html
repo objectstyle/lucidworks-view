@@ -11,7 +11,7 @@
   <div ng-switch-when="checkbox" >
     <div ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index" ng-class="{'facet-active':facet.active}">
       <input type="checkbox" id="{{::facet.hash}}" ng-model="facet.active" ng-click="vm.toggleFacet(facet)">
-      <label for="{{::facet.hash}}">{{facet.title}} </label>
+      <label for="{{::facet.hash}}">{{facet.title}} ({{facet.amount}}) </label>
     </div>
     <a ng-click="vm.toggleMore()"><span ng-if="!vm.more">More</span><span ng-if="vm.more">less</span></a>
   </div>
