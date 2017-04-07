@@ -239,13 +239,26 @@
     }
 
     function setShowingRows() {
-      var start;
-      if (hc.activePage == 1) {
-        start = hc.activePage;
+      var total= PaginateService.getTotalResultRows();
+      if (total === 0) {
+        hc.showingRows = '0';
       } else {
-        start = (hc.activePage - 1) * PaginateService.getRowsPerPage() + 1;
+        var start;
+        var end;
+        if (hc.activePage == 1) {
+          start = hc.activePage;
+        } else {
+          start = (hc.activePage - 1) * PaginateService.getRowsPerPage() + 1;
+        }
+
+        if (hc.activePage * PaginateService.getRowsPerPage() <= total) {
+          end = hc.activePage * PaginateService.getRowsPerPage();
+        } else {
+          end = total;
+        }
+
+        hc.showingRows =  start + '-' + end;
       }
-      hc.showingRows =  start + '-' + (hc.activePage * PaginateService.getRowsPerPage());
     }
 
     function formQuery() {
