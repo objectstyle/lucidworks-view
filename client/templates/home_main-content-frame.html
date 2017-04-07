@@ -13,7 +13,7 @@
           <a zf-close="" class="close-button show-for-small-only">×</a>
           <facet-list is-loading="hc.isLoading"></facet-list>
           <div>
-            <h4 style="margin-top: 30px;">Modified Date</h4>
+            <h4 >Modified Date</h4>
             <div class="singleChoice" ng-repeat="range in hc.dateRanges" ng-class="{'facet-active': hc.filter.modifiedDate == range.filter }" >
               <!--<input type="radio" id="{{'range' + $index}}" value="{{$index}}" ng-model="hc.activeRange" ng-click="vm.addFilter(range.filter)" name="dateRanges">-->
               <!--<label for="{{'range' + $index}}">{{range.name}}</label>-->
@@ -98,7 +98,7 @@
     </div>
   </div>
   <div class="grid-block advanced-search-modal-footer">
-    <button zf-close class="button-action" ng-click="hc.formQuery(); hc.search()">Search</button>
+    <button zf-close class="button-action" ng-click="hc.formQuery();">Search</button>
     <button class="button-cancel" zf-close>Cancel</button>
   </div>
 </div>
