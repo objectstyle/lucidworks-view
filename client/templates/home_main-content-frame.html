@@ -19,8 +19,8 @@
               <!--<label for="{{'range' + $index}}">{{range.name}}</label>-->
               <a href="javascript:void(0);" ng-click="hc.addFilter(range.filter)" rel="noopener" target="_blank">{{range.name}}</a>
             </div>
-            <div class="singleChoice" ng-class="{'facet-active': hc.filter.modifiedDate == range.filter }" >
-              <a zf-open="custom-range-modal" href="javascript:void(0);" ng-click="hc.addFilter(range.filter)" rel="noopener" target="_blank">Custom range...</a>
+            <div class="singleChoice" ng-class="{'facet-active': hc.filter.modifiedDate == hc.dateRange.filter }" >
+              <a zf-open="custom-range-modal" href="javascript:void(0);" ng-click="hc.addFilter(range.filter);" rel="noopener" target="_blank">Custom range...</a>
             </div>
           </div>
         </div>

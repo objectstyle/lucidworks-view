@@ -300,7 +300,7 @@ a {
     cursor: pointer;
   }
   &.facet-active {
-    label{
+    label, a {
       color: #000;
     }
   }

@@ -63,6 +63,7 @@
     hc.dateRange = {
       from: undefined,
       to: undefined,
+      filter: null,
     };
 
     hc.searchQuery = ConfigService.config.default_query.q;
@@ -304,10 +305,6 @@
       }
     }
 
-    function setActiveDateRange (id) {
-      hc.activeRange = id;
-    }
-
     function setActive(type) {
       hc.activeDateInput = type;
     }
@@ -328,6 +325,7 @@
           end = hc.dateRange.to + 'T23:59:59Z';
         }
         f = 'fetchedDate_dt:[' + start + ' TO ' + end + ']';
+        hc.dateRange.filter = f;
       }
 
       hc.filter.changeModifiedDateFilter(query, f);
