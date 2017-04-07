@@ -14,8 +14,9 @@
 
     hc.filter = {
       modifiedDate : null,
+      advancedSearch: null,
 
-      changeModifiedDateFilter: function (query, filter) {
+      changeModifiedDateFilter: function (query, filter, filterType) {
         if (!query.fq) {
           query.fq = [];
         }
@@ -24,19 +25,20 @@
           return; // TODO log error
         }
 
-        if (this.modifiedDate === null) {
+        if (this[filterType] === null) {
           query.fq.push(filter);
-          this.modifiedDate = filter;
+          this[filterType] = filter;
 
         } else {
-          var filterIndex = query.fq.indexOf(filter);
-          if (filterIndex == -1) {
+          var filterIndex = query.fq.indexOf(this.modifiedDate);
+          var newFilterIndex = query.fq.indexOf(filter);
+          if (newFilterIndex == -1) {
             query.fq.splice(filterIndex, 1);
           }
 
-          if (this.modifiedDate !== filter) {
+          if (this[filterType] !== filter) {
             query.fq.push(filter);
-            this.modifiedDate = filter;
+            this[filterType] = filter;
           }
         }
 
@@ -290,6 +292,8 @@
 
     function resetSearch() {
       hc.searchQuery = '*';
+      hc.filter.modifiedDate = null;
+      hc.filter.advancedSearch = null;
     }
 
     $window.addEventListener('message', receiveMessage, false);
@@ -328,7 +332,7 @@
         hc.dateRange.filter = f;
       }
 
-      hc.filter.changeModifiedDateFilter(query, f);
+      hc.filter.changeModifiedDateFilter(query, f, 'modifiedDate');
 
       query.start = 0;
       QueryService.setQuery(query);
