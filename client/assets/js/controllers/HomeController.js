@@ -26,6 +26,7 @@
 
         if (this.modifiedDate === null) {
           query.fq.push(filter);
+          this.modifiedDate = filter;
 
         } else {
           var filterIndex = query.fq.indexOf(filter);
@@ -33,8 +34,9 @@
             query.fq.splice(filterIndex, 1);
           }
 
-          if (this.modifiedDate === filter) {
+          if (this.modifiedDate !== filter) {
             query.fq.push(filter);
+            this.modifiedDate = filter;
           }
         }
 
@@ -55,7 +57,7 @@
       { name: 'Today', filter: 'fetchedDate_dt:[NOW-1DAY TO NOW]'},
       { name: 'Past week', filter: 'fetchedDate_dt:[NOW-7DAYS TO NOW]'},
       { name: 'Past month', filter: 'fetchedDate_dt:[NOW-1MONTH TO NOW]'},
-      { name: 'Past 6 month', filter: 'fetchedDate_dt:[NOW-3MONTHS TO NOW]'}
+      { name: 'Past 6 month', filter: 'fetchedDate_dt:[NOW-6MONTHS TO NOW]'}
     ];
 
     hc.dateRange = {
@@ -314,7 +316,7 @@
     }
 
     hc.addFilter = function (f) {
-      $log('addFilter', f);
+      $log.debug('addFilter', f);
       var query = QueryService.getQueryObject();
       if (f == 'custom') {
         var start = '*';
