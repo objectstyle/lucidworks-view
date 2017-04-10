@@ -73,10 +73,10 @@
       // set this here
       setQuery(term);
       SearchBoxDataService
-        .getTypeaheadResults({q: term, wt: 'json'})
+        .getTypeaheadResults(term)
         .then(function (resp) {
-          if(resp.hasOwnProperty('response') && resp.response.docs.length) {
-            deferred.resolve(suggest_results(resp.response.docs,term));
+          if(resp.hasOwnProperty('terms') && resp.terms._suggest_.length) {
+            deferred.resolve(suggest_results(resp.terms._suggest_,term));
           } else {
             return deferred.reject('No suggestions for '+term);
           }
@@ -117,11 +117,9 @@
     function suggest_results(responseDocs,term) {
       if (term.length >= 2) {
         var results = [];
-        _.forEach(responseDocs,function(doc) {
-          var typeaheadValue = _.isArray(doc[ta.typeaheadField]) ? doc[ta.typeaheadField][0] : doc[ta.typeaheadField];
-
-          if (typeaheadValue) {
-            results.push({label:$sce.trustAsHtml('<div class="title-wrapper" title="'+typeaheadValue+'">'+highlight(typeaheadValue, term)+'</div>'),value:typeaheadValue});
+        _.forEach(responseDocs,function(doc, key) {
+          if (key % 2 == 0) {
+            results.push({label:$sce.trustAsHtml('<div class="title-wrapper" title="'+doc+'">'+highlight(doc, term)+'</div>'),value:doc});
           }
         });
         return results;

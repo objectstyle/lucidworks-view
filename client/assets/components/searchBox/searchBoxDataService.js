@@ -17,9 +17,9 @@
     function getTypeaheadResults(query){
       var deferred = $q.defer();
 
-      var queryString = QueryBuilder.objectToURLString(query);
-
-      var fullUrl = getQueryUrl(ConfigService.getIfTypeaheadQueryProfile()) + '?' + queryString;
+      //var queryString = QueryBuilder.objectToURLString(query);
+      //var fullUrl = getQueryUrl(ConfigService.getIfTypeaheadQueryProfile()) + '?' + queryString;
+      var fullUrl = QueryDataService.getSuggestionUrl() + query;
 
       $http
         .get(fullUrl)

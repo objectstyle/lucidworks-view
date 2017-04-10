@@ -27,7 +27,8 @@
       return {
         getQueryResults: getQueryResults,
         getProfileEndpoint: getProfileEndpoint,
-        getPipelineEndpoint: getPipelineEndpoint
+        getPipelineEndpoint: getPipelineEndpoint,
+        getSuggestionUrl: getSuggestionUrl
       };
 
       /**
@@ -88,6 +89,13 @@
         return ApiBase.getEndpoint() + 'api/apollo/query-pipelines/' +
           pipeline + '/collections/' + ConfigService.getCollectionName() +
           '/' + requestHandler;
+      }
+
+      function getSuggestionUrl() {
+        return ConfigService.config.host + ':8983/solr/' + ConfigService.getCollectionName() +
+            '/terms?wt=json&terms.sort=' + ConfigService.config.typeahead_terms.sort +
+            '&terms.limit=' + ConfigService.config.typeahead_terms.limit +
+            '&terms.fl=' + ConfigService.config.typeahead_terms.fl + '&terms.prefix=';
       }
 
     }

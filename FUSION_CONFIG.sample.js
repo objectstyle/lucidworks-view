@@ -217,6 +217,11 @@ appConfig = { //eslint-disable-line
   typeahead_query_pipeline_id: 'default',
   typeahead_query_profile_id: 'default',
   typeahead_fields: ['title_s'],
+  typeahead_terms: {
+    sort: 'count',
+    limit: 10,
+    fl: '_suggest_',
+  },
 
 
   // The request handler defines how typeahead gets its results.
