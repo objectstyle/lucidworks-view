@@ -58,16 +58,27 @@ a {
 }
 
 .title-bar {
+  background: #F7F7F7;
   flex-wrap: wrap-reverse;
+  height: 5.3rem;
+  align-items: flex-end;
   .portal-link {
     margin-bottom: 10px;
   }
   .search-box input {
     border-radius: 5px 0 0 5px;
   }
-  .button {
+  .button,
+  .button:focus,
+  .button:visited {
     border-radius: 0 5px 5px 0;
-    border: 1px solid #ccc;
+    border: 1px solid #A29060;
+    background: #A29060;
+  }
+  .button:hover,
+  .button:active {
+    background: #a99d80;
+    border: 1px solid #a99d80;
   }
   .search-label a {
     height: 2.4rem;
@@ -82,16 +93,18 @@ a {
   h4 {
     font-size: 1em;
     font-weight: 600;
-    color: #0a1163;
+    color: #000;
     margin-top: 10px;
   }
   label,
   a,
-  a:hover,
   a:focus,
   a:visited,
   a:link {
-    color: #0a127b;
+    color: #4B4B4B;
+  }
+  a:hover {
+    color: #A29060;
   }
   label, input[type="checkbox"] + label {
     display: inline;
@@ -214,15 +227,17 @@ a {
 .main-content {
   .card {
     box-shadow: none;
+    border: none;
     .card-result-tip {
-      background: #fff4df;
-      border: 1px solid #ffedc9;
-      color: #b68c39;
+      background: #fff;
+      border: 1px solid #AB8433;
+      color: #AB8433;
+      border-radius: 5px;
     }
 
     .card-close-button {
       float: right;
-      color: #b68c39;
+      color: #AB8433;
     }
   }
 
@@ -232,33 +247,24 @@ a {
   background-color: rgba(51, 51, 51, 0.701961);
 }
 
-.advanced-search-modal-content {
-  p {
-    font-weight: bold;
-  }
-
-  button {
-    margin: 10px;
-  }
-}
 .advanced-search-modal .modal {
   border-radius: 5px;
   padding: 0;
   .advanced-search-modal-header {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #A7A9AC;
     padding: 15px 15px 5px 20px;
     h3 {
       font-size: 1.5rem;
       line-height: 1.2rem;
       font-weight: bold;
-      color: #0a127b;
+      color: #A29060;
     }
   }
   .advanced-search-modal-content {
     padding: 0px 15px 15px 20px;
-    min-height: 50vh;
     p {
       padding-top: 1.25rem;
+      font-weight: bold;
     }
     .input-group {
       margin: 10px;
@@ -269,24 +275,23 @@ a {
       }
       input {
         margin: 2px 0;
-        border-radius: 5px;
       }
     }
   }
   .advanced-search-modal-footer {
-    border-top: 1px solid #ddd;
-    background: #f0f0f0;
+    border-top: 1px solid #A7A9AC;
+    background: #F7F7F7;
     padding: 15px;
     justify-content: flex-end;
   }
   button {
     border-radius: 5px;
     padding: 7px 15px;
-    border: 1px solid #bbb;
+    border: 1px solid #A29060;
     margin: 0 5px;
   }
   .button-action {
-    background: #2b2ba8;
+    background: #A29060;
     color: #fff;
   }
   .button-cancel {
@@ -301,7 +306,7 @@ a {
   }
   &.facet-active {
     label, a {
-      color: #000;
+      color: #A29060;
     }
   }
 }
@@ -391,11 +396,11 @@ a {
 }
 .datepicker-input:focus,
 .datepicker-input.active-input {
-  border-color: #e7cf00!important;
+  border-color: #F4BD0C!important;
 }
 
 .cols {
-  padding-top: 20px;
+  padding: 20px 0;
   width: 50%;
   float: left;
 }
