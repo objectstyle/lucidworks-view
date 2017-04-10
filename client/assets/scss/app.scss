@@ -52,6 +52,10 @@
 }
 
 //customise
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
 a {
   color: #0000EE;
   padding-bottom: 10px;
@@ -65,13 +69,9 @@ a {
   .portal-link {
     margin-bottom: 10px;
   }
-  .search-box input {
-    border-radius: 5px 0 0 5px;
-  }
   .button,
   .button:focus,
   .button:visited {
-    border-radius: 0 5px 5px 0;
     border: 1px solid #A29060;
     background: #A29060;
   }
@@ -93,7 +93,7 @@ a {
   h4 {
     font-size: 1em;
     font-weight: 600;
-    color: #000;
+    color: #A29060;
     margin-top: 10px;
   }
   label,
@@ -105,6 +105,7 @@ a {
   }
   a:hover {
     color: #A29060;
+    text-decoration: underline;
   }
   label, input[type="checkbox"] + label {
     display: inline;
@@ -156,7 +157,6 @@ a {
       height: 25px;
       padding: 0 1.5em 0 0.5em;
       margin-left: 0.5em;
-      border-radius: 5px;
     }
   }
 }
@@ -228,11 +228,12 @@ a {
   .card {
     box-shadow: none;
     border: none;
+    border-radius: 0;
     .card-result-tip {
       background: #fff;
-      border: 1px solid #AB8433;
+      border: 2px solid #AB8433;
       color: #AB8433;
-      border-radius: 5px;
+      margin: 10px 0;
     }
 
     .card-close-button {
@@ -248,10 +249,9 @@ a {
 }
 
 .advanced-search-modal .modal {
-  border-radius: 5px;
   padding: 0;
   .advanced-search-modal-header {
-    border-bottom: 1px solid #A7A9AC;
+    border-bottom: 1px solid #e3e3e3;
     padding: 15px 15px 5px 20px;
     h3 {
       font-size: 1.5rem;
@@ -279,13 +279,12 @@ a {
     }
   }
   .advanced-search-modal-footer {
-    border-top: 1px solid #A7A9AC;
+    border-top: 1px solid #e3e3e3;
     background: #F7F7F7;
     padding: 15px;
     justify-content: flex-end;
   }
   button {
-    border-radius: 5px;
     padding: 7px 15px;
     border: 1px solid #A29060;
     margin: 0 5px;

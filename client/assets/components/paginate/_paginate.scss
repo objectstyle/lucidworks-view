@@ -3,22 +3,20 @@
   li {
     max-width: 2.5em;
     height: 2.5em;
-    border: 1px solid #ddd;
     a {
       padding: 13px 0;
       color: #4B4B4B;
+      border: 1px solid rgba(162, 144, 96, 0.39);
+    }
+    &:hover {
+      background: #F7F7F7;
     }
   }
-  li.first {
-    border-radius: 5px 0 0 5px;
-  }
-  li:last-child {
-    border-radius: 0 5px 5px 0;
-  }
   li.active {
-    background: #F7F7F7;
+    background: #A29060;
     a {
-      color: #A29060;
+      color: #fff;
+      border: 1px solid #A29060;
     }
   }
 }
