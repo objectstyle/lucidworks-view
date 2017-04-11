@@ -55,7 +55,8 @@
     var typeKeys = {
       'facet.field': 'field',
       'facet.range': 'range',
-      'facet.query': 'query'
+      'facet.query': 'query',
+      'facet.pivot': 'pivot'
       //TODO: future
       // 'facet.pivot': 'pivot',
       //'facet.interval': 'interval',

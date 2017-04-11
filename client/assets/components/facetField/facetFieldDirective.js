@@ -32,6 +32,7 @@
     vm.getLimitAmount = getLimitAmount;
     vm.setSelectedOption = setSelectedOption;
     vm.updateFacetActive = updateFacetActive;
+    vm.uncheckPivots = uncheckPivots;
     vm.more = false;
     vm.clearAppliedFilters = clearAppliedFilters;
     var resultsObservable = Orwell.getObservable('queryResults');
@@ -102,21 +103,30 @@
     function parseFacets(data){
       // Exit early if there are no facets in the response.
       if (!data.hasOwnProperty('facet_counts')) return;
-
+      var facetFields;
       // Determine if facet exists.
-      var facetFields = data.facet_counts.facet_fields;
-      if (facetFields.hasOwnProperty(vm.facetName)) {
-        // Transform an array of values in format [‘aaaa’, 1234,’bbbb’,2345] into an array of objects.
-        vm.facetCounts = arrayToObjectArray(facetFields[vm.facetName]);
+      if (vm.facetViewType == 'hierarchy') {
+        facetFields = data.facet_counts.facet_pivots;
+        if (facetFields.hasOwnProperty(vm.facetName)) {
+          // Transform an array of values in format [‘aaaa’, 1234,’bbbb’,2345] into an array of objects.
+          vm.facetCounts = pivotsToObjectArray(facetFields[vm.facetName]);
+        }
+      } else {
+        facetFields = data.facet_counts.facet_fields;
+        if (facetFields.hasOwnProperty(vm.facetName)) {
+          // Transform an array of values in format [‘aaaa’, 1234,’bbbb’,2345] into an array of objects.
+          vm.facetCounts = arrayToObjectArray(facetFields[vm.facetName]);
+        }
+
+        // Set inital active state
+        var active = true;
+        // If we have autoOpen set active to this state.
+        if (angular.isDefined(vm.facetAutoOpen) && vm.facetAutoOpen === 'false') {
+          active = false;
+        }
+        vm.active = active;
       }
 
-      // Set inital active state
-      var active = true;
-      // If we have autoOpen set active to this state.
-      if (angular.isDefined(vm.facetAutoOpen) && vm.facetAutoOpen === 'false') {
-        active = false;
-      }
-      vm.active = active;
     }
 
     /**
@@ -142,6 +152,21 @@
           };
         } else {
           result.push(value);
+        }
+      });
+    }
+
+    function pivotsToObjectArray(obj) {
+      return _.transform(obj, function (result, value, index) {
+        result[index] = {
+          title: value.value,
+          amount: value.count,
+          amountFormatted: $filter('humanizeNumberFormat')(value.count, 0),
+          hash: FoundationApi.generateUuid(),
+          active: isFacetActive(vm.facetName, value.value),
+        };
+        if (value.pivots && value.pivots.length) {
+          result[index].pivots = pivotsToObjectArray(value.pivots);
         }
       });
     }
@@ -309,6 +334,20 @@
           updateFacetQuery(query);
         }
       }
+    }
+
+    function uncheckPivots(title){
+      _.map(vm.facetCounts, function (facet) {
+        if (facet.title == title && facet.pivots) {
+          _.map(facet.pivots, function (pivot) {
+            if (pivot.active == true) {
+              vm.toggleFacet(pivot);
+            }
+            return pivot;
+          });
+        }
+        return facet;
+      });
     }
 
     $scope.$on('facetChangeMessage', function (event, message) {

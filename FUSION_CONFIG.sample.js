@@ -151,6 +151,7 @@ appConfig = { //eslint-disable-line
   field_view_type: {
     'Category1': 'checkbox',
     'Category2': 'checkbox',
+    'Category2,Category3': 'hierarchy',
 
     "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "singleChoice",
     "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "singleChoice",
