@@ -7,7 +7,8 @@
       </div>
       <div class="document-row">
         <a href="{{doc.url_s}}" ng-click="vm.sendMessage('documentOpen', vm.doc.lw_head.value)" target="_blank">
-          <h3 class="head-field" ng-if="::(vm.doc.lw_head)">
+          <h3 ng-bind-html="vm.highlight[doc.id].title_t" ng-if="vm.highlight[doc.id].title_t"></h3>
+          <h3 class="head-field" ng-if="::(vm.doc.lw_head) && !vm.highlight[doc.id].title_t">
             <field value="::vm.doc.lw_head.value" hkey="{{::vm.doc.lw_head.key}}"></field>
           </h3>
         </a>
@@ -15,17 +16,13 @@
           <!--<field value="::vm.doc.lw_description.value" highlight="::vm.highlight[doc.id]" maxlength="450" hkey="{{::vm.doc.lw_description.key}}"></field>-->
         <!--</p>-->
         <!--<p>{{vm.doc.lw_head.value}}</p>-->
-        <p style="width: 900px;" >
+        <p style="width: 900px;" ng-if="!vm.highlight[doc.id].body_abstract">
           <field value="::vm.doc.lw_description.value"
                  highlight="::vm.highlight[doc.id]"
                  hkey="{{::vm.getTemplateDisplayFieldName('body')}}"></field>
         </p>
+        <p  style="width: 900px;" ng-bind-html="vm.highlight[doc.id].body_abstract" ng-if="vm.highlight[doc.id].body_abstract"></p>
       </div>
-
-    <pre>
-      {{::vm.highlight[doc.id]}}
-    </pre>
-
   </div>
 </article>
 
