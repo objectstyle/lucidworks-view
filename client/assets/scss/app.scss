@@ -178,6 +178,7 @@ a {
 
 .document-row {
   display: inline-block;
+  max-width: calc(100% - 50px);
 }
 
 .pencil-icon {
