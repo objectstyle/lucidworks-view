@@ -1,7 +1,7 @@
 appConfig = { //eslint-disable-line
-              // If you don't know what you want for some configuration items,
-              // leave them as-is and see what happens in UI.
-              // You may need to clear browser history/cache before your changes take affect.
+  // If you don't know what you want for some configuration items,
+  // leave them as-is and see what happens in UI.
+  // You may need to clear browser history/cache before your changes take affect.
 
   /**
    * Styles and colors
@@ -22,6 +22,8 @@ appConfig = { //eslint-disable-line
    */
   host: 'http://fusiondev.eastus.cloudapp.azure.com',
   port: '8764',
+  // host: 'http://localhost',
+  // port: '80',
 
   proxy_allow_self_signed_cert: false, // Only turn on if you have a self signed proxy in front of fusion.
 
@@ -151,6 +153,7 @@ appConfig = { //eslint-disable-line
   field_view_type: {
     'Category1': 'checkbox',
     'Category2': 'checkbox',
+    'Category2,Category3': 'hierarchy',
 
     "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "singleChoice",
     "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "singleChoice",
@@ -226,11 +229,17 @@ appConfig = { //eslint-disable-line
 
   //typeahead_requesthandler: 'suggest', // recommended (requires configuration)
   typeahead_requesthandler: 'select',
+  typeahead_terms: {
+    sort: 'count',
+    limit: 10,
+    fl: '_suggest_',
+  },
+
 
   /**
    * Default query
    *
    * If there is no query provided in the URL this query will be used. It is in object form.
    */
-   default_query: {q:'*'}
+  default_query: {q:'*'}
 };
