@@ -158,7 +158,7 @@ appConfig = { //eslint-disable-line
     "{!tag=q1}fetchedDate_dt:[NOW-1MONTH TO NOW]": "singleChoice",
     "{!tag=q1}fetchedDate_dt:[NOW-3MONTHS TO NOW]": "singleChoice"
   },
-
+  save_facets_after_filter: true,
 
   /**
    * Number of documents shown per page, if not defined will default to 10.

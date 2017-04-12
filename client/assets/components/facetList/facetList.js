@@ -96,7 +96,6 @@
             // Updating the list till the end.
             tempFacets = _.concat(tempFacets, newFacets);
             vm.facets = tempFacets;
-
             // Updating the reflow deciding list.
             vm.facetNames[facetType] = facetFields;
           }
@@ -112,6 +111,9 @@
     function retrieveFacetType(facetType){
       if (facetType === 'facet_queries') {
         return 'query';
+      }
+      if (facetType === 'facet_pivot') {
+        return 'pivot';
       }
 
       //example: @param: facet_fields, @return: field

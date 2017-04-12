@@ -104,18 +104,37 @@
       // Exit early if there are no facets in the response.
       if (!data.hasOwnProperty('facet_counts')) return;
       var facetFields;
+      var facetCounts;
+      var newFacets = [];
+      var saveOldFacets = ConfigService.config.save_facets_after_filter;
       // Determine if facet exists.
       if (vm.facetViewType == 'hierarchy') {
-        facetFields = data.facet_counts.facet_pivots;
+        facetFields = data.facet_counts.facet_pivot;
         if (facetFields.hasOwnProperty(vm.facetName)) {
           // Transform an array of values in format [‘aaaa’, 1234,’bbbb’,2345] into an array of objects.
-          vm.facetCounts = pivotsToObjectArray(facetFields[vm.facetName]);
+          facetCounts = pivotsToObjectArray(facetFields[vm.facetName]);
+          if (vm.facetCounts && vm.facetCounts.length && saveOldFacets) {
+            newFacets = _.differenceBy(facetCounts, vm.facetCounts,  'title');
+            vm.facetCounts = _.concat(vm.facetCounts, newFacets);
+          } else {
+            vm.facetCounts = facetCounts;
+          }
         }
       } else {
         facetFields = data.facet_counts.facet_fields;
         if (facetFields.hasOwnProperty(vm.facetName)) {
           // Transform an array of values in format [‘aaaa’, 1234,’bbbb’,2345] into an array of objects.
-          vm.facetCounts = arrayToObjectArray(facetFields[vm.facetName]);
+          facetCounts = arrayToObjectArray(facetFields[vm.facetName]);
+          /*if (vm.facetCounts && vm.facetCounts.length && saveOldFacets) {
+            var oldFacets = _.differenceBy(vm.facetCounts, facetCounts, 'title');
+          }
+          vm.facetCounts = _.concat(facetCounts, oldFacets);*/
+          if (vm.facetCounts && vm.facetCounts.length && saveOldFacets) {
+            newFacets = _.differenceBy(facetCounts, vm.facetCounts,  'title');
+            vm.facetCounts = _.concat(vm.facetCounts, newFacets);
+          } else {
+            vm.facetCounts = facetCounts;
+          }
         }
 
         // Set inital active state
@@ -126,7 +145,6 @@
         }
         vm.active = active;
       }
-
     }
 
     /**
@@ -163,10 +181,11 @@
           amount: value.count,
           amountFormatted: $filter('humanizeNumberFormat')(value.count, 0),
           hash: FoundationApi.generateUuid(),
-          active: isFacetActive(vm.facetName, value.value),
+          active: isFacetActive(value.field, value.value),
+          field: value.field,
         };
-        if (value.pivots && value.pivots.length) {
-          result[index].pivots = pivotsToObjectArray(value.pivots);
+        if (value.pivot && value.pivot.length) {
+          result[index].pivots = pivotsToObjectArray(value.pivot);
         }
       });
     }
@@ -176,7 +195,12 @@
      * @param  {object} facet The facet object
      */
     function toggleFacet(facet) {
-      var key = vm.facetName;
+      var key;
+      if (vm.facetName === 'Category2,Category3') {
+        key = facet.field;
+      } else {
+        key = vm.facetName;
+      }
       var query = QueryService.getQueryObject();
 
       // CASE: fq exists.
