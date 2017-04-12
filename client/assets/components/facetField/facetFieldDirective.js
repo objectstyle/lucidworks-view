@@ -366,6 +366,7 @@
           _.map(facet.pivots, function (pivot) {
             if (pivot.active == true) {
               vm.toggleFacet(pivot);
+              pivot.active = false;
             }
             return pivot;
           });
