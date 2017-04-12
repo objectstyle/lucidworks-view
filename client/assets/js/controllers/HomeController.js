@@ -183,6 +183,9 @@
      * Initializes a new search.
      */
     function doSearch() {
+      if (!hc.searchQuery) {
+        hc.searchQuery = '*';
+      }
       query = {
         q: hc.searchQuery,
         start: 0,
