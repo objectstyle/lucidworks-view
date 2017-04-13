@@ -32,12 +32,12 @@
     vm.getLimitAmount = getLimitAmount;
     vm.setSelectedOption = setSelectedOption;
     vm.updateFacetActive = updateFacetActive;
-    vm.uncheckPivots = uncheckPivots;
+    vm.uncheckFacetPivots = uncheckFacetPivots;
     vm.more = false;
     vm.clearAppliedFilters = clearAppliedFilters;
     var resultsObservable = Orwell.getObservable('queryResults');
     vm.selectedOption = 'All Categories';
-
+    vm.activeFacets = {};
     activate();
 
     //////////////
@@ -360,18 +360,21 @@
       }
     }
 
-    function uncheckPivots(title){
-      _.map(vm.facetCounts, function (facet) {
-        if (facet.title == title && facet.pivots) {
-          _.map(facet.pivots, function (pivot) {
-            if (pivot.active == true) {
-              vm.toggleFacet(pivot);
-              pivot.active = false;
-            }
-            return pivot;
-          });
-        }
-        return facet;
+    function uncheckFacetPivots(facet) {
+      if (facet.pivots && facet.pivots.length) {
+        _.forEach(facet.pivots, function (pivot) {
+          if (pivot.active == true) {
+            vm.toggleFacet(pivot);
+            pivot.active = false;
+          }
+        });
+      }
+    }
+
+    function uncheckAll() {
+      _.forEach(vm.facetCounts, function (facet) {
+        facet.active = false;
+        uncheckFacetPivots(facet);
       });
     }
 
@@ -383,5 +386,7 @@
 
       }
     });
+
+    $scope.$on('facetFiltersReset', uncheckAll);
   }
 })();

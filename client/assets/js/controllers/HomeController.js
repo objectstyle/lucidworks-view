@@ -322,6 +322,7 @@
       hc.searchQuery = '*';
       hc.filter.modifiedDate = null;
       hc.filter.advancedSearch = null;
+      $rootScope.$broadcast('facetFiltersReset');
       doSearch();
     }
 
