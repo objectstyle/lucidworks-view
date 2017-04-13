@@ -59,7 +59,7 @@
       { name: 'Today', filter: 'fetchedDate_dt:[NOW-1DAY TO NOW]'},
       { name: 'Past week', filter: 'fetchedDate_dt:[NOW-7DAYS TO NOW]'},
       { name: 'Past month', filter: 'fetchedDate_dt:[NOW-1MONTH TO NOW]'},
-      { name: 'Past 6 month', filter: 'fetchedDate_dt:[NOW-6MONTHS TO NOW]'}
+      { name: 'Past 6 months', filter: 'fetchedDate_dt:[NOW-6MONTHS TO NOW]'}
     ];
 
     hc.dateRange = {
