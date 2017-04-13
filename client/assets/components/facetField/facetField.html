@@ -8,25 +8,15 @@
       {{facet.title}}
     </option>
   </select>
-  <div ng-switch-when="checkbox" >
-    <div ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index" ng-class="{'facet-active':facet.active}">
-      <input type="checkbox" id="{{::facet.hash}}" ng-model="facet.active" ng-click="vm.toggleFacet(facet)">
-      <label for="{{::facet.hash}}">{{facet.title}} ({{facet.amount}}) </label>
-    </div>
-    <a ng-click="vm.toggleMore()"><span ng-if="!vm.more && vm.facetCounts.length > vm.getLimitAmount()">More</span><span ng-if="vm.more">less</span></a>
-  </div>
+
   <div ng-switch-when="singleChoice" class="singleChoice" ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter" ng-class="{'facet-active':facet.active}">
     <input type="radio" id="{{::facet.hash}}" ng-model="facet.active" ng-click="vm.setSelectedOption(facet.title); vm.toggleFacetSelect()" name="{{facet.title}}">
     <label for="{{::facet.hash}}">{{facet.title}}</label>
   </div>
-  <!--<div ng-switch-when="hierarchy">
+  <div ng-switch-when="checkbox">
     <div ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index" ng-class="{'facet-active':facet.active}">
       <input type="checkbox" id="{{::facet.hash}}" ng-model="facet.active" ng-click="vm.uncheckFacetPivots(facet); vm.toggleFacet(facet)">
       <label for="{{::facet.hash}}">{{facet.title}} ({{facet.amount}}) </label>
-      &lt;!&ndash;<div ng-if="facet.pivots.length" >
-        <input type="checkbox" ng-if="facet.pivots.length" ng-model="vm.activeFacets[facet.title]" />
-        <label for="{{::facet.hash}}">{{facet.title}}</label>
-      </div>&ndash;&gt;
       <div ng-repeat="pivot in facet.pivots track by $index"
            ng-class="{'facet-active':facet.active}"
            class="hierarchy-level-2"
@@ -36,5 +26,7 @@
       </div>
     </div>
     <a ng-click="vm.toggleMore()"><span ng-if="!vm.more && vm.facetCounts.length > vm.getLimitAmount()">More</span><span ng-if="vm.more">less</span></a>
-  </div>-->
+  </div>
 </div>
+
+

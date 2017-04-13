@@ -88,7 +88,8 @@
                 autoOpen: true,
                 label: getFieldsLabel(value)|| value, //ConfigService.getFieldLabels()[value], needed to edit FUSION_CONFIG to use
                 tag: LocalParamsService.getLocalParamTag(vm.facetLocalParams[retrieveFacetType(facetType)], value) || null,
-                viewType: getFieldsViewType(value)
+                viewType: getFieldsViewType(value),
+                pivot: retrieveFacetType(facetType) == 'pivot',
               };
               newFacets.push(facet);
             });

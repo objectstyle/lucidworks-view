@@ -17,7 +17,8 @@
         facetName: '@facetName',
         facetViewType: '@facetViewType',
         facetAutoOpen: '@facetAutoOpen',
-        facetTag: '@facetTag'
+        facetTag: '@facetTag',
+        facetPivot: '@facetPivot',
       }
     };
   }
@@ -70,7 +71,7 @@
       if (facetName) {
         vm.selectedOption = facetName;
       } else {
-        vm.facetCounts.forEach(function(facet) {
+        _.forEach(vm.facetCounts, function(facet) {
           if (facet.active) {
             vm.selectedOption = facet.title;
           }
@@ -108,7 +109,7 @@
       var newFacets = [];
       var saveOldFacets = ConfigService.config.save_facets_after_filter;
       // Determine if facet exists.
-      if (vm.facetViewType == 'hierarchy') {
+      if (vm.facetPivot === 'true') {
         facetFields = data.facet_counts.facet_pivot;
         if (facetFields.hasOwnProperty(vm.facetName)) {
           // Transform an array of values in format [‘aaaa’, 1234,’bbbb’,2345] into an array of objects.
