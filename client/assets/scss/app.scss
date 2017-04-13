@@ -66,9 +66,6 @@ a {
   flex-wrap: wrap-reverse;
   height: 5.3rem;
   align-items: flex-end;
-  .portal-link {
-    margin-bottom: 10px;
-  }
   .button,
   .button:focus,
   .button:visited {
@@ -414,3 +411,6 @@ a {
   padding-left: 8px;
 }
 
+.login-block {
+  margin-top: 5rem;
+}

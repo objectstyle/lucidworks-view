@@ -57,6 +57,7 @@ appConfig = { //eslint-disable-line
     password: 'eagle123'
   },
 
+  login_default_type: 'saml',
   // The name of your collection - defaults to Fusion 3.0 default collection
   collection: 'ks_v1',
 

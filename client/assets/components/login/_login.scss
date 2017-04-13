@@ -1,0 +1,12 @@
+login a.button,
+login a.button:visited {
+  width: 100%;
+  background: #A29060;
+  font-weight: bold;
+}
+
+login a.button:hover,
+login a.button:focus,
+login a.button:active {
+  background: #9E8F6C;
+}

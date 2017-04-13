@@ -1,4 +1,4 @@
-<form class="content-block" ng-submit="vm.submit()">
+<form class="content-block" ng-submit="vm.submit()" ng-if="vm.loginType == 'native'">
   <label>
     Username
     <input type="text" ng-model="vm.username" />
@@ -9,5 +9,10 @@
   </label>
   <!-- The hidden input element only to catch RETURN press -->
   <input type="submit" style="display:none;" />
-  <a class="button" ng-click="vm.submit()">Log In</a>
+
 </form>
+<select ng-model="vm.loginType">
+  <option label="native" value="native"></option>
+  <option label="PingSAML" value="saml"></option>
+</select>
+<a class="button" ng-click="vm.submit()">Log In</a>

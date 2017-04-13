@@ -27,15 +27,22 @@
     vm.password = '';
     vm.error = null;
     vm.submitting = false;
+    vm.loginType = ConfigService.config.login_default_type;
 
     vm.submit = submit;
 
     function submit() {
       vm.error = null;
       vm.submitting = true;
-      AuthService
-        .createSession(vm.username, vm.password)
+      if (vm.loginType === 'native') {
+        AuthService
+          .createSession(vm.username, vm.password)
+          .then(success, failure);
+      } else {
+        AuthService
+        .createSessionSaml()
         .then(success, failure);
+      }
 
       function success() {
         vm.submitting = false;
