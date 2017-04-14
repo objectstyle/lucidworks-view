@@ -17,16 +17,19 @@
     <div ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index" ng-class="{'facet-active':facet.active}">
       <input type="checkbox" id="{{::facet.hash}}" ng-model="facet.active" ng-click="vm.uncheckFacetPivots(facet); vm.toggleFacet(facet)">
       <label for="{{::facet.hash}}">{{facet.title}} ({{facet.amount}}) </label>
+      <!--<span ng-click="vm.toggleFacetPivots(facet.title)" ng-if="facet.pivots.length" style="cursor:pointer;">
+        <i ng-if="!facet.active && !vm.activeFacets[facet.title]">+</i>
+        <i ng-if="facet.active || vm.activeFacets[facet.title]">-</i>
+      </span>
       <div ng-repeat="pivot in facet.pivots track by $index"
            ng-class="{'facet-active':facet.active}"
            class="hierarchy-level-2"
            ng-if="facet.active || vm.activeFacets[facet.title]">
         <input type="checkbox" id="{{::pivot.hash}}" ng-model="pivot.active" ng-click="vm.toggleFacet(pivot)">
         <label for="{{::pivot.hash}}">{{pivot.title}} ({{pivot.amount}}) </label>
-      </div>
+      </div>-->
     </div>
     <a ng-click="vm.toggleMore()"><span ng-if="!vm.more && vm.facetCounts.length > vm.getLimitAmount()">More</span><span ng-if="vm.more">less</span></a>
   </div>
 </div>
-
 

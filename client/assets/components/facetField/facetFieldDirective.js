@@ -23,7 +23,7 @@
     };
   }
 
-  function Controller($scope, ConfigService, QueryService, QueryDataService, Orwell, FoundationApi, $filter, $log) {
+  function Controller($scope, ConfigService, QueryService, Orwell, FoundationApi, $filter, $log) {
     'ngInject';
     var vm = this;
     vm.facetCounts = [];
@@ -34,6 +34,7 @@
     vm.setSelectedOption = setSelectedOption;
     vm.updateFacetActive = updateFacetActive;
     vm.uncheckFacetPivots = uncheckFacetPivots;
+    vm.toggleFacetPivots = toggleFacetPivots;
     vm.more = false;
     vm.clearAppliedFilters = clearAppliedFilters;
     var resultsObservable = Orwell.getObservable('queryResults');
@@ -59,11 +60,7 @@
 
     function updateFacetActive() {
       vm.facetCounts.forEach(function(facet) {
-        if (facet.title == vm.selectedOption) {
-          facet.active = true;
-        } else {
-          facet.active = false;
-        }
+        facet.active = facet.title == vm.selectedOption;
       });
     }
 
@@ -377,6 +374,10 @@
         facet.active = false;
         uncheckFacetPivots(facet);
       });
+    }
+
+    function toggleFacetPivots(facet) {
+      vm.activeFacets[facet] = !vm.activeFacets[facet];
     }
 
     $scope.$on('facetChangeMessage', function (event, message) {
