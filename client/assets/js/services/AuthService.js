@@ -41,7 +41,7 @@
     function createSessionSaml() {
       var deferred = $q.defer();
       $http
-        .get(ApiBase.getEndpoint() + '/api/saml/PingSAML')
+        .get(ApiBase.getEndpoint() + 'api/saml/PingSAML')
         .then(function (resp) {
           deferred.resolve(resp);
         }, function (err) {

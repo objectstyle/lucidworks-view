@@ -27,21 +27,21 @@
     vm.password = '';
     vm.error = null;
     vm.submitting = false;
-    vm.loginType = ConfigService.config.login_default_type;
+    vm.loginType = ConfigService.config.connection_realm;
 
     vm.submit = submit;
 
     function submit() {
       vm.error = null;
       vm.submitting = true;
-      if (vm.loginType === 'native') {
+      if (vm.loginType === 'saml') {
         AuthService
-          .createSession(vm.username, vm.password)
+          .createSessionSaml()
           .then(success, failure);
       } else {
         AuthService
-        .createSessionSaml()
-        .then(success, failure);
+          .createSession(vm.username, vm.password)
+          .then(success, failure);
       }
 
       function success() {
