@@ -39,6 +39,8 @@ appConfig = { //eslint-disable-line
    * The name of the realm to connect with
    *   default: 'native'
    */
+
+  // connection_realm: 'saml',
   connection_realm: 'native',
 
   /**

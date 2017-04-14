@@ -15,7 +15,8 @@
     return {
       createSession: createSession,
       getSession: getSession,
-      destroySession: destroySession
+      destroySession: destroySession,
+      createSessionSaml: createSessionSaml,
     };
 
     //////////////
@@ -28,6 +29,19 @@
           username: username,
           password: password
         })
+        .then(function (resp) {
+          deferred.resolve(resp);
+        }, function (err) {
+          deferred.reject(err);
+        });
+
+      return deferred.promise;
+    }
+
+    function createSessionSaml() {
+      var deferred = $q.defer();
+      $http
+        .get(ApiBase.getEndpoint() + 'api/saml/PingSAML')
         .then(function (resp) {
           deferred.resolve(resp);
         }, function (err) {

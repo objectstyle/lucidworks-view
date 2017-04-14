@@ -27,15 +27,22 @@
     vm.password = '';
     vm.error = null;
     vm.submitting = false;
+    vm.loginType = ConfigService.config.connection_realm;
 
     vm.submit = submit;
 
     function submit() {
       vm.error = null;
       vm.submitting = true;
-      AuthService
-        .createSession(vm.username, vm.password)
-        .then(success, failure);
+      if (vm.loginType === 'saml') {
+        AuthService
+          .createSessionSaml()
+          .then(success, failure);
+      } else {
+        AuthService
+          .createSession(vm.username, vm.password)
+          .then(success, failure);
+      }
 
       function success() {
         vm.submitting = false;
