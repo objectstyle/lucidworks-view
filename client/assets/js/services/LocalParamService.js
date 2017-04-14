@@ -54,9 +54,9 @@
 
     var typeKeys = {
       'facet.field': 'field',
-      'facet.range': 'range'
+      'facet.range': 'range',
       //TODO: future
-      // 'facet.pivot': 'pivot',
+      'facet.pivot': 'pivot',
       //'facet.interval': 'interval',
       // 'facet.query': 'query'
     };

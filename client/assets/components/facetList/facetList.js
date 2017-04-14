@@ -86,8 +86,9 @@
                 name: value,
                 type: facetType,
                 autoOpen: true,
-                label: ConfigService.getFieldLabels()[value]||value,
-                tag: LocalParamsService.getLocalParamTag(vm.facetLocalParams[retrieveFacetType(facetType)], value) || null
+                label: ConfigService.getFieldLabels()[value],
+                tag: LocalParamsService.getLocalParamTag(vm.facetLocalParams[retrieveFacetType(facetType)], value) || null,
+                pivot: retrieveFacetType(facetType) == 'pivot',
               };
               newFacets.push(facet);
             });
@@ -98,6 +99,7 @@
 
             // Updating the reflow deciding list.
             vm.facetNames[facetType] = facetFields;
+
           }
         }
       });
@@ -109,6 +111,10 @@
      * @return {string}           facet type split from the initial string
      */
     function retrieveFacetType(facetType){
+      if (facetType === 'facet_pivot') {
+        return 'pivot';
+      }
+
       //example: @param: facet_fields, @return: field
       return facetType.split('_')[1].slice(0,-1);
     }
