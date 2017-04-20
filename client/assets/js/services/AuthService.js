@@ -7,7 +7,7 @@
     ])
     .factory('AuthService', AuthService);
 
-  function AuthService($q, $log, $http, $rootScope, ApiBase, ConfigService) {
+  function AuthService($window, $q, $log, $http, $rootScope, ApiBase, ConfigService) {
     'ngInject';
     var config = ConfigService.config;
     var realmName = config.connection_realm;
@@ -39,16 +39,7 @@
     }
 
     function createSessionSaml() {
-      var deferred = $q.defer();
-      $http
-        .get(ApiBase.getEndpoint() + 'api/saml/PingSAML')
-        .then(function (resp) {
-          deferred.resolve(resp);
-        }, function (err) {
-          deferred.reject(err);
-        });
-
-      return deferred.promise;
+      $window.location = 'api/saml/PingSAML';
     }
 
     function getSession() {
