@@ -1,0 +1,15 @@
+<div class="facet-pivot-cards">
+  <div ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index" class="facet-card">
+    <p class="facet-card-title">{{facet.title}} ({{facet.amount}}) </p>
+    <!--<span ng-click="vm.toggleFacetPivots(facet.title)" ng-if="facet.pivots.length" style="cursor:pointer;">
+      <i ng-if="!facet.active && !vm.activeFacets[facet.title]">+</i>
+      <i ng-if="facet.active || vm.activeFacets[facet.title]">-</i>
+    </span>-->
+    <div ng-repeat="pivot in facet.pivots track by $index"
+         ng-class="{'facet-active':facet.active}"
+         class="hierarchy-level-2">
+      <p>{{pivot.title}} ({{pivot.amount}}) </p>
+    </div>
+  </div>
+  <a class="facet-card-more" ng-click="vm.toggleMore()"><span ng-if="!vm.more && vm.facetCounts.length > vm.getLimitAmount()">more</span><span ng-if="vm.more">less</span></a>
+</div>

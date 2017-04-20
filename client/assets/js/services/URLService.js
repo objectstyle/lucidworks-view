@@ -54,9 +54,10 @@
     function setQueryToURLAndGo(queryObject) {
       var newStateObject = convertQueryToStateObject(queryObject);
       var $state = $injector.get('$state');
+      var currentState = $state.current.name;
       // Adding reloadOnSearch:false for now fixes the double reload bug SU-60
       // @see http://stackoverflow.com/a/22863315
-      $state.go('home', newStateObject, {notify: false, reloadOnSearch: false});
+      $state.go(currentState, newStateObject, {notify: false, reloadOnSearch: false});
     }
 
     /**

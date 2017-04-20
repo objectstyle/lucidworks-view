@@ -37,7 +37,7 @@
    * @param  {Provider} ConfigServiceProvider Provider for ConfigService
    */
   function config($urlRouterProvider, $httpProvider, $locationProvider, ApiBaseProvider,
-    ConfigServiceProvider, $windowProvider) {
+    ConfigServiceProvider, $windowProvider, $stateProvider) {
     'ngInject';
     $urlRouterProvider.otherwise('/search');
     $httpProvider.interceptors.push('AuthInterceptor');
@@ -47,6 +47,14 @@
       enabled: true,
       requireBase: false
     });
+
+    $stateProvider
+      .state('cards', {
+        url: '/cards',
+        templateUrl: 'templates/cards.html',
+        controllerAs: 'hc',
+        controller: 'CardsController',
+      });
 
     $locationProvider.hashPrefix('!');
     // If using a proxy use the same url.

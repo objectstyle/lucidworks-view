@@ -10,6 +10,7 @@ angular.module('lucidworksView.components', [
   'lucidworksView.components.facetField',
   'lucidworksView.components.facetList',
   'lucidworksView.components.facetRange',
+  'lucidworksView.components.facetPivotCards',
   'lucidworksView.components.field',
   'lucidworksView.components.landingpage',
   'lucidworksView.components.login',

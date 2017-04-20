@@ -1,0 +1,29 @@
+.facet-pivot-cards {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .facet-card {
+    display: inline-block;
+    width: 30%;
+    margin-top: 2rem;
+    border: 1px solid #e3e3e3;
+    .facet-card-title {
+      background: #F7F7F7;
+      padding: 1rem;
+      font-size: 1.5rem;
+      line-height: 1.2rem;
+      font-weight: bold;
+      color: #A29060;
+    }
+  }
+  .facet-card-more {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-size: 1.3rem;
+    color: #5a5a5a;
+  }
+}
