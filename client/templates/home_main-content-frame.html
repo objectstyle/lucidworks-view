@@ -32,12 +32,6 @@
   <div class="grid-block small-12 main-content" ng-class="{'large-10 medium-9':hc.showFacets,'large-12 medium-12':!hc.showFacets}">
     <div class="grid-content">
       <a name="topOfMainContent"></a>
-      <div class="card card-result-comment">
-        <div class="card-section center card-result-tip" ng-if="hc.searchAssistant">
-          <strong>Search Assistant</strong> has detected a way to improve your search result
-          <a class="card-close-button" ng-click="hc.searchAssistant = false">X</a>
-        </div>
-      </div>
       <div class="result-data">
         <div class="result-count">
           Showing <span>{{hc.showingRows}}</span> of <span>{{hc.getTotalPages()}}</span> Results

@@ -145,6 +145,7 @@ appConfig = { //eslint-disable-line
 
     'Category1': 'Categories',
     'Category2': 'Template',
+    'Category2,Category3': 'Products & Servicies',
 
     "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "Today",
     "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "Past week",
@@ -156,7 +157,7 @@ appConfig = { //eslint-disable-line
   field_view_type: {
     'Category1': 'checkbox',
     'Category2': 'checkbox',
-    'Category2,Category3': 'hierarchy',
+    'Category2,Category3': 'checkbox',
 
     "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "singleChoice",
     "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "singleChoice",
