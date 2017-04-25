@@ -4,12 +4,23 @@
       ng-model="ta.dirty.value"
       mass-autocomplete-item="ta.autocomplete_options"
       ng-keydown="ta.checkKeyPress($event)"
-      ng-focus="ta.toggleSearchBar()"
-      ng-blur="ta.toggleSearchBar()"/>
-  <div class="no-results-message" ng-show="ta.dirty.value && ta.noResults">{{ta.noResultsMessage}}</div>
+      ng-focus="ta.toggleSearchBar()"/>
+
+  <div class="align-right grid-block">
+    <div class="small-4 grid-block"></div>
+    <div class="small-4 grid-block"></div>
+  </div>
+
+  <div class="search-bar no-results-message align-justify grid-block" ng-show="ta.dirty.value && ta.noResults">
+    <div class="small-4 grid-block">
+      <span>{{ta.noResultsMessage}}</span>
+    </div>
+
+    <div class="small-2 grid-block">
+      <a ng-click="hc.resetSearch();">Reset Search</a>
+      <a href="#" zf-open="advanced-search-modal">Advanced Search</a>
+    </div>
+  </div>
 </div>
 
-<div class="search-bar" ng-if="ta.showBar">
-  <a ng-click="hc.resetSearch();">Reset Search</a>
-  <a zf-open="advanced-search-modal">Advanced Search</a>
-</div>
+

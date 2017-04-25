@@ -42,6 +42,7 @@ appConfig = { //eslint-disable-line
    *   default: 'native'
    */
   connection_realm: 'native',
+  // connection_realm: 'saml',
 
   /**
    * Anonymous access
@@ -142,6 +143,7 @@ appConfig = { //eslint-disable-line
 
     'Category1': 'Categories',
     'Category2': 'Template',
+    'Category2,Category3': 'Products & Servicies',
 
     "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "Today",
     "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "Past week",
@@ -153,14 +155,14 @@ appConfig = { //eslint-disable-line
   field_view_type: {
     'Category1': 'checkbox',
     'Category2': 'checkbox',
-    'Category2,Category3': 'hierarchy',
+    'Category2,Category3': 'checkbox',
 
     "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "singleChoice",
     "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "singleChoice",
     "{!tag=q1}fetchedDate_dt:[NOW-1MONTH TO NOW]": "singleChoice",
     "{!tag=q1}fetchedDate_dt:[NOW-3MONTHS TO NOW]": "singleChoice"
   },
-
+  save_facets_after_filter: true,
 
   /**
    * Number of documents shown per page, if not defined will default to 10.

@@ -40,6 +40,11 @@ $search-box-empty-content:                 '';
       width: 100%;
       padding: 8px;
       font-style: italic;
+
+      .grid-block a {
+        height: 1.2em;
+        padding: 0 20px;
+      }
     }
 
     .ac-menu-item.ac-state-focus a {background: $search-box-typeahead-selected-background;}
