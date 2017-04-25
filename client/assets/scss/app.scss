@@ -415,3 +415,32 @@ a {
 .login-block {
   margin-top: 5rem;
 }
+
+.view-icon-collapsed {display: inline;}
+.view-icon-expanded {display: none;}
+
+.facet-active .view-icon-collapsed {display: none;}
+.facet-active .view-icon-expanded {display: inline;}
+
+.facet-item {
+  padding-left: 1rem;
+
+  a, i, input[type="checkbox"] + label {
+    vertical-align: top;
+  }
+
+  a {
+    display: inline-block;
+    width: 1rem;
+    padding-bottom: 0;
+  }
+
+  a:link { text-decoration: none; }
+  a:visited { text-decoration: none; }
+  a:hover { text-decoration: none; }
+  a:active { text-decoration: none; }
+}
+
+.facet-item.facet-branch {
+  padding-left: 0;
+}

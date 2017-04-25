@@ -377,7 +377,12 @@
     }
 
     function toggleFacetPivots(facet) {
-      vm.activeFacets[facet] = !vm.activeFacets[facet];
+      facet.show = !facet.show;
+      if (facet.pivot) {
+        _.forEach(facet.pivot, function (f) {
+          f.show = !f.show;
+        });
+      }
     }
 
     $scope.$on('facetChangeMessage', function (event, message) {
