@@ -12,4 +12,5 @@
 
 </form>
 
-<a class="button" ng-click="vm.submit()">Log In</a>
+<a class="button" ng-click="vm.submit()" ng-if="vm.loginType == 'native'">Log In</a>
+<a class="button" ng-click="vm.submit()" ng-if="vm.loginType == 'saml'" href="api/saml/{{connectionRealmName}}">Log In</a>

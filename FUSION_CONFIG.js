@@ -42,7 +42,8 @@ appConfig = { //eslint-disable-line
    *   default: 'native'
    */
   connection_realm: 'native',
-  // connection_realm: 'saml',
+   //connection_realm: 'saml',
+  connection_realm_name: 'PingSAML',
 
   /**
    * Anonymous access
@@ -53,10 +54,10 @@ appConfig = { //eslint-disable-line
    * It is recommended you use an account with the 'search' role
    * to use anonymous access.
    */
-  anonymous_access: {
-    username: 'admin',
-    password: 'eagle123'
-  },
+  //anonymous_access: {
+  //  username: 'admin',
+  //  password: 'eagle123'
+  //},
 
   // The name of your collection - defaults to Fusion 3.0 default collection
   collection: 'ks_v1',
@@ -143,7 +144,7 @@ appConfig = { //eslint-disable-line
 
     'Category1': 'Categories',
     'Category2': 'Template',
-    'Category2,Category3': 'Products & Servicies',
+    'Category2,Category3': 'Products and Services',
 
     "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "Today",
     "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "Past week",
@@ -162,7 +163,7 @@ appConfig = { //eslint-disable-line
     "{!tag=q1}fetchedDate_dt:[NOW-1MONTH TO NOW]": "singleChoice",
     "{!tag=q1}fetchedDate_dt:[NOW-3MONTHS TO NOW]": "singleChoice"
   },
-  save_facets_after_filter: true,
+  save_facets_after_filter: false,
 
   /**
    * Number of documents shown per page, if not defined will default to 10.

@@ -28,6 +28,7 @@
     vm.error = null;
     vm.submitting = false;
     vm.loginType = ConfigService.config.connection_realm;
+    vm.connectionRealmName = ConfigService.config.connection_realm_name;
 
     vm.submit = submit;
 
