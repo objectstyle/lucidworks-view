@@ -2,7 +2,7 @@
 <div class="grid-block">
 
   <!-- Left Panel -->
-  <div class="medium-3 large-2 medium-grid-block">
+  <div class="facet-col medium-grid-block">
     <form name="filters-list" class="filters-list">
       <div ng-show="hc.showFacets" class="medium-grid-block filter-block">
         <div
@@ -29,7 +29,7 @@
   </div>
 
   <!-- Main Content Area -->
-  <div class="grid-block small-12 main-content" ng-class="{'large-10 medium-9':hc.showFacets,'large-12 medium-12':!hc.showFacets}">
+  <div class="grid-block small-12 main-content" ng-class="{'content-col':hc.showFacets,'large-12 medium-12':!hc.showFacets}">
     <div class="grid-content">
       <a name="topOfMainContent"></a>
       <div class="result-data">

@@ -444,3 +444,31 @@ a {
 .facet-item.facet-branch {
   padding-left: 0;
 }
+
+@media only screen and (min-width: 40em) {
+  .facet-col {
+    -ms-flex: 0 0 35%;
+    flex: 0 0 35%;
+    max-width: 35%;
+  }
+
+  .content-col {
+    -ms-flex: 0 0 65%;
+    flex: 0 0 65%;
+    max-width: 65%;
+  }
+}
+
+@media only screen and (min-width: 75em) {
+  .facet-col {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+
+  .content-col {
+    -ms-flex: 0 0 80%;
+    flex: 0 0 80%;
+    max-width: 80%;
+  }
+}
