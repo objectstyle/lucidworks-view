@@ -39,7 +39,7 @@
   function config($urlRouterProvider, $httpProvider, $locationProvider, ApiBaseProvider,
     ConfigServiceProvider, $windowProvider, $stateProvider) {
     'ngInject';
-    $urlRouterProvider.otherwise('/search');
+    $urlRouterProvider.otherwise('/cards');
     $httpProvider.interceptors.push('AuthInterceptor');
     $httpProvider.defaults['withCredentials'] = true; //eslint-disable-line
 

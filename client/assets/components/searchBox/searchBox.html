@@ -17,9 +17,75 @@
     </div>
 
     <div class="small-2 grid-block">
+      <a href="#" zf-open="search-tips-modal">Search Tips</a>
       <a ng-click="hc.resetSearch();">Reset Search</a>
       <a href="#" zf-open="advanced-search-modal">Advanced Search</a>
     </div>
+  </div>
+</div>
+
+
+<!-- Advanced Search Modal -->
+
+<div zf-modal id="advanced-search-modal" class="advanced-search-modal grid-frame">
+  <a zf-close class="close-button">&times;</a>
+  <div class="advanced-search-modal-header">
+    <h3>Advanced Search</h3>
+  </div>
+  <div  class="advanced-search-modal-content">
+    <p>Find solutions that have...</p>
+    <div class="grid-block input-group">
+      <div class="medium-4 grid-block input-label">
+        <span>All of the words</span>
+      </div>
+      <div class="medium-8 grid-block">
+        <input type="text" ng-model="hc.advanced.allWords" />
+      </div>
+    </div>
+    <div class="grid-block input-group">
+      <div class="medium-4 grid-block input-label">
+        <span>Exact phrase</span>
+      </div>
+      <div class="medium-8 grid-block">
+        <input type="text" ng-model="hc.advanced.exactPhrase" />
+      </div>
+    </div>
+    <div class="grid-block input-group">
+      <div class="medium-4 grid-block input-label">
+        <span>Any of the words</span>
+      </div>
+      <div class="medium-8 grid-block">
+        <input type="text" ng-model="hc.advanced.anyWords" />
+      </div>
+    </div>
+    <p>Do not show solutions that have</p>
+    <div class="grid-block input-group">
+      <div class="medium-4 grid-block input-label">
+        <span>Unwanted words</span>
+      </div>
+      <div class="medium-8 grid-block">
+        <input type="text" ng-model="hc.advanced.noWords" />
+      </div>
+    </div>
+  </div>
+  <div class="grid-block advanced-search-modal-footer">
+    <button zf-close class="button-action" ng-click="hc.formQuery();">Search</button>
+    <button class="button-cancel" zf-close>Cancel</button>
+  </div>
+</div>
+
+<!-- Search Tips Modal -->
+
+<div zf-modal id="search-tips-modal" class="advanced-search-modal grid-frame">
+  <a zf-close class="close-button">&times;</a>
+  <div class="advanced-search-modal-header">
+    <h3>Search Tips</h3>
+  </div>
+  <div  class="advanced-search-modal-content">
+
+  </div>
+  <div class="grid-block advanced-search-modal-footer">
+    <button class="button-cancel" zf-close>Close</button>
   </div>
 </div>
 

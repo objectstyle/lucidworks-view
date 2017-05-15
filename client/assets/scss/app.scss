@@ -154,6 +154,7 @@ a {
   display: flex;
   justify-content: space-between;
   margin-top: 1em;
+  align-items: baseline;
   .result-count span {
     font-weight: bold;
   }
@@ -185,10 +186,10 @@ a {
 
 .document-row {
   display: inline-block;
-  max-width: calc(100% - 50px);
+  max-width: 100%;
 
   h3 {
-    font-size: 1.15rem;
+    font-size: 1em;
     font-weight: 600;
     color: #A29060;
   }

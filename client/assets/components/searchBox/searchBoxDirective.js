@@ -75,8 +75,8 @@
       SearchBoxDataService
         .getTypeaheadResults(term)
         .then(function (resp) {
-          if(resp.hasOwnProperty('terms') && resp.terms._suggest_.length) {
-            deferred.resolve(suggest_results(resp.terms._suggest_,term));
+          if(resp.hasOwnProperty('terms') && resp.terms.body_t.length) {
+            deferred.resolve(suggest_results(resp.terms.body_t,term));
           } else {
             return deferred.reject('No suggestions for '+term);
           }

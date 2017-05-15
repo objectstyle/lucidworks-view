@@ -48,55 +48,6 @@
   </div>
 </div>
 
-<!-- Advanced Search Modal -->
-
-<div zf-modal id="advanced-search-modal" class="advanced-search-modal grid-frame">
-  <a zf-close class="close-button">&times;</a>
-  <div class="advanced-search-modal-header">
-    <h3>Advanced Search</h3>
-  </div>
-  <div  class="advanced-search-modal-content">
-    <p>Find solutions that have...</p>
-    <div class="grid-block input-group">
-      <div class="medium-4 grid-block input-label">
-        <span>All of the words</span>
-      </div>
-      <div class="medium-8 grid-block">
-        <input type="text" ng-model="hc.advanced.allWords" />
-      </div>
-    </div>
-    <div class="grid-block input-group">
-      <div class="medium-4 grid-block input-label">
-        <span>Exact phrase</span>
-      </div>
-      <div class="medium-8 grid-block">
-        <input type="text" ng-model="hc.advanced.exactPhrase" />
-      </div>
-    </div>
-    <div class="grid-block input-group">
-      <div class="medium-4 grid-block input-label">
-        <span>Any of the words</span>
-      </div>
-      <div class="medium-8 grid-block">
-        <input type="text" ng-model="hc.advanced.anyWords" />
-      </div>
-    </div>
-    <p>Do not show solutions that have</p>
-    <div class="grid-block input-group">
-      <div class="medium-4 grid-block input-label">
-        <span>Unwanted words</span>
-      </div>
-      <div class="medium-8 grid-block">
-        <input type="text" ng-model="hc.advanced.noWords" />
-      </div>
-    </div>
-  </div>
-  <div class="grid-block advanced-search-modal-footer">
-    <button zf-close class="button-action" ng-click="hc.formQuery();">Search</button>
-    <button class="button-cancel" zf-close>Cancel</button>
-  </div>
-</div>
-
 <!----- Custom range popup --->
 
 <div zf-modal id="custom-range-modal" class="advanced-search-modal grid-frame">
