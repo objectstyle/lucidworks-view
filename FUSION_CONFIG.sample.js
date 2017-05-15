@@ -143,41 +143,74 @@ appConfig = { //eslint-disable-line
   // The HTML/Angular template is located in the following directory:
   //    your_project_directory/client/assets/components/document/document.html
   fields_to_display:["title_s", "title_t", "body_abstract"],
-  field_display_labels: {
-    'name': 'Document Name',
-    'Category1': 'Categories',
-    'Category2': 'Template',
-    'Category2,Category3': 'Products and Services',
-    'VERSION': 'Version',
-    'KNOWLEDGE_TYPE': 'Knowledge Type',
-    'DATA_CLASSIFICATION': 'Data Classification',
-    'COLLATERAL' : 'Collateral',
-    'TRAINING': 'Training',
 
-    "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "Today",
-    "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "Past week",
-    "{!tag=q1}fetchedDate_dt:[NOW-1MONTH TO NOW]": "Past month",
-    "{!tag=q1}fetchedDate_dt:[NOW-3MONTHS TO NOW]": "Past 6 month"
-    //'id': 'Identification Number'
-    // you can add as many lines of labels as you want
-  },
-  field_view_type: {
-    'Category1': 'checkbox',
-    'Category2': 'checkbox',
-    'Category2,Category3': 'checkbox',
-    'VERSION_s': 'checkbox',
-    'KNOWLEDGE_TYPE_s': 'checkbox',
-    'DATA_CLASSIFICATION_s': 'checkbox',
-    'COLLATERAL_s' : 'checkbox',
-    'TRAINING_s': 'checkbox',
-
-    "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "singleChoice",
-    "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "singleChoice",
-    "{!tag=q1}fetchedDate_dt:[NOW-1MONTH TO NOW]": "singleChoice",
-    "{!tag=q1}fetchedDate_dt:[NOW-3MONTHS TO NOW]": "singleChoice"
-  },
   save_facets_after_filter: false,
-
+  facets: [
+    {
+      name: 'Category1',
+      label: 'Categories',
+      viewType: 'checkbox',
+      showIfNoResponse: false,
+      group: false,
+      facetType: 'facet_fields',
+    },
+    {
+      name: 'Category2,Category3',
+      label: 'Products and Services',
+      viewType: 'checkbox',
+      showIfNoResponse: false,
+      group: false,
+      facetType: 'facet_pivot',
+    },
+    {
+      name: 'Category2',
+      label: 'Template',
+      viewType: 'checkbox',
+      showIfNoResponse: false,
+      group: 'Attributes',
+      facetType: 'facet_fields',
+    },
+    {
+      name: 'VERSION',
+      label: 'Version',
+      viewType: 'checkbox',
+      showIfNoResponse: false,
+      group: 'Attributes',
+      facetType: 'facet_fields',
+    },
+    {
+      name: 'KNOWLEDGE_TYPE',
+      label: 'Knowledge Type',
+      viewType: 'checkbox',
+      showIfNoResponse: false,
+      group: 'Attributes',
+      facetType: 'facet_fields',
+    },
+    {
+      name: 'DATA_CLASSIFICATION',
+      label: 'Data Classification',
+      viewType: 'checkbox',
+      showIfNoResponse: false,
+      group: 'Attributes',
+      facetType: 'facet_fields',
+    },
+    {
+      name: 'COLLATERAL',
+      label: 'Collateral',
+      viewType: 'checkbox',
+      showIfNoResponse: false,
+      group: 'Attributes',
+      facetType: 'facet_fields',
+    },
+    {
+      name: 'TRAINING',
+      label: 'Training',
+      viewType: 'checkbox',
+      showIfNoResponse: false,
+      group: 'Attributes',
+      facetType: 'facet_fields',
+    },
+  ],
   /**
    * Number of documents shown per page, if not defined will default to 10.
    */

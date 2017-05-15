@@ -11,14 +11,14 @@ controller: HomeController as hc
     <span class="center">
       <form name="searchForm" class="show-for-medium" ng-submit="hc.search()">
         <span class="inline-label search-label">
-          <a href="#" class="secondary button" ng-click="$state.go('cards')"><img
+          <a href="#" class="button" ng-click="$state.go('cards')"><img
             zf-iconic=""
             icon="chevron"
             data-direction="left"
             size="small"
             class="iconic-color-secondary"></a>
           <search-box query="hc.searchQuery" on-select="hc.search()" class="search-box-outer"></search-box>
-          <a href="#" class="secondary button" ng-click="hc.search()"><img
+          <a href="#" class="button" ng-click="hc.search()"><img
             zf-iconic=""
             icon="magnifying-glass"
             data-direction="top"

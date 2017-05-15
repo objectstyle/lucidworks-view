@@ -1,6 +1,14 @@
 <div class="facet-list">
-    <div ng-repeat="facet in vm.facets">
+    <div ng-repeat="facet in vm.facets.ungrouped">
       <h4>{{facet.label}}</h4>
       <facet-field facet-name="{{::facet.name}}" facet-label="{{::facet.label}}" facet-view-type="{{::facet.viewType}}" facet-auto-open="{{::facet.autoOpen}}" facet-tag="{{::facet.tag}}" facet-pivot="{{::facet.pivot}}"></facet-field>
     </div>
+  <div class="grouped-facets" ng-repeat="group in vm.facets.groups">
+    <h4>{{group.groupName}}</h4>
+    <div ng-repeat="facet in group.facets">
+      <h4>{{facet.label}}</h4>
+      <facet-field facet-name="{{::facet.name}}" facet-label="{{::facet.label}}" facet-view-type="{{::facet.viewType}}" facet-auto-open="{{::facet.autoOpen}}" facet-tag="{{::facet.tag}}" facet-pivot="{{::facet.pivot}}"></facet-field>
+    </div>
+  </div>
+
 </div>

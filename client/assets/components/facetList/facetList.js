@@ -26,7 +26,10 @@
     'ngInject';
     var vm = this;
     var resultsObservable = Orwell.getObservable('queryResults');
-    vm.facets = [];
+    vm.facets = {
+      ungrouped: [],
+      groups: [],
+    };
     vm.facetNames = {};
     vm.facetLocalParams = {};
     vm.defaultRangeFacetFormatter = defaultRangeFacetFormatter;
@@ -59,11 +62,13 @@
         if (!data.hasOwnProperty('facet_counts')) return;
         vm.facetLocalParams = LocalParamsService.getLocalParams(data.responseHeader.params);
 
-        // Iterate through each facet type.
+        /*// Iterate through each facet type.
         _.forEach(data.facet_counts, resultFacetParse);
 
         function resultFacetParse(resultFacets, facetType){
           // Keep a list of facet names and only reflow facets based on changes to this list.
+          // var facetFieldsWithData = removeEmptyFacets(resultFacets);
+          // var facetFields = Object.keys(facetFieldsWithData);
           var facetFields = Object.keys(resultFacets);
           if (!_.isEqual(vm.facetNames[facetType], facetFields)) {
             var oldFields = _.difference(vm.facetNames[facetType], facetFields);
@@ -82,6 +87,7 @@
             // Adding new facet entries
             var newFacets = [];
             _.forEach(newFields, function(value){
+              debugger;
               var facet = {
                 name: value,
                 type: facetType,
@@ -100,8 +106,55 @@
             // Updating the reflow deciding list.
             vm.facetNames[facetType] = facetFields;
           }
+        }*/
+
+        var facetsConfig = ConfigService.config.facets;
+        _.forEach(facetsConfig, function(facet, key) {
+          var facetData = data.facet_counts[facet.facetType][facet.name];
+          if (facetData && (facetData.length > 0 || (facetData.length == 0 && facet.showIfNoResponse))) {
+            var newFacet = {
+              name: facet.name,
+              type: facet.facetType,
+              autoOpen: true,
+              label: facet.label,
+              tag: LocalParamsService.getLocalParamTag(vm.facetLocalParams[retrieveFacetType(facet.facetType)], facet.name) || null,
+              viewType: facet.viewType,
+              pivot: facet.facetType == 'facet_pivot',
+            };
+            if (!facet.group) {
+              vm.facets.ungrouped.push(newFacet);
+            } else {
+              var groupId = getGroupId(facet.group);
+              if(groupId == -1) {
+                vm.facets.groups.push({ groupName: facet.group, facets: [newFacet]});
+              } else {
+                vm.facets.groups[groupId].facets.push(newFacet);
+              }
+            }
+          }
+        })
+      });
+    }
+
+    function getGroupId(groupName) {
+      var id = -1;
+      _.forEach(vm.facets.groups, function (val, key) {
+        if (val.groupName == groupName) {
+          id = key;
+          return false;
         }
       });
+
+      return id;
+    }
+
+    function removeEmptyFacets(obg) {
+      var result = {};
+      _.forEach(obg, function(arr, field){
+        if (arr.length) {}
+          result[field] = arr;
+      });
+      return result;
     }
 
     /**
