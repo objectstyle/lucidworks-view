@@ -1,7 +1,7 @@
 appConfig = { //eslint-disable-line
-  // If you don't know what you want for some configuration items,
-  // leave them as-is and see what happens in UI.
-  // You may need to clear browser history/cache before your changes take affect.
+              // If you don't know what you want for some configuration items,
+              // leave them as-is and see what happens in UI.
+              // You may need to clear browser history/cache before your changes take affect.
 
   /**
    * Styles and colors
@@ -20,8 +20,9 @@ appConfig = { //eslint-disable-line
    *
    * To use https set the https server key and certificate. And set use_https to true.
    */
-  host: 'http://fusiondev.eastus.cloudapp.azure.com',
+  host: 'https://myeaglesearch.eagleinvsys.com',
   port: '8764',
+  use_proxy: false,
   // host: 'http://localhost',
   // port: '80',
 
@@ -42,8 +43,12 @@ appConfig = { //eslint-disable-line
    *   default: 'native'
    */
   connection_realm: 'native',
-   //connection_realm: 'saml',
-  connection_realm_name: 'PingSAML',
+  //connection_realm: {
+  //  name: 'PingSAMLView',
+  //  type: 'saml'
+  //}
+  //connection_realm: 'saml',
+  //connection_realm_name: 'PingSAMLCards',
 
   /**
    * Anonymous access
@@ -54,10 +59,10 @@ appConfig = { //eslint-disable-line
    * It is recommended you use an account with the 'search' role
    * to use anonymous access.
    */
-  //anonymous_access: {
-  //  username: 'admin',
-  //  password: 'eagle123'
-  //},
+  anonymous_access: {
+    username: 'user',
+    password: 'eagleuser1'
+  },
 
   // The name of your collection - defaults to Fusion 3.0 default collection
   collection: 'ks_v1',
@@ -70,11 +75,11 @@ appConfig = { //eslint-disable-line
   // Search UI Title
   // This title appears in a number of places in the app, including page title.
   // In the header it is replaced by the logo if one is provided.
-  search_app_title: 'Lucidworks View',
+  search_app_title: 'MyEagleSearch',
   // Specify the path to your logo relative to the root app folder.
   // Or use an empty string if you don't want to use a logo.
   // This file is relative to the client folder of your app.
-  logo_location: 'assets/img/logo/lucidworks-white.svg',
+  logo_location: 'assets/img/EagleInvSysLogo.png',
 
   /**
    * Document display
@@ -108,7 +113,7 @@ appConfig = { //eslint-disable-line
   //In search results, for each doc, use this field to generate link value when a user clicks on head_field
   head_url_field: 'url_s',
   //In search results, display a image in each doc page (leave empty for no image).
-  image_field: 'image',
+  image_field: 'image_s',
 
   // ADDING ADDITIONAL FIELDS TO DEFAULT DOCUMENTS
   //
@@ -141,10 +146,14 @@ appConfig = { //eslint-disable-line
   fields_to_display:["title_s", "title_t", "body_abstract"],
   field_display_labels: {
     'name': 'Document Name',
-
     'Category1': 'Categories',
     'Category2': 'Template',
     'Category2,Category3': 'Products and Services',
+    'VERSION': 'Version',
+    'KNOWLEDGE_TYPE': 'Knowledge Type',
+    'DATA_CLASSIFICATION': 'Data Classification',
+    'COLLATERAL' : 'Collateral',
+    'TRAINING': 'Training',
 
     "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "Today",
     "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "Past week",
@@ -157,6 +166,11 @@ appConfig = { //eslint-disable-line
     'Category1': 'checkbox',
     'Category2': 'checkbox',
     'Category2,Category3': 'checkbox',
+    'VERSION_s': 'checkbox',
+    'KNOWLEDGE_TYPE_s': 'checkbox',
+    'DATA_CLASSIFICATION_s': 'checkbox',
+    'COLLATERAL_s' : 'checkbox',
+    'TRAINING_s': 'checkbox',
 
     "{!tag=q1}fetchedDate_dt:[NOW-1DAY TO NOW]": "singleChoice",
     "{!tag=q1}fetchedDate_dt:[NOW-7DAYS TO NOW]": "singleChoice",
@@ -231,11 +245,12 @@ appConfig = { //eslint-disable-line
   // @see https://lucidworks.com/blog/2016/02/04/fusion-plus-solr-suggesters-search-less-typing/
 
   //typeahead_requesthandler: 'suggest', // recommended (requires configuration)
-  typeahead_requesthandler: 'select',
+  typeahead_pipeline: 'ks_v1-suggest',
+  typeahead_requesthandler: 'terms',
   typeahead_terms: {
     sort: 'count',
     limit: 10,
-    fl: '_suggest_',
+    fl: 'body_t',
   },
 
 

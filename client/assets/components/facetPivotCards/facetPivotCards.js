@@ -8,7 +8,7 @@
   function facetPivotCards() {
     'ngInject';
     console.log('facetPivotCards');
-    var directive = {
+    return {
       restrict: 'EA',
       templateUrl: 'assets/components/facetPivotCards/facetPivotCards.html',
       scope: true,
@@ -19,11 +19,9 @@
       }
     };
 
-    return directive;
-
   }
 
-  function Controller(ConfigService, Orwell, LocalParamsService, $filter, FoundationApi) {
+  function Controller(ConfigService, QueryService, Orwell, LocalParamsService, $filter, FoundationApi) {
     'ngInject';
     var vm = this;
     var resultsObservable = Orwell.getObservable('queryResults');
@@ -32,6 +30,8 @@
     vm.facetLocalParams = {};
     vm.getLimitAmount = getLimitAmount;
     vm.toggleMore = toggleMore;
+    vm.toggleFacet = toggleFacet;
+
     activate();
 
     /**
@@ -49,7 +49,7 @@
       if(vm.more){
         return undefined;
       }
-      return 9;
+      return 100;
     }
 
     function activate() {
@@ -60,58 +60,8 @@
         parseFacets(data);
 
         console.log(vm.facetCounts);
-        /*resultFacetParse(data['facet_counts']['facet_pivot'], 'facet_pivot');
-
-        function resultFacetParse(resultFacets, facetType){
-          // Keep a list of facet names and only reflow facets based on changes to this list.
-          var facetFields = Object.keys(resultFacets);
-          if (!_.isEqual(vm.facetNames[facetType], facetFields)) {
-            var oldFields = _.difference(vm.facetNames[facetType], facetFields);
-            var newFields = _.difference(facetFields, vm.facetNames[facetType]);
-
-            // Creating temp facet so that we don't have to change the model in Angular
-            var tempFacets = _.clone(vm.facets);
-
-            //removing old fields
-            _.forEach(oldFields, function(field){
-              _.remove(tempFacets, function(item){
-                return item.name === field && item.type === facetType;
-              });
-            });
-
-            // Adding new facet entries
-            var newFacets = [];
-            _.forEach(newFields, function(value){
-              var facet = {
-                name: value,
-                type: facetType,
-                autoOpen: true,
-                label: getFieldsLabel(value)|| value, //ConfigService.getFieldLabels()[value], needed to edit FUSION_CONFIG to use
-                tag: LocalParamsService.getLocalParamTag(vm.facetLocalParams['pivot'], value) || null,
-                viewType: getFieldsViewType(value),
-                pivot: true,
-              };
-              newFacets.push(facet);
-            });
-
-            // Updating the list till the end.
-            tempFacets = _.concat(tempFacets, newFacets);
-            vm.facets = tempFacets;
-            // Updating the reflow deciding list.
-            vm.facetNames[facetType] = facetFields;
-          }
-        }*/
       });
     }
-/*
-    function getFieldsLabel(name) {
-      return ConfigService.config.field_display_labels[name];
-    }
-
-    function getFieldsViewType(value) {
-      return ConfigService.config.field_view_type[value];
-    }*/
-
 
     function parseFacets(data){
       // Exit early if there are no facets in the response.
@@ -147,5 +97,57 @@
         }
       });
     }
+
+    /**
+     * Toggles a facet on or off depending on it's current state.
+     * @param  {object} facet The facet object
+     */
+    function toggleFacet(facet) {
+      var key;
+      if (vm.facetName === 'Category2,Category3') {
+        key = facet.field;
+      } else {
+        key = vm.facetName;
+      }
+      var query = QueryService.getQueryObject();
+
+      // CASE: fq exists.
+      if(!query.hasOwnProperty('fq')){
+        query = addQueryFacet(query, key, facet.title);
+      } else {
+        // Remove the key object from the query.
+        // We will re-add later if we need to.
+        var keyArr = _.remove(query.fq, function(value){
+          return checkFacetExists(value, key);
+        });
+
+        // CASE: facet key exists in query.
+        if(keyArr.length > 0) {
+          var keyObj = keyArr[0];
+          var removed = _.remove(keyObj.values, function(value){return value === facet.title;});
+          // CASE: value didn't previously exist add to values.
+          if(removed.length === 0){
+            if(!keyObj.hasOwnProperty('values')){
+              keyObj.values = [];
+            }
+            keyObj.values.push(facet.title);
+          }
+          // CASE: there are still values in facet attach keyobject back to query.
+          if(keyObj.values.length > 0){
+            query.fq.push(keyObj);
+          }
+          // Delete 'fq' if it is now empty.
+          if(query.fq.length === 0){
+            delete query.fq;
+          }
+        } else { // CASE: Facet key doesnt exist ADD key AND VALUE.
+          query = addQueryFacet(query, key, facet.title);
+        }
+
+      }
+      // Set the query and trigger the refresh.
+      updateFacetQuery(query);
+    }
+
   }
 })();

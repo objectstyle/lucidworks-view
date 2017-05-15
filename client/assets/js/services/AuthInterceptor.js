@@ -6,7 +6,7 @@
     .factory('AuthInterceptor', AuthInterceptor);
 
 
-  function AuthInterceptor(URLService, $q, $log, $rootScope, $injector) {
+  function AuthInterceptor(URLService, $q, $timeout, $log, $rootScope, $injector) {
     'ngInject';
     var tryingAnon = false;
     return {
@@ -16,6 +16,7 @@
     function responseError(resp) {
       var deferred = $q.defer();
       var $state = $injector.get('$state');
+
       // CASE: If the app is on login page, the code is 401 and the request wasn't a api/session POST, then only attempt anon login
       // The reason for this check so that not all the response errors are intercepted
       if (!$state.is('login') && (resp.status === 401) && !isLoginRequest(resp.config)) {
@@ -46,9 +47,33 @@
             });
           }
           else{
+            var config = $injector.get('ConfigService').config;
             //CASE: If anonymous login creds are unusable then go to login
-            deferred.reject();
-            $state.go('login', prepareQueryForRedirect());
+            if (config.connection_realm === "saml") {
+              var $http = $injector.get('$http');
+
+              if ($http.attempt === undefined || $http.attempt <= -1) {
+                $http.attempt = config.connection_realm_attempts || 3;
+              }
+              $log.log("Attempt #" + $http.attempt + " with 1 sec delay -1-");
+              $log.log(resp.config, $http.attempt);
+
+              if ($http.attempt > 0) {
+                $http.attempt = $http.attempt - 1;
+                $timeout(function() {
+                  $injector.get('$http')(resp.config)
+                },  config.connection_realm_timeout || 5000);
+
+                deferred.reject();
+              } else {
+                var AuthService = $injector.get('AuthService');
+                AuthService.createSessionSaml();
+                deferred.reject(false);
+              }
+            } else {
+              deferred.reject();
+              $state.go('login', prepareQueryForRedirect());
+            }
           }
         }
         //CASE: If trying anon login, then that promise chain will take care of stuff

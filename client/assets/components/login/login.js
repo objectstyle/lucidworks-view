@@ -37,8 +37,7 @@
       vm.submitting = true;
       if (vm.loginType === 'saml') {
         AuthService
-          .createSessionSaml()
-          .then(success, failure);
+          .createSessionSaml();
       } else {
         AuthService
           .createSession(vm.username, vm.password)

@@ -1,29 +1,102 @@
 .facet-pivot-cards {
   width: 80%;
-  margin: auto;
+  margin: 2rem auto auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  .facet-card {
-    display: inline-block;
-    width: 30%;
-    margin-top: 2rem;
-    border: 1px solid #e3e3e3;
-    .facet-card-title {
-      background: #F7F7F7;
-      padding: 1rem;
-      font-size: 1.5rem;
-      line-height: 1.2rem;
-      font-weight: bold;
-      color: #A29060;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .card img {
+    width: inherit;
+  }
+
+  .hierarchy-level-2 { padding-left: 0; }
+  .card-section {
+    padding: 2rem;
+
+    a { color: #616265; }
+    a:hover {
+      color: black;
+      font-weight: bold ;
     }
+
+    h5 {
+      font-weight: bold;
+    }
+  }
+
+  div.facet-card:hover {
+    box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.55);
+    border-right: none;
+  }
+
+  .facet-card {
+    //display: inline-block;
+    //width: 30%;
+    height: 100%;
+    border: 1px solid #e3e3e3;
+
+    .facet-card-title {
+      height: 6rem;
+      background: #A29060;
+      padding: 1rem;
+
+      font-size: 1.25rem;
+      line-height: 1.25rem;
+      font-weight: bold;
+      color: #ffffff;
+
+      a {
+        //margin-left: 6rem;
+        color: #ffffff;
+        //float: left;
+        //padding-left: 85px;
+      }
+      a:hover { color: #4B4B4B; }
+      img {
+        width: 3rem;
+        display: inline-block;
+        margin-right: 1rem;
+        //margin-top: -1.5rem;
+      }
+
+      div {
+        width: 60%;
+        display: inline-block;
+        margin-right: 1rem;
+
+      }
+
+    }
+
+    .facet-pivot-cards .facet-card .hierarchy-level-2 .level-2-content {
+      font-size: 1rem;
+      line-height: 1rem;
+      font-weight: normal;
+      margin-bottom: 0;
+      color: #616265;
+    }
+
+    .hierarchy-level-2 .level-2-content {
+
+
+      p {
+        line-height: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #616265;
+      }
+    }
+
   }
   .facet-card-more {
     width: 100%;
     text-align: center;
     padding: 1rem;
-    margin: 1rem 0;
+    margin: 1rem;
     font-size: 1.3rem;
-    color: #5a5a5a;
+    color: #A29060;
   }
 }

@@ -235,6 +235,8 @@
       hc.activeTab = num;
     }
 
+
+
     function getActivePage() {
       return PaginateService.getCurrentPage() + 1;
     }

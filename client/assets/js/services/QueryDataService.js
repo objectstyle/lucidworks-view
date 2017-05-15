@@ -92,10 +92,10 @@
       }
 
       function getSuggestionUrl() {
-        return ApiBase.getEndpoint() + 'api/apollo/solr/' + ConfigService.getCollectionName() +
-            '/terms?wt=json&terms.sort=' + ConfigService.config.typeahead_terms.sort +
-            '&terms.limit=' + ConfigService.config.typeahead_terms.limit +
-            '&terms.fl=' + ConfigService.config.typeahead_terms.fl + '&terms.prefix=';
+        var base = getPipelineEndpoint(ConfigService.config.typeahead_pipeline, ConfigService.config.typeahead_requesthandler);
+        return base + '?wt=json&terms.sort=' + ConfigService.config.typeahead_terms.sort +
+          '&terms.limit=' + ConfigService.config.typeahead_terms.limit +
+          '&terms.fl=' + ConfigService.config.typeahead_terms.fl + '&terms.prefix=';
       }
 
     }

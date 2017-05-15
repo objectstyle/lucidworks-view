@@ -104,6 +104,15 @@ a {
     color: #A29060;
     text-decoration: underline;
   }
+
+  a.more {
+    color: #A29060;
+    margin-left: 2.5rem;
+    text-decoration: inherit;
+
+    &:hover { text-decoration: underline; }
+  }
+
   label, input[type="checkbox"] + label {
     display: inline;
   }
@@ -177,12 +186,22 @@ a {
 .document-row {
   display: inline-block;
   max-width: calc(100% - 50px);
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #A29060;
+  }
 }
 
 .pencil-icon {
   width: 50px;
   padding: 10px;
   vertical-align: top;
+
+  img {
+    width: 30px;
+  }
 }
 .document {
   .detail {

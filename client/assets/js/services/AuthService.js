@@ -39,7 +39,7 @@
     }
 
     function createSessionSaml() {
-      $window.location = 'api/saml/' + config.connection_realm_name;
+      $window.location = ApiBase.getEndpoint() + 'api/saml/' + config.connection_realm_name;
     }
 
     function getSession() {
