@@ -48,14 +48,6 @@
       requireBase: false
     });
 
-    $stateProvider
-      .state('cards', {
-        url: '/cards',
-        templateUrl: 'templates/cards.html',
-        controllerAs: 'hc',
-        controller: 'CardsController',
-      });
-
     $locationProvider.hashPrefix('!');
     // If using a proxy use the same url.
     if (ConfigServiceProvider.config.use_proxy) {
