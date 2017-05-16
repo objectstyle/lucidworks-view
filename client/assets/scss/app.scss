@@ -272,7 +272,7 @@ a {
   background-color: rgba(51, 51, 51, 0.701961);
 }
 
-.advanced-search-modal .modal {
+.advanced-search-modal {
   padding: 0;
   .advanced-search-modal-header {
     border-bottom: 1px solid #e3e3e3;
@@ -319,6 +319,50 @@ a {
   }
   .button-cancel {
     background: #f8f8f8;
+  }
+}
+
+.search-tips-modal {
+  .advanced-search-modal-header {
+    height: 5.5vh;
+    min-height: 50px;
+  }
+  .advanced-search-modal-content {
+    height: 70vh;
+    overflow-y: auto;
+    h4 {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    p {
+      padding-top: 0;
+      text-align: left;
+      white-space: initial;
+      font-weight: normal;
+      margin-bottom: 0;
+    }
+    ul, ol {
+      text-align: left;
+      list-style: none;
+      white-space: initial;
+    }
+    ol {
+      padding-left: 1em;
+      li {
+        margin-bottom: 0.5em;
+        text-indent: -1em;
+      }
+    }
+    h6 {
+      text-align: left;
+      font-size: 1.1em;
+      font-weight: bold;
+      padding: 0.5em 1em;
+    }
+  }
+  .advanced-search-modal-footer {
+    height: 7vh;
+    min-height: 70px;
   }
 }
 

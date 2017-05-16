@@ -32,7 +32,7 @@
     vm.gotoPreviousPage = gotoPreviousPage;
     vm.gotoPage = gotoPage;
     vm.showState = 'next';
-    vm.paginationPagesShow = 7;
+    vm.paginationPagesShow = 5;
 
     activate();
 

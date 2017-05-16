@@ -3,8 +3,7 @@
       class="query-input"
       ng-model="ta.dirty.value"
       mass-autocomplete-item="ta.autocomplete_options"
-      ng-keydown="ta.checkKeyPress($event)"
-      ng-focus="ta.toggleSearchBar()"/>
+      ng-keydown="ta.checkKeyPress($event)"/>
 
   <div class="align-right grid-block">
     <div class="small-4 grid-block"></div>
@@ -16,7 +15,7 @@
       <span>{{ta.noResultsMessage}}</span>
     </div>
 
-    <div class="small-2 grid-block">
+    <div class="small-8 align-right grid-block">
       <a href="#" zf-open="search-tips-modal">Search Tips</a>
       <a ng-click="hc.resetSearch();">Reset Search</a>
       <a href="#" zf-open="advanced-search-modal">Advanced Search</a>
@@ -76,13 +75,90 @@
 
 <!-- Search Tips Modal -->
 
-<div zf-modal id="search-tips-modal" class="advanced-search-modal grid-frame">
+<div zf-modal id="search-tips-modal" class="advanced-search-modal grid-frame search-tips-modal">
   <a zf-close class="close-button">&times;</a>
   <div class="advanced-search-modal-header">
     <h3>Search Tips</h3>
   </div>
   <div  class="advanced-search-modal-content">
+    <h4>Union</h4>
+    <ul>
+      <li>cats dogs<li>
+      <li>cats OR dogs<li>
+    </ul>
 
+    <h4>Intersect</h4>
+    <p>
+      Most of the time, you will want to remember to explicitly AND terms together:
+    </p>
+    <ul>
+      <li>cats AND dogs<li>
+      <li>+cats +dogs<li>
+    </ul>
+
+    <h4>Nesting</h4>
+    <p>
+      (+cats +dogs) (+"peanut butter" +jelly)
+    </p>
+
+    <h4>Subtraction</h4>
+    <p>
+      Minus (-) excludes a term from results, and automatically ANDs it with the rest of the query.
+    </p>
+    <ul>
+      <li>cats -dogs<li>
+      <li>cats AND NOT dogs<li>
+    </ul>
+
+    <h4>Union</h4>
+    <p>
+      cats dogs<br/>
+      cats OR dogs
+    </p>
+
+    <h4>Phrases</h4>
+    <p>
+      "grumpy cat"
+    </p>
+
+    <h4>Wildcards</h4>
+    <p>
+      Question mark (?) matches a single, arbitrary character.
+    </p>
+    <p>
+      Asterisk (*) matches any word or phrase.
+    </p>
+    <ul>
+      <li>cats</li>
+      <li>c?ts</li>
+      <li>+khtml +like +Gecko</li>
+      <li>+khtml +like +Geck?</li>
+      <li>"khtml like Geck\?"</li>
+      <li>+"khtml, like" +Ge*</li>
+      <li>"khtml, like \*"</li>
+      <li>error\:</li>
+    </ul>
+    <h6>Notes:</h6>
+    <ol>
+      <li>Wildcards and other special characters (e.g., +, -, &, |, !, (, ), {, }, [, ], ^, ", ~, *, ?, :, and \) need to be escaped (e.g., \?, \?) when used inside phrases/strings, or searched for as a literal.</li>
+      <li>An asterisk cannot be used as the first character of a term (e.g., *oogle is bad syntax).</li>
+    </ol>
+
+    <h4>Fuzzy searches</h4>
+    <p>
+      Lucene can search for similar terms:
+
+      integer~
+      will match on integer, integers, and intejer.
+    </p>
+    <h6>Specify a threshold</h6>
+    <p>An optional fuzziness threshold can be specified, from 0.0 (very loose) to 1.0 (very strict).</p>
+    <ul>
+      <li>integer~</li>
+      <li>integer~0.5</li>
+      <li>integer~0.4</li>
+      <li>integer~0.6</li>
+    </ul>
   </div>
   <div class="grid-block advanced-search-modal-footer">
     <button class="button-cancel" zf-close>Close</button>
