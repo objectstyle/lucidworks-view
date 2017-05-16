@@ -107,7 +107,10 @@
             vm.facetNames[facetType] = facetFields;
           }
         }*/
-
+        vm.facets = {
+          ungrouped: [],
+          groups: [],
+        };
         var facetsConfig = ConfigService.config.facets;
         _.forEach(facetsConfig, function(facet, key) {
           var facetData = data.facet_counts[facet.facetType][facet.name];
@@ -146,15 +149,6 @@
       });
 
       return id;
-    }
-
-    function removeEmptyFacets(obg) {
-      var result = {};
-      _.forEach(obg, function(arr, field){
-        if (arr.length) {}
-          result[field] = arr;
-      });
-      return result;
     }
 
     /**
