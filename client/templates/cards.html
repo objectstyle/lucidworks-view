@@ -6,7 +6,7 @@ controller: HomeController as hc
   <!-- Top Bar -->
   <nav class="title-bar">
     <span class="center">
-      <form name="searchForm" class="show-for-medium" ng-submit="hc.search()">
+      <form name="searchForm" ng-submit="hc.search()">
         <span class="inline-label search-label">
           <search-box query="hc.searchQuery" on-select="hc.search()" class="search-box-outer"></search-box>
           <a href="#" class="secondary button" ng-click="hc.search()"><img
@@ -18,19 +18,6 @@ controller: HomeController as hc
         </span>
       </form>
     </span>
-  </nav>
-  <nav class="title-bar show-for-small-only">
-    <form ng-submit="hc.search()">
-      <span class="inline-label search-label">
-        <search-box query="hc.searchQuery" class="search-box-outer"></search-box>
-        <a href="#" class="button" ng-click="hc.search()"><img
-          zf-iconic=""
-          icon="magnifying-glass"
-          data-direction="top"
-          size="small"
-          class="iconic-color-secondary"></a>
-      </span>
-    </form>
   </nav>
 
   <!-- Main Content Frame -->

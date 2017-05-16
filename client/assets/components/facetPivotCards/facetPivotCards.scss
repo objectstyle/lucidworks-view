@@ -49,6 +49,9 @@
       font-weight: bold;
       color: #ffffff;
 
+      display: flex;
+      align-items: center;
+
       a {
         //margin-left: 6rem;
         color: #ffffff;
@@ -60,14 +63,12 @@
         width: 3rem;
         display: inline-block;
         margin-right: 1rem;
-        //margin-top: -1.5rem;
       }
 
       div {
         width: 60%;
         display: inline-block;
-        margin-right: 1rem;
-
+        align-self: center;
       }
 
     }
@@ -98,5 +99,11 @@
     margin: 1rem;
     font-size: 1.3rem;
     color: #A29060;
+  }
+}
+
+@media (max-width: 410px) {
+  .facet-pivot-cards .card-section {
+    padding: 1rem;
   }
 }
