@@ -87,11 +87,15 @@ a {
 .filters-list {
   width: 100%;
   padding: 15px;
-  h4 {
-    font-size: 1em;
+  h4, h5 {
+    font-size: 0.9em;
     font-weight: 600;
     color: #A29060;
     margin-top: 10px;
+    text-transform: uppercase;
+  }
+  h5 {
+    text-transform: inherit;
   }
   label,
   a,
@@ -155,6 +159,7 @@ a {
   justify-content: space-between;
   margin-top: 1em;
   align-items: baseline;
+  flex-wrap: wrap;
   .result-count span {
     font-weight: bold;
   }
@@ -490,5 +495,20 @@ a {
     -ms-flex: 0 0 80%;
     flex: 0 0 80%;
     max-width: 80%;
+  }
+}
+
+@media (max-width: 40em) {
+  .result-data {
+    .result-count, .result-sort {
+      width: 100%;
+    }
+    .result-count {
+      order: 2;
+      margin-bottom: 1rem;
+    }
+    .result-sort {
+      order: 1;
+    }
   }
 }

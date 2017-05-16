@@ -36,7 +36,7 @@
         <label for="{{::pivot.hash}}">{{pivot.title}} ({{pivot.amount}}) </label>
       </div>
     </div>
-    <a class="more" ng-click="vm.toggleMore()">
+    <a class="more" ng-click="vm.toggleMore()" ng-if="vm.facetCounts.length > vm.getLimitAmount()">
       {{!vm.more && vm.facetCounts.length > vm.getLimitAmount() ? 'More' : (vm.more ? 'Less' : '')}}
     </a>
   </div>

@@ -6,3 +6,14 @@
 .block-list li.disabled>label:hover{
   cursor: not-allowed;
 }
+
+.grouped-facets {
+  border-top: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+  margin: 1em 0.7em 0 0;
+  padding-bottom: 0.6em;
+}
+
+.grouped-facet-block {
+  padding-left: 1rem;
+}
