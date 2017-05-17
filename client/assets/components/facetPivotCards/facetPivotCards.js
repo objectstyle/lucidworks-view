@@ -7,7 +7,6 @@
 
   function facetPivotCards() {
     'ngInject';
-    console.log('facetPivotCards');
     return {
       restrict: 'EA',
       templateUrl: 'assets/components/facetPivotCards/facetPivotCards.html',
@@ -58,8 +57,6 @@
         if (!data.hasOwnProperty('facet_counts') || !data['facet_counts'].hasOwnProperty('facet_pivot')) return;
         vm.facetLocalParams = LocalParamsService.getLocalParams(data.responseHeader.params);
         parseFacets(data);
-
-        console.log(vm.facetCounts);
       });
     }
 

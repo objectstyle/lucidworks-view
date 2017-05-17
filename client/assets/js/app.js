@@ -48,6 +48,22 @@
       requireBase: false
     });
 
+    $stateProvider
+      .state('home', {
+        url: '/search?query',
+        templateUrl: 'templates/home.html',
+        controllerAs: 'hc',
+        controller: 'HomeController',
+      });
+
+    $stateProvider
+      .state('cards', {
+        url: '/cards',
+        templateUrl: 'templates/home.html',
+        controllerAs: 'hc',
+        controller: 'HomeController',
+      });
+
     $locationProvider.hashPrefix('!');
     // If using a proxy use the same url.
     if (ConfigServiceProvider.config.use_proxy) {
