@@ -110,20 +110,23 @@
       });
 
       if ($state.current.name == 'home') {
-        query = URLService.getQueryFromUrl();
-
-        //Setting the query object... also populating the the view model
-        hc.searchQuery = _.get(query,'q',ConfigService.config.default_query.q);
-
-        // Force set the query object to change one digest cycle later
-        // than the digest cycle of the initial load-rendering
-        // The $timeout is needed or else the query to fusion is not made.
-        $timeout(function(){
-          QueryService.setQuery(query);
-        });
+          query = URLService.getQueryFromUrl();
       } else {
-        QueryService.setDefaultQuery()
+        query = {
+          q: ConfigService.config.default_query.q,
+          start: 0,
+        }
       }
+
+      //Setting the query object... also populating the the view model
+      hc.searchQuery = _.get(query,'q',ConfigService.config.default_query.q);
+
+      // Force set the query object to change one digest cycle later
+      // than the digest cycle of the initial load-rendering
+      // The $timeout is needed or else the query to fusion is not made.
+      $timeout(function(){
+        QueryService.setQuery(query);
+      });
 
     }
 
@@ -200,7 +203,7 @@
         start: 0,
       };
 
-      QueryService.setQuery(query);
+      QueryService.setQuery(query, 'home');
     }
 
     /**

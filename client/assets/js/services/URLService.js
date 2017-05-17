@@ -18,6 +18,7 @@
     'ngInject';
     return {
       setQueryToURLAndGo: setQueryToURLAndGo,
+      setQueryToURLAndGoToState: setQueryToURLAndGoToState,
       convertQueryToStateObject: convertQueryToStateObject,
       getQueryFromUrl: getQueryFromUrl,
 
@@ -49,6 +50,15 @@
       var newStateObject = {};
       newStateObject[QUERY_PARAM] = queryObjectString;
       return newStateObject;
+    }
+
+    function setQueryToURLAndGoToState(queryObject, state) {
+      var newStateObject = convertQueryToStateObject(queryObject);
+      var $state = $injector.get('$state');
+      var currentState = state || $state.current.name;
+      // Adding reloadOnSearch:false for now fixes the double reload bug SU-60
+      // @see http://stackoverflow.com/a/22863315
+      $state.go(currentState, newStateObject, {notify: false, reloadOnSearch: false});
     }
 
     function setQueryToURLAndGo(queryObject) {
