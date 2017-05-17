@@ -32,28 +32,28 @@
         <div ng-if="facet.title==='Accounting'" class="hierarchy-level-2">
           <p class="level-2-content">
             <a
-              href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+              href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
               ({{facet.amount}})</a>
           </p>
         </div>
         <div ng-if="facet.title==='Corporate Overview'" class="hierarchy-level-2">
           <p class="level-2-content">
             <a
-              href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+              href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
               ({{facet.amount}})</a>
           </p>
         </div>
         <div ng-if="facet.title==='Data Management'" class="hierarchy-level-2">
           <p class="level-2-content">
             <a
-              href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+              href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
               ({{facet.amount}})</a>
           </p>
         </div>
         <div ng-if="facet.title==='Performance & Risk'" class="hierarchy-level-2">
           <p class="level-2-content">
             <a
-              href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+              href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
               ({{facet.amount}})</a>
           </p>
         </div>
@@ -85,7 +85,7 @@
                  class="hierarchy-level-2">
               <p class="level-2-content">
                 <a
-                  href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.title}}%27)),%271%27:(key:Category3,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{pivot.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{pivot.title}}
+                  href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27)),%271%27:(key:Category3,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{pivot.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{pivot.title}}
                   ({{pivot.amount}})</a>
               </p>
             </div>
@@ -116,7 +116,7 @@
                  class="hierarchy-level-2">
               <p class="level-2-content">
                 <a
-                  href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.title}}%27)),%271%27:(key:Category3,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{pivot.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{pivot.title}}
+                  href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27)),%271%27:(key:Category3,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{pivot.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{pivot.title}}
                   ({{pivot.amount}})</a>
               </p>
             </div>
@@ -142,28 +142,28 @@
           <div ng-if="facet.title==='Automation'" class="hierarchy-level-2">
             <p class="level-2-content">
               <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
                 ({{facet.amount}})</a>
             </p>
           </div>
           <div ng-if="facet.title==='Data Integration'" class="hierarchy-level-2">
             <p class="level-2-content">
               <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
                 ({{facet.amount}})</a>
             </p>
           </div>
           <div ng-if="facet.title==='System Management'" class="hierarchy-level-2">
             <p class="level-2-content">
               <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
                 ({{facet.amount}})</a>
             </p>
           </div>
           <div ng-if="facet.title==='User Administration'" class="hierarchy-level-2">
             <p class="level-2-content">
               <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
                 ({{facet.amount}})</a>
             </p>
           </div>
@@ -189,14 +189,14 @@
           <div ng-if="facet.title==='Performance'" class="hierarchy-level-2">
             <p class="level-2-content">
               <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
                 ({{facet.amount}})</a>
             </p>
           </div>
           <div ng-if="facet.title==='Performance & Risk'" class="hierarchy-level-2">
             <p class="level-2-content">
               <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
                 ({{facet.amount}})</a>
             </p>
           </div>

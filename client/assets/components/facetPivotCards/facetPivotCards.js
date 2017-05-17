@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('lucidworksView.components.facetPivotCards', ['lucidworksView.services.config'])
+    .module('lucidworksView.components.facetPivotCards', ['lucidworksView.services.config', 'rison'])
     .directive('facetPivotCards', facetPivotCards);
 
   function facetPivotCards() {
@@ -20,7 +20,7 @@
 
   }
 
-  function Controller(ConfigService, QueryService, Orwell, LocalParamsService, $filter, FoundationApi) {
+  function Controller(ConfigService, QueryService, Orwell, LocalParamsService, $filter, FoundationApi, $rison) {
     'ngInject';
     var vm = this;
     var resultsObservable = Orwell.getObservable('queryResults');
@@ -83,6 +83,7 @@
       return _.transform(obj, function (result, value, index) {
         result[index] = {
           title: value.value,
+          titleEscaped: escape(value.value),
           amount: value.count,
           amountFormatted: $filter('humanizeNumberFormat')(value.count, 0),
           hash: FoundationApi.generateUuid(),
