@@ -3,9 +3,11 @@
       class="query-input"
       ng-model="ta.dirty.value"
       mass-autocomplete-item="ta.autocomplete_options"
-      ng-keydown="ta.checkKeyPress($event)"/>
+      ng-keydown="ta.checkKeyPress($event)"
+      ng-focus="ta.toggleSearchBar()"
+      ng-blur="ta.toggleSearchBar()"/>
 
-  <div class="search-bar no-results-message align-justify grid-block" ng-show="ta.dirty.value && ta.noResults">
+  <div class="search-bar no-results-message align-justify grid-block" ng-show="ta.showBar">
     <div class="small-4 grid-block">
       <span>{{ta.noResultsMessage}}</span>
     </div>
