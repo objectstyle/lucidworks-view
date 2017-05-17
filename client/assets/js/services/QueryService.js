@@ -29,8 +29,9 @@
 
       return {
         setQuery: setQuery,
+        setDefaultQuery: setDefaultQuery,
         getQueryObservable: getQueryObservable,
-        getQueryObject: getQueryObject
+        getQueryObject: getQueryObject,
       };
 
       function activate() {
@@ -55,6 +56,20 @@
         queryObject = _.assign({}, queryObject, query, {rows: ConfigService.config.docs_per_page});
         queryObservable.setContent(queryObject);
         URLService.setQueryToURLAndGo(queryObject);
+      }
+
+      function setDefaultQuery() {
+        var query = {
+          q: ConfigService.config.default_query.q,
+          start: 0,
+          rows: ConfigService.config.docs_per_page,
+          wt: 'json',
+        };
+        if (ConfigService.config.query_debug) {
+          $log.debug('query', query);
+        }
+        queryObservable.setContent(query);
+        URLService.setQueryToURLAndGo(query);
       }
 
     }

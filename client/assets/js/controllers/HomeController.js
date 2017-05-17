@@ -4,7 +4,7 @@
     .module('lucidworksView.controllers.home', ['lucidworksView.services', 'angular-humanize'])
     .controller('HomeController', HomeController);
 
-  function HomeController($window, $filter, $timeout, $rootScope, ConfigService, QueryService, URLService, PaginateService, Orwell, AuthService, _, $log) {
+  function HomeController($window, $filter, $state, $timeout, $rootScope, ConfigService, QueryService, URLService, PaginateService, Orwell, AuthService, _, $log) {
 
     'ngInject';
     var hc = this; //eslint-disable-line
@@ -90,17 +90,16 @@
       hc.getTotalPages = PaginateService.getTotalResultRows;
       hc.searchAssistant = true;
 
-      query = URLService.getQueryFromUrl();
-      //Setting the query object... also populating the the view model
-      hc.searchQuery = _.get(query,'q',ConfigService.config.default_query.q);
       // Use an observable to get the contents of a queryResults after it is updated.
       resultsObservable = Orwell.getObservable('queryResults');
       resultsObservable.addObserver(function(data) {
         // Locking the service to prevent multiple queries currently this only works for facet ranges (since it is very slow) but could add an ng-disabled to other areas and toggle on or off a disabled class
         startLoading();
+
         // updateStatus();
         checkResultsType(data);
         updateStatus();
+
         // Initializing sorting
         sorting = hc.sorting;
         sorting.switchSort = switchSort;
@@ -110,12 +109,22 @@
         setShowingRows();
       });
 
-      // Force set the query object to change one digest cycle later
-      // than the digest cycle of the initial load-rendering
-      // The $timeout is needed or else the query to fusion is not made.
-      $timeout(function(){
-        QueryService.setQuery(query);
-      });
+      if ($state.current.name == 'home') {
+        query = URLService.getQueryFromUrl();
+
+        //Setting the query object... also populating the the view model
+        hc.searchQuery = _.get(query,'q',ConfigService.config.default_query.q);
+
+        // Force set the query object to change one digest cycle later
+        // than the digest cycle of the initial load-rendering
+        // The $timeout is needed or else the query to fusion is not made.
+        $timeout(function(){
+          QueryService.setQuery(query);
+        });
+      } else {
+        QueryService.setDefaultQuery()
+      }
+
     }
 
     function startLoading(){
