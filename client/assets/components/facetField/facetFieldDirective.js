@@ -27,14 +27,15 @@
     'ngInject';
     var vm = this;
     vm.facetCounts = [];
-    vm.toggleFacet = toggleFacet;
+    vm.updateQueryFilters = updateQueryFilters;
     vm.toggleFacetSelect = toggleFacetSelect;
     vm.toggleMore = toggleMore;
     vm.getLimitAmount = getLimitAmount;
     vm.setSelectedOption = setSelectedOption;
     vm.updateFacetActive = updateFacetActive;
-    vm.uncheckFacetPivots = uncheckFacetPivots;
+    vm.toggleFacet = toggleFacet;
     vm.toggleFacetPivots = toggleFacetPivots;
+    vm.togglePivotFacet = togglePivotFacet;
     vm.more = false;
     vm.clearAppliedFilters = clearAppliedFilters;
     var resultsObservable = Orwell.getObservable('queryResults');
@@ -181,6 +182,7 @@
           hash: FoundationApi.generateUuid(),
           active: isFacetActive(value.field, value.value),
           field: value.field,
+          pivotFacet: true,
         };
         if (value.pivot && value.pivot.length) {
           result[index].pivots = pivotsToObjectArray(value.pivot);
@@ -188,18 +190,29 @@
       });
     }
 
+    function togglePivotFacet(facet, pivot) {
+      var query = QueryService.getQueryObject();
+
+      var newQuery = updateQueryFilters(facet, query);
+      if (pivot) {
+        newQuery = updateQueryFilters(pivot, newQuery);
+      }
+
+      // Set the query and trigger the refresh.
+      updateFacetQuery(newQuery);
+    }
+
     /**
      * Toggles a facet on or off depending on it's current state.
      * @param  {object} facet The facet object
      */
-    function toggleFacet(facet) {
+    function updateQueryFilters(facet, query) {
       var key;
-      if (vm.facetName === 'Category2,Category3') {
+      if (facet.pivotFacet == true) {
         key = facet.field;
       } else {
         key = vm.facetName;
       }
-      var query = QueryService.getQueryObject();
 
       // CASE: fq exists.
       if(!query.hasOwnProperty('fq')){
@@ -235,9 +248,11 @@
         }
 
       }
-      // Set the query and trigger the refresh.
-      updateFacetQuery(query);
+
+      return query;
     }
+
+
 
     /**
      * Sets the facet query and sets start row to beginning.
@@ -358,15 +373,19 @@
       }
     }
 
-    function uncheckFacetPivots(facet) {
-      if (facet.pivots && facet.pivots.length) {
+    function toggleFacet(facet) {
+      var query = QueryService.getQueryObject();
+      query = vm.updateQueryFilters(facet, query);
+      if (!facet.active && facet.pivots && facet.pivots.length) {
         _.forEach(facet.pivots, function (pivot) {
           if (pivot.active == true) {
-            vm.toggleFacet(pivot);
+            query = vm.updateQueryFilters(pivot, query);
             pivot.active = false;
           }
         });
       }
+      // Set the query and trigger the refresh.
+      updateFacetQuery(query);
     }
 
     function uncheckAll() {

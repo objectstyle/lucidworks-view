@@ -25,14 +25,14 @@
           <i class="view-icon view-icon-collapsed">+</i>
           <i class="view-icon view-icon-expanded">-</i>
         </a>
-        <input type="checkbox" id="{{::facet.hash}}" ng-model="facet.active" ng-click="vm.uncheckFacetPivots(facet); vm.toggleFacet(facet)">
+        <input type="checkbox" id="{{::facet.hash}}" ng-model="facet.active" ng-click="vm.toggleFacet(facet);">
         <label for="{{::facet.hash}}">{{facet.title}} ({{facet.amount}}) </label>
       </div>
       <div ng-repeat="pivot in facet.pivots track by $index"
            ng-class="{'facet-active':facet.active}"
            class="hierarchy-level-2"
            ng-if="facet.active || facet.show || vm.activeFacets[facet.title]">
-        <input type="checkbox" id="{{::pivot.hash}}" ng-model="pivot.active" ng-click="vm.toggleFacet(pivot)">
+        <input type="checkbox" id="{{::pivot.hash}}" ng-model="pivot.active" ng-click="vm.togglePivotFacet(facet, pivot)">
         <label for="{{::pivot.hash}}">{{pivot.title}} ({{pivot.amount}}) </label>
       </div>
     </div>
