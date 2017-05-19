@@ -48,7 +48,11 @@
     activate();
 
     function activate() {
-      ta.dirty.value = ta.query;
+      if (ta.query == '*') {
+        ta.dirty.value = '';
+      } else {
+        ta.dirty.value = ta.query;
+      }
     }
 
     function checkKeyPress($event) {
@@ -134,8 +138,11 @@
 
 
     $scope.$on('searchChangeMessage', function (event, message) {
-      ta.dirty.value = message;
-
+      if (message == '*') {
+        ta.dirty.value = '';
+      } else {
+        ta.dirty.value = message;
+      }
     });
   }
 })();
