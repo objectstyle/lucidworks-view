@@ -187,14 +187,6 @@ appConfig = { //eslint-disable-line
       facetType: 'facet_fields',
     },
     {
-      name: 'DATA_CLASSIFICATION',
-      label: 'Data Classification',
-      viewType: 'checkbox',
-      showIfNoResponse: false,
-      group: 'Attributes',
-      facetType: 'facet_fields',
-    },
-    {
       name: 'COLLATERAL',
       label: 'Collateral',
       viewType: 'checkbox',
