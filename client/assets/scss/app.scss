@@ -15,8 +15,9 @@
   flex: 1;
 }
 
-.search-label{
-  margin-bottom: 0;
+.search-label {
+  justify-content: flex-end;
+  margin: 1rem 1rem 0 1em;
 }
 
 .card-result-comment {
@@ -66,6 +67,7 @@ a {
   flex-wrap: wrap-reverse;
   height: 5.3rem;
   align-items: flex-end;
+  padding: 0;
   .button,
   .button:focus,
   .button:visited {
@@ -86,7 +88,7 @@ a {
 
 .filters-list {
   width: 100%;
-  padding: 15px;
+  padding: 15px 0 15px 15px;
   h4, h5 {
     font-size: 0.9em;
     font-weight: 600;
@@ -526,6 +528,11 @@ a {
     flex: 0 0 65%;
     max-width: 65%;
   }
+
+  .search-label {
+    width: 65%;
+    margin: 1rem 1rem 0 auto;
+  }
 }
 
 @media only screen and (min-width: 75em) {
@@ -539,6 +546,11 @@ a {
     -ms-flex: 0 0 80%;
     flex: 0 0 80%;
     max-width: 80%;
+  }
+
+  .search-label {
+    width: 80%;
+    margin: 1rem 1rem 0 auto;
   }
 }
 
