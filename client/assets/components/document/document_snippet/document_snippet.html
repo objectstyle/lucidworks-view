@@ -17,7 +17,7 @@
           <!--<field value="::vm.doc.lw_description.value" highlight="::vm.highlight[doc.id]" maxlength="450" hkey="{{::vm.doc.lw_description.key}}"></field>-->
         <!--</p>-->
         <!--<p>{{vm.doc.lw_head.value}}</p>-->
-        <p ng-if="!vm.highlight[doc.id].body_abstract">
+        <p ng-if="!vm.highlight[doc.id].body_abstract" class="document-description">
           <field value="::vm.doc.lw_description.value"
                  highlight="::vm.highlight[doc.id]"
                  hkey="{{::vm.getTemplateDisplayFieldName('body')}}"></field>
