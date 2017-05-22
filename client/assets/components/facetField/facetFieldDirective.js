@@ -19,6 +19,7 @@
         facetAutoOpen: '@facetAutoOpen',
         facetTag: '@facetTag',
         facetPivot: '@facetPivot',
+        showFullList: '@showFullList',
       }
     };
   }
@@ -105,14 +106,13 @@
       var facetFields;
       var facetCounts;
       var newFacets = [];
-      var saveOldFacets = ConfigService.config.save_facets_after_filter;
       // Determine if facet exists.
       if (vm.facetPivot === 'true') {
         facetFields = data.facet_counts.facet_pivot;
         if (facetFields.hasOwnProperty(vm.facetName)) {
           // Transform an array of values in format [‘aaaa’, 1234,’bbbb’,2345] into an array of objects.
           facetCounts = pivotsToObjectArray(facetFields[vm.facetName]);
-          if (vm.facetCounts && vm.facetCounts.length && saveOldFacets) {
+          if (vm.facetCounts && vm.facetCounts.length && vm.showFullList) {
             newFacets = _.differenceBy(facetCounts, vm.facetCounts,  'title');
             vm.facetCounts = _.concat(vm.facetCounts, newFacets);
           } else {
@@ -124,11 +124,11 @@
         if (facetFields.hasOwnProperty(vm.facetName)) {
           // Transform an array of values in format [‘aaaa’, 1234,’bbbb’,2345] into an array of objects.
           facetCounts = arrayToObjectArray(facetFields[vm.facetName]);
-          /*if (vm.facetCounts && vm.facetCounts.length && saveOldFacets) {
+          /*if (vm.facetCounts && vm.facetCounts.length && vm.showFullList) {
             var oldFacets = _.differenceBy(vm.facetCounts, facetCounts, 'title');
           }
           vm.facetCounts = _.concat(facetCounts, oldFacets);*/
-          if (vm.facetCounts && vm.facetCounts.length && saveOldFacets) {
+          if (vm.facetCounts && vm.facetCounts.length && vm.showFullList) {
             newFacets = _.differenceBy(facetCounts, vm.facetCounts,  'title');
             vm.facetCounts = _.concat(vm.facetCounts, newFacets);
           } else {
@@ -391,7 +391,7 @@
     function uncheckAll() {
       _.forEach(vm.facetCounts, function (facet) {
         facet.active = false;
-        uncheckFacetPivots(facet);
+        toggleFacet(facet);
       });
     }
 

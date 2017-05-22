@@ -62,59 +62,12 @@
         if (!data.hasOwnProperty('facet_counts')) return;
         vm.facetLocalParams = LocalParamsService.getLocalParams(data.responseHeader.params);
 
-        /*// Iterate through each facet type.
-        _.forEach(data.facet_counts, resultFacetParse);
-
-        function resultFacetParse(resultFacets, facetType){
-          // Keep a list of facet names and only reflow facets based on changes to this list.
-          // var facetFieldsWithData = removeEmptyFacets(resultFacets);
-          // var facetFields = Object.keys(facetFieldsWithData);
-          var facetFields = Object.keys(resultFacets);
-          if (!_.isEqual(vm.facetNames[facetType], facetFields)) {
-            var oldFields = _.difference(vm.facetNames[facetType], facetFields);
-            var newFields = _.difference(facetFields, vm.facetNames[facetType]);
-
-            // Creating temp facet so that we don't have to change the model in Angular
-            var tempFacets = _.clone(vm.facets);
-
-            //removing old fields
-            _.forEach(oldFields, function(field){
-              _.remove(tempFacets, function(item){
-                return item.name === field && item.type === facetType;
-              });
-            });
-
-            // Adding new facet entries
-            var newFacets = [];
-            _.forEach(newFields, function(value){
-              debugger;
-              var facet = {
-                name: value,
-                type: facetType,
-                autoOpen: true,
-                label: getFieldsLabel(value)|| value, //ConfigService.getFieldLabels()[value], needed to edit FUSION_CONFIG to use
-                tag: LocalParamsService.getLocalParamTag(vm.facetLocalParams[retrieveFacetType(facetType)], value) || null,
-                viewType: getFieldsViewType(value),
-                pivot: retrieveFacetType(facetType) == 'pivot',
-              };
-              newFacets.push(facet);
-            });
-
-            // Updating the list till the end.
-            tempFacets = _.concat(tempFacets, newFacets);
-            vm.facets = tempFacets;
-            // Updating the reflow deciding list.
-            vm.facetNames[facetType] = facetFields;
-          }
-        }*/
-        vm.facets = {
-          ungrouped: [],
-          groups: [],
-        };
         var facetsConfig = ConfigService.config.facets;
-        _.forEach(facetsConfig, function(facet, key) {
+        _.forEach(facetsConfig, function(facet) {
           var facetData = data.facet_counts[facet.facetType][facet.name];
-          if (facetData && (facetData.length > 0 || (facetData.length == 0 && facet.showIfNoResponse))) {
+
+          if (shouldBeUpdated(facetData, facet)) {
+            clearFacet(facet);
             var newFacet = {
               name: facet.name,
               type: facet.facetType,
@@ -123,26 +76,62 @@
               tag: LocalParamsService.getLocalParamTag(vm.facetLocalParams[retrieveFacetType(facet.facetType)], facet.name) || null,
               viewType: facet.viewType,
               pivot: facet.facetType == 'facet_pivot',
+              resultsAmount: facetData.length,
+              showFullList: facet.showFullListAfterFilter,
             };
             if (!facet.group) {
-              vm.facets.ungrouped.push(newFacet);
+              vm.facets.ungrouped[facet.positionInGroup] = newFacet;
             } else {
-              var groupId = getGroupId(facet.group);
+              var groupId = getGroupId(vm.facets.groups, 'groupName', facet.group);
               if(groupId == -1) {
-                vm.facets.groups.push({ groupName: facet.group, facets: [newFacet]});
-              } else {
-                vm.facets.groups[groupId].facets.push(newFacet);
+                vm.facets.groups.push({ groupName: facet.group, facets: []});
+                groupId = getGroupId(vm.facets.groups, 'groupName', facet.group);
               }
+              vm.facets.groups[groupId].facets[facet.positionInGroup] = newFacet;
             }
           }
         })
       });
     }
 
-    function getGroupId(groupName) {
+    function shouldBeUpdated(facetData, facet) {
+      var hasNewResult = true;
+      if (facetData && (facetData.length > 0 || facet.showIfNoResponse)){
+        if (!facet.group) {
+          var facetId = facet.positionInGroup;
+          if (vm.facets.ungrouped[facetId]) {
+            hasNewResult = facetData.length > vm.facets.ungrouped[facetId].resultsAmount;
+          }
+
+          return !(facet.showFullListAfterFilter && !hasNewResult);
+        } else {
+          var groupId = getGroupId(vm.facets.groups, 'groupName', facet.group);
+          if (groupId != -1 && vm.facets.groups[groupId][facet.positionInGroup]) {
+            hasNewResult = facetData.length > vm.facets.groups[groupId][facet.positionInGroup].resultsAmount;
+          }
+
+          return !(facet.showFullListAfterFilter && !hasNewResult);
+        }
+      }
+      clearFacet(facet);
+      return false;
+    }
+
+    function clearFacet(facet) {
+      if (facet.group) {
+        var groupId = getGroupId(vm.facets.groups, 'groupName', facet.group);
+        if (vm.facets.groups[groupId]) {
+          vm.facets.groups[groupId].facets[facet.positionInGroup] = {};
+        }
+      } else {
+        vm.facets.ungrouped[facet.positionInGroup] = {};
+      }
+    }
+
+    function getGroupId(group, attr, pattern) {
       var id = -1;
-      _.forEach(vm.facets.groups, function (val, key) {
-        if (val.groupName == groupName) {
+      _.forEach(group, function (val, key) {
+        if (val[attr] == pattern) {
           id = key;
           return false;
         }

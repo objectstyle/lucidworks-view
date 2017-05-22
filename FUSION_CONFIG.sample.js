@@ -152,6 +152,7 @@ appConfig = { //eslint-disable-line
       viewType: 'checkbox',
       showIfNoResponse: false,
       group: false,
+      positionInGroup: 0,
       facetType: 'facet_fields',
     },
     {
@@ -160,7 +161,9 @@ appConfig = { //eslint-disable-line
       viewType: 'checkbox',
       showIfNoResponse: false,
       group: false,
+      positionInGroup: 1,
       facetType: 'facet_pivot',
+      showFullListAfterFilter: true,
     },
     {
       name: 'Category2',
@@ -168,6 +171,7 @@ appConfig = { //eslint-disable-line
       viewType: 'checkbox',
       showIfNoResponse: false,
       group: 'Attributes',
+      positionInGroup: 0,
       facetType: 'facet_fields',
     },
     {
@@ -176,6 +180,7 @@ appConfig = { //eslint-disable-line
       viewType: 'checkbox',
       showIfNoResponse: false,
       group: 'Attributes',
+      positionInGroup: 1,
       facetType: 'facet_fields',
     },
     {
@@ -184,6 +189,7 @@ appConfig = { //eslint-disable-line
       viewType: 'checkbox',
       showIfNoResponse: false,
       group: 'Attributes',
+      positionInGroup: 2,
       facetType: 'facet_fields',
     },
     {
@@ -192,6 +198,7 @@ appConfig = { //eslint-disable-line
       viewType: 'checkbox',
       showIfNoResponse: false,
       group: 'Attributes',
+      positionInGroup: 3,
       facetType: 'facet_fields',
     },
     {
@@ -200,6 +207,7 @@ appConfig = { //eslint-disable-line
       viewType: 'checkbox',
       showIfNoResponse: false,
       group: 'Attributes',
+      positionInGroup: 4,
       facetType: 'facet_fields',
     },
   ],
