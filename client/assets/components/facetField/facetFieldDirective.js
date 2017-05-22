@@ -193,13 +193,14 @@
     function togglePivotFacet(facet, pivot) {
       var query = QueryService.getQueryObject();
 
-      var newQuery = updateQueryFilters(facet, query);
-      if (pivot) {
-        newQuery = updateQueryFilters(pivot, newQuery);
+      if (!facet.active) {
+        query = updateQueryFilters(facet, query);
+        facet.active = true;
       }
+      query = updateQueryFilters(pivot, query);
 
       // Set the query and trigger the refresh.
-      updateFacetQuery(newQuery);
+      updateFacetQuery(query);
     }
 
     /**
