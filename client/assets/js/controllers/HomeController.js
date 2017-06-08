@@ -54,6 +54,7 @@
     hc.resetSearch = resetSearch;
     hc.setActive = setActive;
     hc.setDate = setDate;
+    hc.closeSearchBar = closeSearchBar;
 
     hc.dateRanges = [
       { name: 'Today', filter: 'fetchedDate_dt:[NOW-1DAY TO NOW]'},
@@ -393,5 +394,9 @@
       var day = date.getDate();
       return date && year + '-' + month + '-' + day;
     };
+
+    function closeSearchBar() {
+      $rootScope.$broadcast('leaveSearchBar');
+    }
   }
 })();

@@ -131,12 +131,15 @@
     }
 
     function toggleSearchBar() {
-      $timeout(function() {
-        ta.showBar = !ta.showBar;
-      },100);
+      ta.showBar = !ta.showBar;
+      if (ta.showBar) {
+        ta.mouseLeave = true;
+      }
     }
 
-
+    $scope.$on('leaveSearchBar', function() {
+      ta.mouseLeave = false;
+    });
     $scope.$on('searchChangeMessage', function (event, message) {
       if (message == '*') {
         ta.dirty.value = '';
