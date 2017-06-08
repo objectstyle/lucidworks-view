@@ -1,4 +1,6 @@
 <div class="facet-pivot-cards row small-up-1 medium-up-2 large-up-3">
+
+  <!-- Accounting -->
   <div class="column">
     <div class="facet-card card">
       <div class="facet-card-title">
@@ -16,97 +18,15 @@
     </div>
   </div>
 
-  <!-- Corporate Overview & Solutions -->
+  <!-- Data Management -->
   <div class="column">
-    <div class="facet-card card">
-      <div class="facet-card-title">
-        <img src="/assets/img/card-icons/Accounting.png"/>
-        <div>
-          <a
-            href="search?query=(fq:('0':(key:Category2,tag:'',transformer:'fq:field',values:('0':'Corporate Overview'))),q:'*',rows:10,start:0,wt:json)">Corporate
-            Overview & Solutions</a>
-        </div>
-      </div>
-      <div class="card-section">
-        <div ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
-        <div ng-if="facet.title==='Accounting'" class="hierarchy-level-2">
-          <p class="level-2-content">
-            <a
-              href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-              ({{facet.amount}})</a>
-          </p>
-        </div>
-        <div ng-if="facet.title==='Corporate Overview'" class="hierarchy-level-2">
-          <p class="level-2-content">
-            <a
-              href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-              ({{facet.amount}})</a>
-          </p>
-        </div>
-        <div ng-if="facet.title==='Data Management'" class="hierarchy-level-2">
-          <p class="level-2-content">
-            <a
-              href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-              ({{facet.amount}})</a>
-          </p>
-        </div>
-        <div ng-if="facet.title==='Performance & Risk'" class="hierarchy-level-2">
-          <p class="level-2-content">
-            <a
-              href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-              ({{facet.amount}})</a>
-          </p>
-        </div>
-
-      </div>
-        <p class="level-2-content">
-          <a href="#">Eagle ACCESS</a>
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Reference Data -->
-  <div class="column">
-    <div class="facet-card card">
-      <div class="facet-card-title">
-        <img src="/assets/img/card-icons/Reference Data.png"/>
-        <div>
-        <a
-          href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Reference Data%27))),q:%27*%27,rows:10,start:0,wt:json)">Reference
-          Data</a>
-        </div>
-      </div>
-      <div class="card-section">
-        <div
-          ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
-          <div ng-if="facet.title==='Reference Data'" class="hierarchy-level-2">
-            <div ng-repeat="pivot in facet.pivots track by $index" ng-class="{'facet-active':facet.active}"
-                 class="hierarchy-level-2">
-              <p class="level-2-content">
-                <a
-                  href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27)),%271%27:(key:Category3,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{pivot.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{pivot.title}}
-                  ({{pivot.amount}})</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="facet-pivot-cards row small-up-1 medium-up-2 large-up-3">
-  <div class="column">
-
-    <!-- Data Management -->
     <div class="facet-card card">
       <div class="facet-card-title">
         <img src="/assets/img/card-icons/Data Management.png"/>
         <div>
-        <a
-          href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Data Management%27))),q:%27*%27,rows:10,start:0,wt:json)">Data
-          Management</a>
+          <a
+            href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Data Management%27))),q:%27*%27,rows:10,start:0,wt:json)">Data
+            Management</a>
         </div>
       </div>
       <div class="card-section">
@@ -125,6 +45,38 @@
       </div>
     </div>
   </div>
+  <!-- Performance & Risk -->
+  <div class="column">
+    <div class="facet-card card">
+      <div class="facet-card-title">
+        <img src="/assets/img/card-icons/Performance.png"/>
+        <div>
+          <a
+            href="search?query=(fq:('0':(key:Category2,tag:'',transformer:'fq:field',values:('0':'Performance'))),q:'*',rows:10,start:0,wt:json)">Performance
+            & Risk</a>
+        </div>
+      </div>
+      <div class="card-section">
+        <div
+          ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
+          <div ng-if="facet.title==='Performance'" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                ({{facet.amount}})</a>
+            </p>
+          </div>
+          <div ng-if="facet.title==='Performance & Risk'" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                ({{facet.amount}})</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Enterprise -->
   <div class="column">
@@ -132,8 +84,8 @@
       <div class="facet-card-title">
         <img src="/assets/img/card-icons/Enterprise.png"/>
         <div>
-        <a
-          href="search?query=(fq:('0':(key:Category2,tag:'',transformer:'fq:field',values:('0':'Enterprise'))),q:'*',rows:10,start:0,wt:json)">Enterprise</a>
+          <a
+            href="search?query=(fq:('0':(key:Category2,tag:'',transformer:'fq:field',values:('0':'Enterprise'))),q:'*',rows:10,start:0,wt:json)">Enterprise</a>
         </div>
       </div>
       <div class="card-section">
@@ -171,52 +123,15 @@
       </div>
     </div>
   </div>
-
-  <!-- Performance & Risk -->
-  <div class="column">
-    <div class="facet-card card">
-      <div class="facet-card-title">
-        <img src="/assets/img/card-icons/Performance.png"/>
-        <div>
-        <a
-          href="search?query=(fq:('0':(key:Category2,tag:'',transformer:'fq:field',values:('0':'Performance'))),q:'*',rows:10,start:0,wt:json)">Performance
-          & Risk</a>
-        </div>
-      </div>
-      <div class="card-section">
-        <div
-          ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
-          <div ng-if="facet.title==='Performance'" class="hierarchy-level-2">
-            <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                ({{facet.amount}})</a>
-            </p>
-          </div>
-          <div ng-if="facet.title==='Performance & Risk'" class="hierarchy-level-2">
-            <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                ({{facet.amount}})</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- Services Offered -->
-<div class="facet-pivot-cards row small-up-1 medium-up-2 large-up-3">
+  <!-- Services Offered -->
   <div class="column">
     <div class="facet-card card">
       <div class="facet-card-title">
         <img src="/assets/img/card-icons/Services Offered.png"/>
         <div>
-        <a
-          href="search?query=(fq:('0':(key:Category2,tag:'',transformer:'fq:field',values:('0':'Services Offere'))),q:'*',rows:10,start:0,wt:json)">Services
-          Offered</a>
+          <a
+            href="search?query=(fq:('0':(key:Category2,tag:'',transformer:'fq:field',values:('0':'Services Offere'))),q:'*',rows:10,start:0,wt:json)">Services
+            Offered</a>
         </div>
       </div>
       <div class="card-section">
@@ -230,4 +145,83 @@
       </div>
     </div>
   </div>
+
+  <!-- Documentation -->
+  <div class="column">
+    <div class="facet-card card">
+      <div class="facet-card-title">
+        <img src="/assets/img/card-icons/Reference Data.png"/>
+        <div>
+          <a
+            href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Reference Data%27))),q:%27*%27,rows:10,start:0,wt:json)">Documentation</a>
+        </div>
+      </div>
+      <div class="card-section">
+        <div
+          ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
+          <div ng-if="facet.title==='Reference Data'" class="hierarchy-level-2">
+            <div ng-repeat="pivot in facet.pivots track by $index" ng-class="{'facet-active':facet.active}"
+                 class="hierarchy-level-2">
+              <p class="level-2-content">
+                <a
+                  href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27)),%271%27:(key:Category3,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{pivot.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{pivot.title}}
+                  ({{pivot.amount}})</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Corporate Overview & Solutions -->
+  <div class="column">
+    <div class="facet-card card">
+      <div class="facet-card-title">
+        <img src="/assets/img/card-icons/Accounting.png"/>
+        <div>
+          <a
+            href="search?query=(fq:('0':(key:Category2,tag:'',transformer:'fq:field',values:('0':'Corporate Overview'))),q:'*',rows:10,start:0,wt:json)">Corporate
+            Overview & Solutions</a>
+        </div>
+      </div>
+      <div class="card-section">
+        <div ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
+          <div ng-if="facet.title==='Accounting'" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                ({{facet.amount}})</a>
+            </p>
+          </div>
+          <div ng-if="facet.title==='Corporate Overview'" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                ({{facet.amount}})</a>
+            </p>
+          </div>
+          <div ng-if="facet.title==='Data Management'" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                ({{facet.amount}})</a>
+            </p>
+          </div>
+          <div ng-if="facet.title==='Performance & Risk'" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                ({{facet.amount}})</a>
+            </p>
+          </div>
+
+        </div>
+        <p class="level-2-content">
+          <a href="#">Eagle ACCESS</a>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
+

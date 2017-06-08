@@ -18,6 +18,7 @@
 .search-label {
   justify-content: flex-end;
   margin: 1rem 1rem 0 1em;
+  padding: 8px 16px;
 }
 
 .card-result-comment {
@@ -83,6 +84,7 @@ a {
     height: 2.4rem;
     padding-top: 8px;
     padding-bottom: 8px;
+    padding: 8px 16px;
   }
 }
 
@@ -194,6 +196,12 @@ a {
 .document-row {
   display: inline-block;
   max-width: 100%;
+  &.snippet {
+    display: flex;
+    .document-text-block {
+      margin-top: 13px;
+    }
+  }
 
   h3 {
     font-size: 1em;
@@ -206,6 +214,8 @@ a {
   width: 50px;
   padding: 10px;
   vertical-align: top;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
 
   img {
     width: 30px;
@@ -531,7 +541,7 @@ a {
 
   .search-label {
     width: 65%;
-    margin: 1rem 1rem 0 auto;
+    margin: 16px 0 0 auto;
   }
 }
 
@@ -549,8 +559,8 @@ a {
   }
 
   .search-label {
-    width: 80%;
-    margin: 1rem 1rem 0 auto;
+    width: 60%;
+    margin: 1rem auto 0 auto;
   }
 }
 
@@ -568,8 +578,3 @@ a {
     }
   }
 }
-
-.document-description {
-  padding-left: 50px;
-}
-

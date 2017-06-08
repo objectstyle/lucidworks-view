@@ -1,9 +1,13 @@
 .facet-pivot-cards {
   width: 80%;
-  margin: 2rem auto auto;
+  margin: 0 auto auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  .column {
+    margin-top: 32px;
+  }
 
   p {
     margin-bottom: 0;

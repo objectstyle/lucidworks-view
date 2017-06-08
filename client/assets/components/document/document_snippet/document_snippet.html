@@ -1,20 +1,23 @@
 <article class="grid-block document row" ng-mouseover="vm.hover = true" ng-mouseleave="vm.hover = false">
-  <div class="detail vertical grid-content" ng-class="::{'small-10':vm.doc.lw_image.value, 'medium-12': vm.doc.lw_image.value, 'small-12':!vm.doc.lw_image.value}">
+  <div class="detail vertical grid-content"
+       ng-class="::{'small-10':vm.doc.lw_image.value, 'medium-12': vm.doc.lw_image.value, 'small-12':!vm.doc.lw_image.value}">
     <!-- {{vm.doc}} -->
     <!-- show head field without a url. -->
 
-      <div class="document-row">
+    <div class="document-row snippet">
+      <div class="pencil-icon">
+        <img src="./assets/img/{{::vm.doc.image_s}}">
+      </div>
+      <div class="document-text-block">
         <a href="{{doc.url_s}}" ng-click="vm.sendMessage('documentOpen', vm.doc.lw_head.value)" target="_blank">
           <h3 ng-bind-html="vm.highlight[doc.id].title_t" ng-if="vm.highlight[doc.id].title_t"></h3>
           <h3 class="head-field" ng-if="::(vm.doc.lw_head) && !vm.highlight[doc.id].title_t">
-            <span class="pencil-icon">
-              <img src="./assets/img/{{::vm.doc.image_s}}">
-            </span>
+
             <field value="::vm.doc.lw_head.value" hkey="{{::vm.doc.lw_head.key}}"></field>
           </h3>
         </a>
         <!--<p class="large-8 xlarge-7 xx-large-6">-->
-          <!--<field value="::vm.doc.lw_description.value" highlight="::vm.highlight[doc.id]" maxlength="450" hkey="{{::vm.doc.lw_description.key}}"></field>-->
+        <!--<field value="::vm.doc.lw_description.value" highlight="::vm.highlight[doc.id]" maxlength="450" hkey="{{::vm.doc.lw_description.key}}"></field>-->
         <!--</p>-->
         <!--<p>{{vm.doc.lw_head.value}}</p>-->
         <p ng-if="!vm.highlight[doc.id].body_abstract" class="document-description">
@@ -24,6 +27,7 @@
         </p>
         <p ng-bind-html="vm.highlight[doc.id].body_abstract" ng-if="vm.highlight[doc.id].body_abstract"></p>
       </div>
+    </div>
   </div>
 </article>
 

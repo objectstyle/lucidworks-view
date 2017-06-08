@@ -16,7 +16,7 @@
             <div class="singleChoice" ng-repeat="range in hc.dateRanges" ng-class="{'facet-active': hc.filter.modifiedDate == range.filter }" >
               <!--<input type="radio" id="{{'range' + $index}}" value="{{$index}}" ng-model="hc.activeRange" ng-click="vm.addFilter(range.filter)" name="dateRanges">-->
               <!--<label for="{{'range' + $index}}">{{range.name}}</label>-->
-              <a href="javascript:void(0);" ng-click="hc.addFilter(range.filter)" rel="noopener" target="_blank">{{range.name}}</a>
+              <a href="javascript:void(0);" ng-click="hc.addFilter(range.filter)" rel="noopener">{{range.name}}</a>
             </div>
             <div class="singleChoice" ng-class="{'facet-active': hc.filter.modifiedDate == hc.dateRange.filter }" >
               <a zf-open="custom-range-modal" href="javascript:void(0);" ng-click="hc.addFilter(range.filter);" rel="noopener" target="_blank">Custom range...</a>
