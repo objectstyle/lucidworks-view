@@ -53,7 +53,11 @@
         if (ConfigService.config.query_debug) {
           $log.debug('query', query);
         }
-        queryObject = _.assign({}, query, {rows: ConfigService.config.docs_per_page, wt: 'json'});
+        if (query.hasOwnProperty('q')) {
+          queryObject = _.assign({}, query, {rows: ConfigService.config.docs_per_page, wt: 'json'});
+        } else {
+          queryObject = _.assign({}, queryObject, query, {rows: ConfigService.config.docs_per_page, wt: 'json'});
+        }
         queryObservable.setContent(queryObject);
         URLService.setQueryToURLAndGoToState(queryObject, state);
       }
