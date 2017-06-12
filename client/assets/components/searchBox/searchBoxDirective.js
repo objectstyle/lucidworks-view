@@ -21,7 +21,7 @@
     };
   }
 
-  function Controller($element, $scope, $log, $q, $sce, $timeout, ConfigService, SearchBoxDataService) {
+  function Controller($element, $scope, $log, $q, $sce, $timeout, ConfigService, SearchBoxDataService, $rootScope) {
     'ngInject';
     var ta = this;
 
@@ -59,6 +59,7 @@
       ta.query = ta.dirty.value;
       if ($event.keyCode === 13) {
         closeSuggester();
+        $rootScope.$broadcast('doSearch');
       }
     }
 

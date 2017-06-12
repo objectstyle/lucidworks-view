@@ -4,7 +4,7 @@
     .module('lucidworksView.controllers.home', ['lucidworksView.services', 'angular-humanize'])
     .controller('HomeController', HomeController);
 
-  function HomeController($window, $filter, $state, $timeout, $rootScope, ConfigService, QueryService, URLService, PaginateService, Orwell, AuthService, _, $log) {
+  function HomeController($window, $filter, $state, $timeout, $rootScope, ConfigService, QueryService, URLService, PaginateService, Orwell, AuthService, _, $log, $scope) {
 
     'ngInject';
     var hc = this; //eslint-disable-line
@@ -398,5 +398,7 @@
     function closeSearchBar() {
       $rootScope.$broadcast('leaveSearchBar');
     }
+
+    $scope.$on('doSearch', doSearch);
   }
 })();
