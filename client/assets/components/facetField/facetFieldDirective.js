@@ -34,7 +34,6 @@
     vm.getLimitAmount = getLimitAmount;
     vm.setSelectedOption = setSelectedOption;
     vm.updateFacetActive = updateFacetActive;
-    vm.toggleFacet = toggleFacet;
     vm.toggleFacetPivots = toggleFacetPivots;
     vm.togglePivotFacet = togglePivotFacet;
     vm.more = false;
@@ -254,8 +253,6 @@
       return query;
     }
 
-
-
     /**
      * Sets the facet query and sets start row to beginning.
      * @param  {object} query The query object.
@@ -375,25 +372,20 @@
       }
     }
 
-    function toggleFacet(facet) {
-      var query = QueryService.getQueryObject();
-      query = vm.updateQueryFilters(facet, query);
+    function toggleFacetSelection(facet) {
       if (!facet.active && facet.pivots && facet.pivots.length) {
         _.forEach(facet.pivots, function (pivot) {
           if (pivot.active == true) {
-            query = vm.updateQueryFilters(pivot, query);
             pivot.active = false;
           }
         });
       }
-      // Set the query and trigger the refresh.
-      updateFacetQuery(query);
     }
 
     function uncheckAll() {
       _.forEach(vm.facetCounts, function (facet) {
         facet.active = false;
-        toggleFacet(facet);
+        toggleFacetSelection(facet);
       });
     }
 
@@ -411,7 +403,6 @@
         vm.selectedOption = message.value;
         updateFacetActive();
         toggleFacetSelect();
-
       }
     });
 
