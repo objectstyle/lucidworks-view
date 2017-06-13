@@ -30,18 +30,32 @@
         </div>
       </div>
       <div class="card-section">
-        <div ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
+        <div
+          ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
+          <div ng-if="facet.title==='Information Delivery'" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                ({{facet.amount}})</a>
+            </p>
+          </div>
+          <div ng-if="facet.title==='Reference Data'" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                ({{facet.amount}})</a>
+            </p>
+          </div>
           <div ng-if="facet.title==='Data Management'" class="hierarchy-level-2">
-            <div ng-repeat="pivot in facet.pivots track by $index" ng-class="{'facet-active':facet.active}"
-                 class="hierarchy-level-2">
-              <p class="level-2-content">
-                <a
-                  href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27)),%271%27:(key:Category3,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{pivot.title}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{pivot.title}}
-                  ({{pivot.amount}})</a>
-              </p>
-            </div>
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
+                ({{facet.amount}})</a>
+            </p>
           </div>
         </div>
+        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Metadata</a></p></div>
+        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Portfolio Data</a></p></div>
       </div>
     </div>
   </div>
@@ -157,19 +171,8 @@
         </div>
       </div>
       <div class="card-section">
-        <div
-          ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
-          <div ng-if="facet.title==='Reference Data'" class="hierarchy-level-2">
-            <div ng-repeat="pivot in facet.pivots track by $index" ng-class="{'facet-active':facet.active}"
-                 class="hierarchy-level-2">
-              <p class="level-2-content">
-                <a
-                  href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27)),%271%27:(key:Category3,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{pivot.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{pivot.title}}
-                  ({{pivot.amount}})</a>
-              </p>
-            </div>
-          </div>
-        </div>
+        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Guides</a></p></div>
+        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Release Notes</a></p></div>
       </div>
     </div>
   </div>
