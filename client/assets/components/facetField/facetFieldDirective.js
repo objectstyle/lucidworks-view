@@ -43,6 +43,7 @@
     vm.selectedOption = 'All Categories';
     vm.activeFacets = {};
     activate();
+    vm.listAmountLimit = 5;
 
     //////////////
 
@@ -93,7 +94,7 @@
       if(vm.more){
         return undefined;
       }
-      return 5;
+      return vm.listAmountLimit;
     }
 
     /**
