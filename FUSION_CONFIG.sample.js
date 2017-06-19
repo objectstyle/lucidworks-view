@@ -58,10 +58,10 @@ appConfig = { //eslint-disable-line
    * It is recommended you use an account with the 'search' role
    * to use anonymous access.
    */
-  anonymous_access: {
-    username: 'user',
-    password: 'eagleuser1'
-  },
+  //anonymous_access: {
+  //  username: 'user',
+  //  password: 'eagleuser1'
+  //},
 
   // The name of your collection - defaults to Fusion 3.0 default collection
   collection: 'ks_v1',

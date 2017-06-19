@@ -51,25 +51,9 @@
             //CASE: If anonymous login creds are unusable then go to login
             if (config.connection_realm === "saml") {
               var $http = $injector.get('$http');
-
-              if ($http.attempt === undefined || $http.attempt <= -1) {
-                $http.attempt = config.connection_realm_attempts || 3;
-              }
-              $log.log("Attempt #" + $http.attempt + " with 1 sec delay -1-");
-              $log.log(resp.config, $http.attempt);
-
-              if ($http.attempt > 0) {
-                $http.attempt = $http.attempt - 1;
-                $timeout(function() {
-                  $injector.get('$http')(resp.config)
-                },  config.connection_realm_timeout || 5000);
-
-                deferred.reject();
-              } else {
                 var AuthService = $injector.get('AuthService');
                 AuthService.createSessionSaml();
                 deferred.reject(false);
-              }
             } else {
               deferred.reject();
               $state.go('login', prepareQueryForRedirect());

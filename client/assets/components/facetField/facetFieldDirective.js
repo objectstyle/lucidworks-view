@@ -36,6 +36,7 @@
     vm.updateFacetActive = updateFacetActive;
     vm.toggleFacetPivots = toggleFacetPivots;
     vm.togglePivotFacet = togglePivotFacet;
+    vm.toggleFacet = toggleFacet;
     vm.more = false;
     vm.clearAppliedFilters = clearAppliedFilters;
     var resultsObservable = Orwell.getObservable('queryResults');
@@ -380,6 +381,21 @@
           }
         });
       }
+    }
+
+    function toggleFacet(facet) {
+      var query = QueryService.getQueryObject();
+      query = vm.updateQueryFilters(facet, query);
+      if (!facet.active && facet.pivots && facet.pivots.length) {
+        _.forEach(facet.pivots, function (pivot) {
+          if (pivot.active == true) {
+            query = vm.updateQueryFilters(pivot, query);
+            pivot.active = false;
+          }
+        });
+      }
+      // Set the query and trigger the refresh.
+      updateFacetQuery(query);
     }
 
     function uncheckAll() {
