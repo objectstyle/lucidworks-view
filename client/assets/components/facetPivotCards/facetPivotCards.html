@@ -30,32 +30,35 @@
         </div>
       </div>
       <div class="card-section">
-        <div
-          ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
-          <div ng-if="facet.title==='Information Delivery'" class="hierarchy-level-2">
+        <div>
+		   <div id="Data-Management" class="hierarchy-level-2">
             <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
+              <a href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Data+Management%27))),q:%27*%27,rows:10,start:0,wt:json)">Data Management</a>
             </p>
           </div>
-          <div ng-if="facet.title==='Reference Data'" class="hierarchy-level-2">
+          <div id="Information-Delivery" class="hierarchy-level-2">
             <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
+              <a href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Information+Delivery%27))),q:%27*%27,rows:10,start:0,wt:json)">Information Delivery</a>
             </p>
           </div>
-          <div ng-if="facet.title==='Data Management'" class="hierarchy-level-2">
+		  <div id="Metadata" class="hierarchy-level-2">
             <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
+              <a href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Metadata%27))),q:%27*%27,rows:10,start:0,wt:json)">Metadata</a>
             </p>
           </div>
-        </div>
-        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Metadata</a></p></div>
-        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Portfolio Data</a></p></div>
+		  <div id="Portfolio-Data" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Portfolio+Data%27))),q:%27*%27,rows:10,start:0,wt:json)">Portfolio Data</a>
+            </p>
+          </div>
+          <div id="Reference-Data" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Reference+Data%27))),q:%27*%27,rows:10,start:0,wt:json)">Reference Data</a>
+            </p>
+          </div>     
+        </div>        
       </div>
     </div>
   </div>
@@ -70,24 +73,10 @@
             & Risk</a>
         </div>
       </div>
-      <div class="card-section">
-        <div
-          ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
-          <div ng-if="facet.title==='Performance'" class="hierarchy-level-2">
-            <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
-            </p>
-          </div>
-          <div ng-if="facet.title==='Performance & Risk'" class="hierarchy-level-2">
-            <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
-            </p>
-          </div>
-        </div>
+      <div class="card-section">        
+          <h5>Need blurb for Performance</h5>
+        <p>This is the generic text that describes all of the things that we love about Performance. This is the rest of
+          the generic text that describes all of the rest of the things that we love about Performance.</p>        
       </div>
     </div>
   </div>
@@ -103,34 +92,25 @@
         </div>
       </div>
       <div class="card-section">
-        <div
-          ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
-          <div ng-if="facet.title==='Automation'" class="hierarchy-level-2">
+        <div>
+          <div id="Automation" class="hierarchy-level-2">
             <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
+              <a href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Automation%27))),q:%27*%27,rows:10,start:0,wt:json)">Automation</a>
             </p>
           </div>
-          <div ng-if="facet.title==='Data Integration'" class="hierarchy-level-2">
+          <div id="Data-Integration" class="hierarchy-level-2">
             <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
+              <a href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Data+Integration%27))),q:%27*%27,rows:10,start:0,wt:json)">Data Integration</a>
             </p>
           </div>
-          <div ng-if="facet.title==='System Management'" class="hierarchy-level-2">
+          <div id="System-Management" class="hierarchy-level-2">
             <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
+              <a href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27System+Management%27))),q:%27*%27,rows:10,start:0,wt:json)">System Management</a>
             </p>
           </div>
-          <div ng-if="facet.title==='User Administration'" class="hierarchy-level-2">
+          <div id="User Administration" class="hierarchy-level-2">
             <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
+              <a href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27User+Administration%27))),q:%27*%27,rows:10,start:0,wt:json)">User Administration</a>
             </p>
           </div>
         </div>
@@ -149,15 +129,58 @@
         </div>
       </div>
       <div class="card-section">
-        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Backup and Recovery</a></p></div>
-        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Data Center</a></p></div>
-        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Database</a></p></div>
-        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Environment</a></p></div>
-        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Networking</a></p></div>
-        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Servers</a></p></div>
-        <div class="hierarchy-level-2"><p class="level-2-content"><a href="#">Third Party Software</a></p></div>
-      </div>
+	  
+          <div id="Backup-and-Recovery" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Backup+and+Recovery%27))),q:%27*%27,rows:10,start:0,wt:json)">Backup and Recovery</a>
+            </p>
+          </div>
+		  
+          <div id="Data-Center" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Data+Center%27))),q:%27*%27,rows:10,start:0,wt:json)">Data Center</a>
+            </p>
+          </div>
+		  
+          <div id="Database" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Database%27))),q:%27*%27,rows:10,start:0,wt:json)">Database</a>
+            </p>
+          </div>
+		  
+          <div id="Environment" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Environment%27))),q:%27*%27,rows:10,start:0,wt:json)">Environment</a>
+            </p>
+          </div>
+		  <div id="Networking" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Networking%27))),q:%27*%27,rows:10,start:0,wt:json)">Networking</a>
+            </p>
+          </div>
+		  
+          <div id="Servers" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Servers%27))),q:%27*%27,rows:10,start:0,wt:json)">Servers</a>
+            </p>
+          </div>
+		  
+          <div id="Third-Party-Software" class="hierarchy-level-2">
+            <p class="level-2-content">
+              <a
+                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Third-Party-Software%27))),q:%27*%27,rows:10,start:0,wt:json)">Third Party Software</a>
+            </p>
+          </div>
+        
+      
     </div>
+	</div>
   </div>
 
   <!-- Documentation -->
@@ -166,8 +189,7 @@
       <div class="facet-card-title">
         <img src="/assets/img/card-icons/Reference Data.png"/>
         <div>
-          <a
-            href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Reference Data%27))),q:%27*%27,rows:10,start:0,wt:json)">Documentation</a>
+          <a href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27Reference Data%27))),q:%27*%27,rows:10,start:0,wt:json)">Product Documentation</a>
         </div>
       </div>
       <div class="card-section">
@@ -176,6 +198,8 @@
       </div>
     </div>
   </div>
+ 
+  
 
   <!-- Corporate Overview & Solutions -->
   <div class="column">
@@ -189,41 +213,11 @@
         </div>
       </div>
       <div class="card-section">
-        <div ng-repeat="facet in vm.facetCounts | filter: vm.facetFilter | limitTo: vm.getLimitAmount() track by $index">
-          <div ng-if="facet.title==='Accounting'" class="hierarchy-level-2">
-            <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
-            </p>
-          </div>
-          <div ng-if="facet.title==='Corporate Overview'" class="hierarchy-level-2">
-            <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
-            </p>
-          </div>
-          <div ng-if="facet.title==='Data Management'" class="hierarchy-level-2">
-            <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
-            </p>
-          </div>
-          <div ng-if="facet.title==='Performance & Risk'" class="hierarchy-level-2">
-            <p class="level-2-content">
-              <a
-                href="search?query=(fq:(%270%27:(key:Category2,tag:%27%27,transformer:%27fq:field%27,values:(%270%27:%27{{facet.titleEscaped}}%27))),q:%27*%27,rows:10,start:0,wt:json)">{{facet.title}}
-                <!-- ({{facet.amount}}) --></a>
-            </p>
-          </div>
+        <h5>Need blurb for Coporate OverView and Solutions</h5>
+        <p>This is the generic text that describes all of the things that we love about <a href="#" >Coporate OverView and Solutions</a>. This is the rest of
+          the generic text that describes all of the rest of the things that we love about Coporate OverView and Solutions.</p>  
+	  </div>
 
-        </div>
-        <p class="level-2-content">
-          <a href="#">Eagle ACCESS</a>
-        </p>
-      </div>
     </div>
   </div>
 </div>
