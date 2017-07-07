@@ -97,6 +97,26 @@
       return vm.listAmountLimit;
     }
 
+    function updateFacetCounts(allFacets, newFacets) {
+      var updated = [];
+      _.forEach(allFacets, function (facet) {
+        var newFacet = _.find(newFacets, function(newFacet) {
+          return newFacet.title == facet.title;
+        });
+        if (newFacet) {
+          newFacet.pivots = updateFacetCounts(facet.pivots, newFacet.pivots);
+          updated.push(newFacet);
+        } else {
+          facet.amount = 0;
+          _.forEach(facet.pivots, function(pivot) {
+            pivot.amount = 0;
+          });
+          updated.push(facet);
+        }
+      });
+      return updated;
+    }
+
     /**
      * Parses the facets from an observable into an array of facets.
      * @param  {object} data The data from the observable.
@@ -115,7 +135,10 @@
           facetCounts = pivotsToObjectArray(facetFields[vm.facetName]);
           if (vm.facetCounts && vm.facetCounts.length && vm.showFullList) {
             newFacets = _.differenceBy(facetCounts, vm.facetCounts,  'title');
-            vm.facetCounts = _.concat(vm.facetCounts, newFacets);
+            var allFacetCounts = _.concat(vm.facetCounts, newFacets);
+            vm.facetCounts = updateFacetCounts(allFacetCounts, facetCounts);
+
+            // vm.facetCounts = _.concat(vm.facetCounts, newFacets);
           } else {
             vm.facetCounts = facetCounts;
           }
