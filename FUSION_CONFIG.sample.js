@@ -1,7 +1,7 @@
 appConfig = { //eslint-disable-line
-  // If you don't know what you want for some configuration items,
-  // leave them as-is and see what happens in UI.
-  // You may need to clear browser history/cache before your changes take affect.
+              // If you don't know what you want for some configuration items,
+              // leave them as-is and see what happens in UI.
+              // You may need to clear browser history/cache before your changes take affect.
 
   /**
    * Styles and colors
@@ -144,43 +144,33 @@ appConfig = { //eslint-disable-line
   //    your_project_directory/client/assets/components/document/document.html
   fields_to_display:["title_s", "title_t", "body_abstract"],
 
-  save_facets_after_filter: false,
   facets: [
-    {
-      name: 'Category1',
-      label: 'Categories',
-      viewType: 'checkbox',
-      showIfNoResponse: false,
-      group: false,
-      positionInGroup: 0,
-      facetType: 'facet_fields',
-    },
     {
       name: 'Category2,Category3',
       label: 'Products and Services',
       viewType: 'checkbox',
       showIfNoResponse: false,
       group: false,
-      positionInGroup: 1,
+      positionInGroup: 0,
       facetType: 'facet_pivot',
-      showFullListAfterFilter: true,
+      showFullListAfterFilter: false,
+    },
+	{
+      name: 'Category1',
+      label: 'Data Source',
+      viewType: 'checkbox',
+      showIfNoResponse: false,
+      group: false,
+      positionInGroup: 1,
+      facetType: 'facet_fields',
     },
     {
       name: 'Category2',
       label: 'Template',
       viewType: 'checkbox',
       showIfNoResponse: false,
-      group: 'Attributes',
+      group: 'More Filters',
       positionInGroup: 0,
-      facetType: 'facet_fields',
-    },
-    {
-      name: 'VERSION',
-      label: 'Version',
-      viewType: 'checkbox',
-      showIfNoResponse: false,
-      group: 'Attributes',
-      positionInGroup: 1,
       facetType: 'facet_fields',
     },
     {
@@ -188,16 +178,25 @@ appConfig = { //eslint-disable-line
       label: 'Knowledge Type',
       viewType: 'checkbox',
       showIfNoResponse: false,
-      group: 'Attributes',
-      positionInGroup: 2,
+      group: 'More Filters',
+      positionInGroup: 1,
       facetType: 'facet_fields',
     },
-    {
+	{
+      name: 'VERSION',
+      label: 'Version',
+      viewType: 'checkbox',
+      showIfNoResponse: false,
+      group: 'More Filters',
+      positionInGroup: 2,
+      facetType: 'facet_fields',
+    }
+   /* {
       name: 'COLLATERAL',
       label: 'Collateral',
       viewType: 'checkbox',
       showIfNoResponse: false,
-      group: 'Attributes',
+      group: 'More Filters',
       positionInGroup: 3,
       facetType: 'facet_fields',
     },
@@ -206,10 +205,10 @@ appConfig = { //eslint-disable-line
       label: 'Training',
       viewType: 'checkbox',
       showIfNoResponse: false,
-      group: 'Attributes',
+      group: 'More Filters',
       positionInGroup: 4,
       facetType: 'facet_fields',
-    },
+    }, */
   ],
   /**
    * Number of documents shown per page, if not defined will default to 10.

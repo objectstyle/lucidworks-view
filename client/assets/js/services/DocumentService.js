@@ -13,8 +13,12 @@
       setTemplateDisplayFields: setTemplateDisplayFields,
       postSignal: postSignal,
       getTemplateDisplayFieldName: getTemplateDisplayFieldName,
-      decodeFieldValue: decodeFieldValue
+      decodeFieldValue: decodeFieldValue,
+      setOpenedDocumentUrl: setOpenedDocumentUrl,
+      getOpenedDocumentUrl: getOpenedDocumentUrl,
     };
+
+    var openedDocumentUrl;
 
     function setSignalsProperties(doc,position) {
       var signalsProperties = {};
@@ -71,6 +75,14 @@
       }
       var y = doc[field] ? decodeURIComponent(doc[field]) : doc[field];
       return y;
+    }
+
+    function setOpenedDocumentUrl(url) {
+      openedDocumentUrl = url;
+    }
+
+    function getOpenedDocumentUrl(url) {
+      return openedDocumentUrl;
     }
   }
 })();

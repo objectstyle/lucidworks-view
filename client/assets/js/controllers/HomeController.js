@@ -1,19 +1,24 @@
-(function() {
+(function () {
   'use strict';
   angular
     .module('lucidworksView.controllers.home', ['lucidworksView.services', 'angular-humanize'])
     .controller('HomeController', HomeController);
 
-  function HomeController($window, $filter, $state, $timeout, $rootScope, ConfigService, QueryService, URLService, PaginateService, Orwell, AuthService, _, $log, $scope) {
+  function HomeController($window, $filter, $state, $timeout, $rootScope, ConfigService, QueryService, URLService, PaginateService, Orwell, AuthService, _, $log, $scope, DocumentService, $sce) {
 
     'ngInject';
     var hc = this; //eslint-disable-line
     var resultsObservable;
     var query;
     var sorting;
+    hc.getDocumentUrl = getDocumentUrl;
+
+    function getDocumentUrl() {
+      return $sce.trustAsResourceUrl(DocumentService.getOpenedDocumentUrl());
+    }
 
     hc.filter = {
-      modifiedDate : null,
+      modifiedDate: null,
       advancedSearch: null,
 
       changeModifiedDateFilter: function (query, filter, filterType) {
@@ -57,10 +62,10 @@
     hc.closeSearchBar = closeSearchBar;
 
     hc.dateRanges = [
-      { name: 'Today', filter: 'fetchedDate_dt:[NOW-1DAY TO NOW]'},
-      { name: 'Past week', filter: 'fetchedDate_dt:[NOW-7DAYS TO NOW]'},
-      { name: 'Past month', filter: 'fetchedDate_dt:[NOW-1MONTH TO NOW]'},
-      { name: 'Past 6 months', filter: 'fetchedDate_dt:[NOW-6MONTHS TO NOW]'}
+      { name: 'Today', filter: 'fetchedDate_dt:[NOW-1DAY TO NOW]' },
+      { name: 'Past week', filter: 'fetchedDate_dt:[NOW-7DAYS TO NOW]' },
+      { name: 'Past month', filter: 'fetchedDate_dt:[NOW-1MONTH TO NOW]' },
+      { name: 'Past 6 months', filter: 'fetchedDate_dt:[NOW-6MONTHS TO NOW]' }
     ];
 
     hc.dateRange = {
@@ -93,7 +98,7 @@
 
       // Use an observable to get the contents of a queryResults after it is updated.
       resultsObservable = Orwell.getObservable('queryResults');
-      resultsObservable.addObserver(function(data) {
+      resultsObservable.addObserver(function (data) {
         // Locking the service to prevent multiple queries currently this only works for facet ranges (since it is very slow) but could add an ng-disabled to other areas and toggle on or off a disabled class
         startLoading();
 
@@ -111,7 +116,7 @@
       });
 
       if ($state.current.name == 'home') {
-          query = URLService.getQueryFromUrl();
+        query = URLService.getQueryFromUrl();
       } else {
         query = {
           q: ConfigService.config.default_query.q,
@@ -120,27 +125,26 @@
       }
 
       //Setting the query object... also populating the the view model
-      hc.searchQuery = _.get(query,'q',ConfigService.config.default_query.q);
+      hc.searchQuery = _.get(query, 'q', ConfigService.config.default_query.q);
 
       // Force set the query object to change one digest cycle later
       // than the digest cycle of the initial load-rendering
       // The $timeout is needed or else the query to fusion is not made.
-      $timeout(function(){
+      $timeout(function () {
         QueryService.setQuery(query);
       });
 
     }
 
-    function startLoading(){
+    function startLoading() {
       hc.isLoading = true;
     }
 
-
-    function endLoading(){
+    function endLoading() {
       hc.isLoading = false;
     }
 
-    function checkResultsType(data){
+    function checkResultsType(data) {
       if (data.hasOwnProperty('response')) {
         hc.numFound = data.response.numFound;
         hc.numFoundFormatted = $filter('humanizeNumberFormat')(hc.numFound, 0);
@@ -149,11 +153,11 @@
         // Make sure you check for all the supported facets before for empty-ness
         // before toggling the `showFacets` flag
       }
-      else if(_.has(data, 'grouped')){
+      else if (_.has(data, 'grouped')) {
         hc.lastQuery = data.responseHeader.params.q;
         $log.debug(data.grouped, 'grouppeeeddd');
         var numFoundArray = [];
-        _.each(data.grouped, function(group){
+        _.each(data.grouped, function (group) {
           numFoundArray.push(group.matches);
         });
         // For grouping, giving total number of documents found
@@ -168,20 +172,20 @@
 
     // Checks from data if it has supported facet type.
     // TODO: Refactor this to make sure it detects facet types from available modules.
-    function checkForFacets(data){
-      if(_.has(data, 'facet_counts')){
+    function checkForFacets(data) {
+      if (_.has(data, 'facet_counts')) {
         return (!_.isEmpty(data.facet_counts.facet_fields)) || (!_.isEmpty(data.facet_counts.facet_ranges));
       }
-      else{
+      else {
         return false;
       }
     }
 
-    function updateStatus(){
+    function updateStatus() {
       var status = '';
-      if(hc.numFound === 0){
+      if (hc.numFound === 0) {
         status = 'no-results';
-        if(hc.lastQuery === ''){
+        if (hc.lastQuery === '') {
           status = 'get-started';
         }
       } else {
@@ -189,8 +193,6 @@
       }
       hc.status = status;
     }
-
-
 
     /**
      * Initializes a new search.
@@ -210,11 +212,11 @@
     /**
      * Creates a sorting list from ConfigService
      */
-    function createSortList(){
-      var sortOptions = [{label:'default sort', type:'default', order:'', active: true}];
-      _.forEach(ConfigService.config.sort_fields, function(value){
-        sortOptions.push({label: value, type: 'text', order: 'asc', active: false});
-        sortOptions.push({label: value, type: 'text', order: 'desc', active: false});
+    function createSortList() {
+      var sortOptions = [{ label: 'default sort', type: 'default', order: '', active: true }];
+      _.forEach(ConfigService.config.sort_fields, function (value) {
+        sortOptions.push({ label: value, type: 'text', order: 'asc', active: false });
+        sortOptions.push({ label: value, type: 'text', order: 'desc', active: false });
       });
       sorting.sortOptions = sortOptions;
       sorting.selectedSort = sorting.sortOptions[0];
@@ -223,12 +225,12 @@
     /**
      * Switches sort parameter in the page
      */
-    function switchSort(sort){
+    function switchSort(sort) {
       sorting.selectedSort = sort;
       var query = QueryService.getQueryObject();
-      switch(sort.type) {
+      switch (sort.type) {
         case 'text':
-          query.sort = sort.label+' '+sort.order;
+          query.sort = sort.label + ' ' + sort.order;
           QueryService.setQuery(query);
           break;
         default:
@@ -240,7 +242,7 @@
     /**
      * Logs a user out of a session.
      */
-    function logout(){
+    function logout() {
       AuthService.destroySession();
     }
 
@@ -248,14 +250,12 @@
       hc.activeTab = num;
     }
 
-
-
     function getActivePage() {
       return PaginateService.getCurrentPage() + 1;
     }
 
     function setShowingRows() {
-      var total= PaginateService.getTotalResultRows();
+      var total = PaginateService.getTotalResultRows();
       if (total === 0) {
         hc.showingRows = '0';
       } else {
@@ -273,7 +273,7 @@
           end = total;
         }
 
-        hc.showingRows =  start + '-' + end;
+        hc.showingRows = start + '-' + end;
       }
     }
 
@@ -347,7 +347,7 @@
 
     $window.addEventListener('message', receiveMessage, false);
 
-    function receiveMessage(event){
+    function receiveMessage(event) {
       var message = event.data;
       if (message.type == 'search') {
         hc.searchQuery = message.value;
@@ -361,6 +361,7 @@
     function setActive(type) {
       hc.activeDateInput = type;
     }
+
     function setDate() {
       hc.dateRange[hc.activeDateInput] = hc.date;
     }

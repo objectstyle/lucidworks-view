@@ -9,7 +9,7 @@
         <img src="./assets/img/{{::vm.doc.image_s}}">
       </div>
       <div class="document-text-block">
-        <a href="{{doc.url_s}}" ng-click="vm.sendMessage('documentOpen', vm.doc.lw_head.value)" target="_blank">
+        <a ng-click="vm.setOpenedDocumentUrl(doc.url_s);vm.sendMessage('documentOpen', vm.doc.lw_head.value)" zf-open="document-modal">
           <h3 ng-bind-html="vm.highlight[doc.id].title_t" ng-if="vm.highlight[doc.id].title_t"></h3>
           <h3 class="head-field" ng-if="::(vm.doc.lw_head) && !vm.highlight[doc.id].title_t">
 
@@ -30,4 +30,3 @@
     </div>
   </div>
 </article>
-

@@ -26,6 +26,7 @@
     var vm = this;
     vm.postSignal = postSignal;
     vm.sendMessage = sendMessage;
+    vm.setOpenedDocumentUrl = DocumentService.setOpenedDocumentUrl;
     vm.details = false;
     var templateFields = [];
     var specialFields = ['title_s','Creator','_suggest_', 'image', 'self_s'];

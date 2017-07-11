@@ -94,8 +94,14 @@
     <button class="button-cancel" zf-close>Cancel</button>
   </div>
 </div>
+  <!-- Document Modal -->
 
-<!-- Search Tips Modal -->
+<div zf-modal id="document-modal" class="grid-frame">
+  <a zf-close class="close-button">&times;</a>
+  <iframe  src="{{hc.getDocumentUrl()}}" name="iframe" height="600" width="90%" ></iframe>
+</div>
+
+  <!-- Search Tips Modal -->
 
 <div zf-modal id="search-tips-modal" class="advanced-search-modal grid-frame search-tips-modal">
   <a zf-close class="close-button">&times;</a>
