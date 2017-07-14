@@ -28,6 +28,7 @@
     vm.sendMessage = sendMessage;
     vm.setOpenedDocumentUrl = DocumentService.setOpenedDocumentUrl;
     vm.details = false;
+    vm.showPopup = showPopup;
     var templateFields = [];
     var specialFields = ['title_s','Creator','_suggest_', 'image', 'self_s'];
 
@@ -120,6 +121,14 @@
         document: name,
       };
       $window.parent.postMessage(message, 'http://localhost:63342/lucidworks-view/demo/index.html');
+    }
+
+    function showPopup(doc) {
+      if (doc) {
+        var a = doc['_lw_data_source_s'].toLowerCase().indexOf('confluence') == -1;
+        return a;
+      }
+      return false;
     }
   }
 })();

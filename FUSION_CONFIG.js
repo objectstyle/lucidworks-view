@@ -67,7 +67,7 @@ appConfig = { //eslint-disable-line
   collection: 'ks_v1',
 
   // Please specify a pipeline or profile that you want to leverage with this UI.
-  query_pipeline_id: 'ks_v1-default',
+  query_pipeline_id: 'ks_v1-secure',
   query_profile_id: 'default',
   use_query_profile: false, // Force use of query-profile
 
@@ -142,7 +142,7 @@ appConfig = { //eslint-disable-line
   //
   // The HTML/Angular template is located in the following directory:
   //    your_project_directory/client/assets/components/document/document.html
-  fields_to_display:["title_s", "title_t", "body_abstract"],
+  fields_to_display:['title_s', 'title_t', 'body_abstract'],
 
   facets: [
     {
@@ -155,7 +155,7 @@ appConfig = { //eslint-disable-line
       facetType: 'facet_pivot',
       showFullListAfterFilter: false,
     },
-	{
+    {
       name: 'Category1',
       label: 'Data Source',
       viewType: 'checkbox',
@@ -238,7 +238,7 @@ appConfig = { //eslint-disable-line
    * In order to sort on a multi-valued field you will have to fix the schema
    * for that field and recrawl the data
    */
-  sort_fields: ["score", "LastModifiedDate"],
+  sort_fields: ['score', 'LastModifiedDate'],
   sort_fields_labels: {
     score: 'Relevance',
     LastModifiedDate: 'Last Modified Date'

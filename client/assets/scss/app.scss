@@ -523,6 +523,13 @@ a {
   padding-left: 0;
 }
 
+#document-modal .modal {
+  width: 95%;
+  height: 95%;
+  max-width: none;
+  padding-top: 40px;
+}
+
 @media only screen and (min-width: 40em) {
   .facet-col {
     -ms-flex: 0 0 35%;
