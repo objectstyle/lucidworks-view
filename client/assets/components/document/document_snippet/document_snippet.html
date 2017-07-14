@@ -16,7 +16,7 @@
             <field value="::vm.doc.lw_head.value" hkey="{{::vm.doc.lw_head.key}}"></field>
           </h3>
         </a>
-        <a ng-if="vm.showPopup(doc)" ng-click="vm.setOpenedDocumentUrl('http://localhost:3000/');vm.sendMessage('documentOpen', vm.doc.lw_head.value)" zf-open="document-modal">
+        <a ng-if="vm.showPopup(doc)" ng-click="vm.setOpenedDocumentUrl(doc.url_s);vm.sendMessage('documentOpen', vm.doc.lw_head.value)" zf-open="document-modal">
           <h3 ng-bind-html="vm.highlight[doc.id].title_t" ng-if="vm.highlight[doc.id].title_t"></h3>
           <h3 class="head-field" ng-if="::(vm.doc.lw_head) && !vm.highlight[doc.id].title_t">
 
