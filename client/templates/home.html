@@ -103,84 +103,15 @@
     <h3>Search Tips</h3>
   </div>
   <div  class="advanced-search-modal-content">
-    <h4>Union</h4>
     <ul>
-      <li>cats dogs<li>
-      <li>cats OR dogs<li>
+      <li>Searching for <b>templates AND course</b> only yields hits in which both the search terms <b>templates</b> and <b>course</b> are present.</li>
+      <li>Entering <b>+competency mathematics</b> would result in hits that must contain the term <b>competency</b> and can contain the term <b>mathematics</b>.</li>
+      <li>Searching for <b>member NOT group</b> show all hits that include the term <b>member</b> but not the term <b>group</b>.</li>
+      <li>Entering <b>didactic -"didactic templates"</b> leads to hits that contain the term <b>didactic</b> but excludes results that include the combination of terms <b>didactic templates</b>.</li>
+      <li>If you enter the search term <b>organi?ation</b> you will get hits for both organisation and organization. The <b>?</b> stands as a placeholder for any single letter or number.</li>
+      <li>If you search for <b>Politi*</b> you will get, among others, the results Politics, Political, Politician, etc... By entering <b>Lea*ing</b>, you would get, amongst others, the results Learning, Leaving etc... The symbol * stands as a placeholder for multiple, single or zero characters.</li>
     </ul>
 
-    <h4>Intersect</h4>
-    <p>
-      Most of the time, you will want to remember to explicitly AND terms together:
-    </p>
-    <ul>
-      <li>cats AND dogs<li>
-      <li>+cats +dogs<li>
-    </ul>
-
-    <h4>Nesting</h4>
-    <p>
-      (+cats +dogs) (+"peanut butter" +jelly)
-    </p>
-
-    <h4>Subtraction</h4>
-    <p>
-      Minus (-) excludes a term from results, and automatically ANDs it with the rest of the query.
-    </p>
-    <ul>
-      <li>cats -dogs<li>
-      <li>cats AND NOT dogs<li>
-    </ul>
-
-    <h4>Union</h4>
-    <p>
-      cats dogs<br/>
-      cats OR dogs
-    </p>
-
-    <h4>Phrases</h4>
-    <p>
-      "grumpy cat"
-    </p>
-
-    <h4>Wildcards</h4>
-    <p>
-      Question mark (?) matches a single, arbitrary character.
-    </p>
-    <p>
-      Asterisk (*) matches any word or phrase.
-    </p>
-    <ul>
-      <li>cats</li>
-      <li>c?ts</li>
-      <li>+khtml +like +Gecko</li>
-      <li>+khtml +like +Geck?</li>
-      <li>"khtml like Geck\?"</li>
-      <li>+"khtml, like" +Ge*</li>
-      <li>"khtml, like \*"</li>
-      <li>error\:</li>
-    </ul>
-    <h6>Notes:</h6>
-    <ol>
-      <li>Wildcards and other special characters (e.g., +, -, &, |, !, (, ), {, }, [, ], ^, ", ~, *, ?, :, and \) need to be escaped (e.g., \?, \?) when used inside phrases/strings, or searched for as a literal.</li>
-      <li>An asterisk cannot be used as the first character of a term (e.g., *oogle is bad syntax).</li>
-    </ol>
-
-    <h4>Fuzzy searches</h4>
-    <p>
-      Lucene can search for similar terms:
-
-      integer~
-      will match on integer, integers, and intejer.
-    </p>
-    <h6>Specify a threshold</h6>
-    <p>An optional fuzziness threshold can be specified, from 0.0 (very loose) to 1.0 (very strict).</p>
-    <ul>
-      <li>integer~</li>
-      <li>integer~0.5</li>
-      <li>integer~0.4</li>
-      <li>integer~0.6</li>
-    </ul>
   </div>
   <div class="grid-block advanced-search-modal-footer">
     <button class="button-cancel" zf-close>Close</button>
