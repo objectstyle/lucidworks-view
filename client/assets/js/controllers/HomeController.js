@@ -99,6 +99,7 @@
       hc.activeTab = 2;
       hc.getTotalPages = PaginateService.getTotalResultRows;
       hc.searchAssistant = true;
+      hc.documentsLoaded = false;
 
       // Use an observable to get the contents of a queryResults after it is updated.
       resultsObservable = Orwell.getObservable('queryResults');
@@ -192,8 +193,10 @@
         if (hc.lastQuery === '') {
           status = 'get-started';
         }
-      } else {
+      } else if(hc.documentsLoaded) {
         status = 'normal';
+      } else {
+        status = 'loading';
       }
       hc.status = status;
     }
@@ -404,6 +407,9 @@
       $rootScope.$broadcast('leaveSearchBar');
     }
 
+    $scope.$on('documentLoad', function() {
+      hc.documentsLoaded = true;
+    });
     $scope.$on('doSearch', doSearch);
     $scope.$on('documentUrlSet', setDocumentUrl);
   }

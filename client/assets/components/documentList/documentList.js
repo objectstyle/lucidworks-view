@@ -21,7 +21,7 @@
 
   }
 
-  function Controller($sce, $log, $anchorScroll, Orwell) {
+  function Controller($sce, $log, $anchorScroll, Orwell, $rootScope) {
     'ngInject';
     var vm = this;
     vm.docs = [];
@@ -39,17 +39,21 @@
     function activate() {
       var resultsObservable = Orwell.getObservable('queryResults');
       resultsObservable.addObserver(function (data) {
-        vm.docs = parseDocuments(data);
-        var testDoc = {
-          image_s: 'wiki2.jpg',
-          url_s: 'https://www.wikipedia.org/',
-          title_t: 'Test document',
-          _lw_data_source_s: 'rightAnswers',
-          lw_head: {
-            key: 'Test document',
-          }
-        };
-        vm.docs.unshift(testDoc);
+        var docs = parseDocuments(data);
+        if (docs[0].title_t[0] !== 'Test document') {
+          var testDoc = {
+            image_s: 'wiki2.jpg',
+            url_s: 'https://www.wikipedia.org/',
+            title_t: ['Test document'],
+            _lw_data_source_s: 'rightAnswers',
+            lw_head: {
+              key: 'Test document',
+            }
+           };
+          docs.unshift(testDoc);
+        }
+        vm.docs = docs;
+        $rootScope.$broadcast('documentLoad');
         vm.highlighting = parseHighlighting(data);
         vm.getDoctype = getDocType;
         $anchorScroll('topOfMainContent');
