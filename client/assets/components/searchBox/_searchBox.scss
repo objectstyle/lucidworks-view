@@ -33,6 +33,9 @@ $search-box-empty-content:                 '';
       padding: 4px;
       text-align:left;
     }
+    .ac-menu {
+      padding-top: 30px;
+    }
     .no-results-message {
       font-size:0.9rem;
       position:absolute;
@@ -40,6 +43,7 @@ $search-box-empty-content:                 '';
       width: 100%;
       padding: 5px;
       font-style: italic;
+      z-index: 1001;
 
       .grid-block a {
         height: 1.2em;
