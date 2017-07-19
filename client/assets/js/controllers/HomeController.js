@@ -66,10 +66,10 @@
     hc.closeSearchBar = closeSearchBar;
 
     hc.dateRanges = [
-      { name: 'Today', filter: 'fetchedDate_dt:[NOW-1DAY TO NOW]' },
-      { name: 'Past week', filter: 'fetchedDate_dt:[NOW-7DAYS TO NOW]' },
-      { name: 'Past month', filter: 'fetchedDate_dt:[NOW-1MONTH TO NOW]' },
-      { name: 'Past 6 months', filter: 'fetchedDate_dt:[NOW-6MONTHS TO NOW]' }
+      { name: 'Today', filter: 'LastModifiedDate:[NOW-1DAY TO NOW]' },
+      { name: 'Past week', filter: 'LastModifiedDate:[NOW-7DAYS TO NOW]' },
+      { name: 'Past month', filter: 'LastModifiedDate:[NOW-1MONTH TO NOW]' },
+      { name: 'Past 6 months', filter: 'LastModifiedDate:[NOW-6MONTHS TO NOW]' }
     ];
 
     hc.dateRange = {
@@ -383,7 +383,7 @@
         if (hc.dateRange.to) {
           end = hc.dateRange.to + 'T23:59:59Z';
         }
-        f = 'fetchedDate_dt:[' + start + ' TO ' + end + ']';
+        f = 'LastModifiedDate:[' + start + ' TO ' + end + ']';
         hc.dateRange.filter = f;
       }
 
