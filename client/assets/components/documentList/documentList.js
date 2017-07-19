@@ -40,6 +40,16 @@
       var resultsObservable = Orwell.getObservable('queryResults');
       resultsObservable.addObserver(function (data) {
         vm.docs = parseDocuments(data);
+        var testDoc = {
+          image_s: 'wiki2.jpg',
+          url_s: 'https://www.wikipedia.org/',
+          title_t: 'Test document',
+          _lw_data_source_s: 'rightAnswers',
+          lw_head: {
+            key: 'Test document',
+          }
+        };
+        vm.docs.unshift(testDoc);
         vm.highlighting = parseHighlighting(data);
         vm.getDoctype = getDocType;
         $anchorScroll('topOfMainContent');

@@ -1,13 +1,14 @@
 <div id="documentList">
   <div ng-repeat="doc in vm.docs">
-    <document-snippet doc="doc" position="vm.getDocPosition(doc,vm.docs)" highlight="vm.highlighting"></document-snippet>
+    <document-snippet doc="doc" position="vm.getDocPosition(doc,vm.docs)"
+                      highlight="vm.highlighting"></document-snippet>
 
     <div zf-modal class="description-modal" id="description-modal">
       <a zf-close class="close-button">&times;</a>
       <iframe src="" height="70%" width="80%"></iframe>
     </div>
   </div>
-<!-- Regular grouped results -->
+  <!-- Regular grouped results -->
   <!--<div ng-if="vm.groupedResults" ng-repeat="(key, val) in vm.groupedResults">
     <h1>{{key}}</h1>
     <div ng-repeat="group in val.groups">
