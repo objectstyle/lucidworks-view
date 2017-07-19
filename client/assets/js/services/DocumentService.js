@@ -5,7 +5,7 @@
     .module('lucidworksView.services.document', [])
     .factory('DocumentService', DocumentService);
 
-  function DocumentService(PaginateService, SignalsService) {
+  function DocumentService(PaginateService, SignalsService, $sce, $rootScope) {
     'ngInject';
 
     return {
@@ -78,7 +78,8 @@
     }
 
     function setOpenedDocumentUrl(url) {
-      openedDocumentUrl = url;
+      openedDocumentUrl = $sce.trustAsResourceUrl(url);
+      $rootScope.$broadcast('documentUrlSet');
     }
 
     function getOpenedDocumentUrl(url) {

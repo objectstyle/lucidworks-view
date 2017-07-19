@@ -11,10 +11,14 @@
     var resultsObservable;
     var query;
     var sorting;
-    hc.getDocumentUrl = getDocumentUrl;
+    hc.clearDocumentUrl = clearDocumentUrl;
 
-    function getDocumentUrl() {
-      return $sce.trustAsResourceUrl(DocumentService.getOpenedDocumentUrl());
+    function clearDocumentUrl() {
+      hc.documentUrl = ' ';
+    }
+
+    function setDocumentUrl() {
+      hc.documentUrl = DocumentService.getOpenedDocumentUrl();
     }
 
     hc.filter = {
@@ -401,5 +405,6 @@
     }
 
     $scope.$on('doSearch', doSearch);
+    $scope.$on('documentUrlSet', setDocumentUrl);
   }
 })();
