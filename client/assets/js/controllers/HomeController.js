@@ -187,18 +187,12 @@
     }
 
     function updateStatus() {
-      var status = '';
-      if (hc.numFound === 0) {
-        status = 'no-results';
-        if (hc.lastQuery === '') {
-          status = 'get-started';
-        }
-      } else if(hc.documentsLoaded) {
-        status = 'normal';
-      } else {
-        status = 'loading';
+      var status = false;
+      if (hc.numFound !== 0 && hc.documentsLoaded) {
+        status = true;
       }
       hc.status = status;
+      console.log('Status of navigation: ' + hc.status);
     }
 
     /**

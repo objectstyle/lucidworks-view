@@ -21,7 +21,7 @@
 
   }
 
-  function Controller($sce, $log, $anchorScroll, Orwell, $rootScope) {
+  function Controller($sce, $log, $anchorScroll, Orwell, $rootScope, ConfigService) {
     'ngInject';
     var vm = this;
     vm.docs = [];
@@ -40,7 +40,9 @@
       var resultsObservable = Orwell.getObservable('queryResults');
       resultsObservable.addObserver(function (data) {
         var docs = parseDocuments(data);
-        if (docs[0].title_t[0] !== 'Test document') {
+        console.log("Documents in response: " + docs);
+        var showTextDoc = ConfigService.config.show_test_document;
+        if (docs.length && docs[0].title_t[0] !== 'Test document' && showTextDoc) {
           var testDoc = {
             image_s: 'wiki2.jpg',
             url_s: 'https://www.wikipedia.org/',

@@ -57,6 +57,7 @@
 
     function checkKeyPress($event) {
       ta.query = ta.dirty.value;
+      ta.noResultsMessage = undefined;
       if ($event.keyCode === 13) {
         closeSuggester();
         $rootScope.$broadcast('doSearch');

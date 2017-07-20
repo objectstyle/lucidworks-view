@@ -290,5 +290,6 @@ appConfig = { //eslint-disable-line
    *
    * If there is no query provided in the URL this query will be used. It is in object form.
    */
-  default_query: {q:'*'}
+  default_query: {q:'*'},
+  show_test_document: true,
 };
