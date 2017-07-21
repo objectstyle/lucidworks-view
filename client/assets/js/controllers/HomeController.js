@@ -91,7 +91,7 @@
       hc.logout = logout;
       hc.appName = ConfigService.config.search_app_title;
       hc.logoLocation = ConfigService.config.logo_location;
-      hc.status = 'loading';
+      hc.status = false;
       hc.lastQuery = '';
       hc.sorting = {};
       hc.grouped = false;
@@ -136,6 +136,7 @@
       // than the digest cycle of the initial load-rendering
       // The $timeout is needed or else the query to fusion is not made.
       $timeout(function () {
+        hc.status = false;
         QueryService.setQuery(query);
       });
 
@@ -192,13 +193,13 @@
         status = true;
       }
       hc.status = status;
-      console.log('Status of navigation: ' + hc.status);
     }
 
     /**
      * Initializes a new search.
      */
     function doSearch() {
+
       if (!hc.searchQuery) {
         hc.searchQuery = '*';
       }
@@ -206,7 +207,7 @@
         q: hc.searchQuery,
         start: 0,
       };
-
+      hc.status = false;
       QueryService.setQuery(query, 'home');
     }
 
@@ -229,6 +230,7 @@
     function switchSort(sort) {
       sorting.selectedSort = sort;
       var query = QueryService.getQueryObject();
+      hc.status = false;
       switch (sort.type) {
         case 'text':
           query.sort = sort.label + ' ' + sort.order;
@@ -326,13 +328,15 @@
         advancedQuery += noWords;
       }
       var query = QueryService.getQueryObject();
-      hc.filter.changeModifiedDateFilter(query, advancedQuery, 'advancedSearch');
-
+      // hc.filter.changeModifiedDateFilter(query, advancedQuery, 'advancedSearch');
+      query.q = advancedQuery;
+      $rootScope.$broadcast('searchChangeMessage', advancedQuery);
       query.start = 0;
-      QueryService.setQuery(query);
+      hc.status = false;
+      QueryService.setQuery(query, 'home');
     }
-
     function resetSearch() {
+      console.log('reset');
       hc.searchQuery = '*';
       hc.filter.modifiedDate = null;
       hc.filter.advancedSearch = null;
@@ -343,6 +347,7 @@
         fq: [],
       };
       $rootScope.$broadcast('searchChangeMessage', hc.searchQuery);
+      hc.status = false;
       QueryService.setQuery(query);
     }
 
@@ -387,6 +392,7 @@
       hc.filter.changeModifiedDateFilter(query, f, 'modifiedDate');
 
       query.start = 0;
+      hc.status = false;
       QueryService.setQuery(query);
     };
 
@@ -403,6 +409,7 @@
 
     $scope.$on('documentLoad', function() {
       hc.documentsLoaded = true;
+      updateStatus();
     });
     $scope.$on('doSearch', doSearch);
     $scope.$on('documentUrlSet', setDocumentUrl);

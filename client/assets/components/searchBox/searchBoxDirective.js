@@ -37,7 +37,7 @@
     var massAutocompleteElem = $element.find('div')[0];
 
     //mass-autocomplete config
-    ta.dirty = {};
+    ta.dirty =  {};
 
     ta.autocomplete_options = {
       suggest: doTypeaheadSearch,
@@ -132,17 +132,24 @@
       }
     }
 
+    ta.showSuggestionBar = false;
+
     function toggleSearchBar() {
       ta.showBar = !ta.showBar;
       if (ta.showBar) {
         ta.mouseLeave = true;
       }
+      ta.showSuggestionBar = ta.showBar || ta.mouseLeave;
+      console.log('searchBar: ' + ta.showSuggestionBar);
     }
 
     $scope.$on('leaveSearchBar', function() {
       ta.mouseLeave = false;
+      ta.showSuggestionBar = ta.showBar || ta.mouseLeave;
+      console.log('searchBar: ' + ta.showSuggestionBar);
     });
     $scope.$on('searchChangeMessage', function (event, message) {
+      ta.noResultsMessage = undefined;
       if (message == '*') {
         ta.dirty.value = '';
       } else {

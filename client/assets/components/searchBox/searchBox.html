@@ -7,7 +7,7 @@
       ng-focus="ta.toggleSearchBar()"
       ng-blur="ta.toggleSearchBar()"/>
 
-  <div class="search-bar no-results-message align-justify grid-block" ng-show="ta.showBar || ta.mouseLeave">
+  <div class="search-bar no-results-message align-justify grid-block" ng-if="ta.showSuggestionBar">
     <div class="small-4 grid-block">
       <span>{{ta.noResultsMessage}}</span>
     </div>

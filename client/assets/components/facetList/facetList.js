@@ -64,30 +64,32 @@
 
         var facetsConfig = ConfigService.config.facets;
         _.forEach(facetsConfig, function(facet) {
-          var facetData = data.facet_counts[facet.facetType][facet.name];
+          if (data.facet_counts[facet.facetType]) {
+            var facetData = data.facet_counts[facet.facetType][facet.name];
 
-          if (shouldBeUpdated(facetData, facet)) {
-            clearFacet(facet);
-            var newFacet = {
-              name: facet.name,
-              type: facet.facetType,
-              autoOpen: true,
-              label: facet.label,
-              tag: LocalParamsService.getLocalParamTag(vm.facetLocalParams[retrieveFacetType(facet.facetType)], facet.name) || null,
-              viewType: facet.viewType,
-              pivot: facet.facetType == 'facet_pivot',
-              resultsAmount: facetData.length,
-              showFullList: facet.showFullListAfterFilter,
-            };
-            if (!facet.group) {
-              vm.facets.ungrouped[facet.positionInGroup] = newFacet;
-            } else {
-              var groupId = getGroupId(vm.facets.groups, 'groupName', facet.group);
-              if(groupId == -1) {
-                vm.facets.groups.push({ groupName: facet.group, facets: []});
-                groupId = getGroupId(vm.facets.groups, 'groupName', facet.group);
+            if (shouldBeUpdated(facetData, facet)) {
+              clearFacet(facet);
+              var newFacet = {
+                name: facet.name,
+                type: facet.facetType,
+                autoOpen: true,
+                label: facet.label,
+                tag: LocalParamsService.getLocalParamTag(vm.facetLocalParams[retrieveFacetType(facet.facetType)], facet.name) || null,
+                viewType: facet.viewType,
+                pivot: facet.facetType == 'facet_pivot',
+                resultsAmount: facetData.length,
+                showFullList: facet.showFullListAfterFilter,
+              };
+              if (!facet.group) {
+                vm.facets.ungrouped[facet.positionInGroup] = newFacet;
+              } else {
+                var groupId = getGroupId(vm.facets.groups, 'groupName', facet.group);
+                if(groupId == -1) {
+                  vm.facets.groups.push({ groupName: facet.group, facets: []});
+                  groupId = getGroupId(vm.facets.groups, 'groupName', facet.group);
+                }
+                vm.facets.groups[groupId].facets[facet.positionInGroup] = newFacet;
               }
-              vm.facets.groups[groupId].facets[facet.positionInGroup] = newFacet;
             }
           }
         })

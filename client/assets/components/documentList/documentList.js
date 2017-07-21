@@ -40,7 +40,12 @@
       var resultsObservable = Orwell.getObservable('queryResults');
       resultsObservable.addObserver(function (data) {
         var docs = parseDocuments(data);
-        console.log("Documents in response: " + docs);
+        /*console.log("Documents count in response: " + docs.length);
+        if(docs.length) {
+          console.log("First document title in response: '" + docs[0].title_t[0] + "'");
+          console.log("First document in response: ");
+          console.log(docs[0]);
+        }*/
         var showTextDoc = ConfigService.config.show_test_document;
         if (docs.length && docs[0].title_t[0] !== 'Test document' && showTextDoc) {
           var testDoc = {

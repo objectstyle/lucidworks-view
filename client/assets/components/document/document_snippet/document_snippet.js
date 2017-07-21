@@ -124,6 +124,9 @@
     }
 
     function showPopup(doc) {
+      if ($window.browserVersion.name === 'IE' && $window.browserVersion.version === '11') {
+        return false;
+      }
       if (doc) {
         var a = doc['_lw_data_source_s'].toLowerCase().indexOf('confluence') == -1;
         return a;

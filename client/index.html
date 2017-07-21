@@ -36,7 +36,13 @@
           version: M[1]
         };
       }
-      console.log(get_browser());
+      window.browserVersion = get_browser();
+      console.log(window.browserVersion);
+    </script>
+    <script>
+      document.addEventListener('click', function(event) {
+        console.log(event.target);
+      });
     </script>
     <script src="./assets/js/foundation.js"></script>
     <script src="./assets/js/templates.js"></script>
