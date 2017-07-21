@@ -26,6 +26,7 @@
     var ta = this;
 
     ta.checkKeyPress = checkKeyPress;
+    ta.updateSearchQuery = updateSearchQuery;
     ta.toggleSearchBar = toggleSearchBar;
     ta.typeaheadField = ConfigService.getTypeaheadField();
     ta.initialValue = _.isArray(ta.query)?ta.query[0]:ta.query;
@@ -38,7 +39,7 @@
 
     //mass-autocomplete config
     ta.dirty =  {};
-
+    //
     ta.autocomplete_options = {
       suggest: doTypeaheadSearch,
       on_error: showNoResults,
@@ -55,9 +56,12 @@
       }
     }
 
-    function checkKeyPress($event) {
+    function updateSearchQuery() {
       ta.query = ta.dirty.value;
       ta.noResultsMessage = undefined;
+    }
+
+    function checkKeyPress($event) {
       if ($event.keyCode === 13) {
         closeSuggester();
         $rootScope.$broadcast('doSearch');
