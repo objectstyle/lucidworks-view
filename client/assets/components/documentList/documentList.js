@@ -47,7 +47,7 @@
           console.log(docs[0]);
         }*/
         var showTextDoc = ConfigService.config.show_test_document;
-        if (docs.length && docs[0].title_t[0] !== 'Test document' && showTextDoc) {
+        if (showTextDoc && noTestDocument(docs)) {
           var testDoc = {
             image_s: 'wiki2.jpg',
             url_s: 'https://www.wikipedia.org/',
@@ -65,6 +65,10 @@
         vm.getDoctype = getDocType;
         $anchorScroll('topOfMainContent');
       });
+    }
+
+    function noTestDocument(docs) {
+      return docs.length && docs[0].title_t && docs[0].title_t[0] !== 'Test document';
     }
 
     /**
